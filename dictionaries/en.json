@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "title": "Marouane Devise | Currency Exchange in Casablanca",
+    "description": "Currency exchange in Casablanca offering competitive rates, fast service, no commission and no hidden fees.",
+    "keywords": "currency exchange Casablanca, bureau de change Casablanca, tourist allowance Morocco, pilgrimage allowance, euro dirham exchange, dollar dirham exchange"
+  },
+  "nav": {
+    "home": "Home",
+    "rates": "Rates",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact",
+    "reserve": "Reserve"
+  },
+  "hero": {
+    "badge": "Currency Exchange Casablanca",
+    "title": "Exchange your currency with confidence in Casablanca",
+    "subtitle": "Best exchange rates, fast service, total transparency. No commission, no hidden fees. Your trusted partner for all your currency exchange needs.",
+    "cta_rates": "View rates",
+    "cta_call": "Call now",
+    "cta_direction": "Get directions",
+    "trust_no_commission": "No commission",
+    "trust_secure": "Secure exchange",
+    "trust_fast": "Fast service",
+    "trust_transparent": "Transparent rates"
+  },
+  "rates": {
+    "title": "Today's Exchange Rates",
+    "subtitle": "Check our real-time rates for all currencies",
+    "buy": "Buy",
+    "sell": "Sell",
+    "updated": "Last updated",
+    "search": "Search currency...",
+    "popular": "Popular",
+    "all": "All currencies",
+    "per_mad": "per 1 MAD"
+  },
+  "calculator": {
+    "title": "Exchange Calculator",
+    "subtitle": "Quickly estimate the amount you will receive",
+    "amount": "Amount",
+    "from": "From",
+    "to": "To (MAD)",
+    "calculate": "Calculate",
+    "swap": "Swap",
+    "result": "Estimated amount",
+    "no_commission": "No commission is applied",
+    "disclaimer": "Rates shown are indicative and may vary. Visit us in branch for the exact rate."
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "A complete range of exchange services to meet all your needs",
+    "cta": "Learn more"
+  },
+  "whyUs": {
+    "title": "Why choose Marouane Devise?",
+    "subtitle": "Your satisfaction is our priority",
+    "rating": "Google Rating",
+    "reviews": "verified reviews",
+    "fast": "Fast Service",
+    "fastDesc": "Operations completed in minutes",
+    "competitive": "Competitive Rates",
+    "competitiveDesc": "Best market prices",
+    "professional": "Professional Welcome",
+    "professionalDesc": "A team at your service",
+    "trusted": "Proven Trust",
+    "trustedDesc": "By travelers and locals alike"
+  },
+  "reviews": {
+    "title": "Customer Reviews",
+    "subtitle": "What our customers say about us on Google"
+  },
+  "about": {
+    "title": "About Marouane Devise",
+    "content": "Marouane Devise is a trusted currency exchange office located in the heart of Casablanca. We are committed to offering transparent rates, fast operations, and professional service to every customer. Whether you are a traveler, student, pilgrim, or professional, our team is here to meet all your currency exchange needs. With a 4.8/5 rating on Google, we are proud of the trust our customers place in us."
+  },
+  "reservation": {
+    "title": "Reserve Currency",
+    "subtitle": "Reserve your currencies in advance and lock in your rate",
+    "form": {
+      "name": "Full name",
+      "phone": "Phone number",
+      "currency": "Currency needed",
+      "amount": "Estimated amount",
+      "date": "Desired date",
+      "message": "Message (optional)",
+      "submit": "Submit request",
+      "whatsapp": "Reserve via WhatsApp"
+    },
+    "success": "Your request has been sent successfully!"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are here to answer your questions",
+    "call": "Call",
+    "whatsapp": "WhatsApp",
+    "direction": "Get Directions",
+    "hours": "Opening Hours",
+    "address": "Address"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Quickly find answers to your questions"
+  },
+  "footer": {
+    "description": "Your trusted currency exchange in Casablanca. Competitive rates, fast service, no commission.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "legal": "Legal",
+    "copyright": "© 2026 Marouane Devise. All rights reserved.",
+    "madeWith": "Made with passion in Casablanca"
+  }
+}

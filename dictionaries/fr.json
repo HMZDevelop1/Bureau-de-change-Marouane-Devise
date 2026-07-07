@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "title": "Marouane Devise | Bureau de Change à Casablanca",
+    "description": "Bureau de change à Casablanca offrant des taux compétitifs, un service rapide, sans commission et sans frais cachés.",
+    "keywords": "bureau de change Casablanca, change devise Casablanca, dotation touristique Maroc, dotation pèlerinage, change euro dirham, change dollar dirham"
+  },
+  "nav": {
+    "home": "Accueil",
+    "rates": "Taux",
+    "services": "Services",
+    "about": "À propos",
+    "contact": "Contact",
+    "reserve": "Réserver"
+  },
+  "hero": {
+    "badge": "Bureau de Change Casablanca",
+    "title": "Changez vos devises en toute confiance à Casablanca",
+    "subtitle": "Meilleurs taux de change, service rapide, transparence totale. Sans commission, sans frais cachés. Votre partenaire de confiance pour toutes vos opérations de change.",
+    "cta_rates": "Voir les taux",
+    "cta_call": "Appeler maintenant",
+    "cta_direction": "Itinéraire",
+    "trust_no_commission": "Sans commission",
+    "trust_secure": "Échange sécurisé",
+    "trust_fast": "Service rapide",
+    "trust_transparent": "Taux transparents"
+  },
+  "rates": {
+    "title": "Taux de change du jour",
+    "subtitle": "Consultez nos taux en temps réel pour toutes les devises",
+    "buy": "Achat",
+    "sell": "Vente",
+    "updated": "Dernière mise à jour",
+    "search": "Rechercher une devise...",
+    "popular": "Populaires",
+    "all": "Toutes les devises",
+    "per_mad": "pour 1 MAD"
+  },
+  "calculator": {
+    "title": "Calculatrice de change",
+    "subtitle": "Estimez rapidement le montant que vous recevrez",
+    "amount": "Montant",
+    "from": "De",
+    "to": "Vers (MAD)",
+    "calculate": "Calculer",
+    "swap": "Inverser",
+    "result": "Montant estimé",
+    "no_commission": "Aucune commission n'est appliquée",
+    "disclaimer": "Les taux indiqués sont indicatifs et peuvent varier. Consultez-nous en agence pour le taux exact."
+  },
+  "services": {
+    "title": "Nos services",
+    "subtitle": "Une gamme complète de services de change pour répondre à tous vos besoins",
+    "cta": "En savoir plus"
+  },
+  "whyUs": {
+    "title": "Pourquoi choisir Marouane Devise ?",
+    "subtitle": "Votre satisfaction est notre priorité depuis des années",
+    "rating": "Note Google",
+    "reviews": "avis vérifiés",
+    "fast": "Service rapide",
+    "fastDesc": "Opérations en quelques minutes",
+    "competitive": "Taux compétitifs",
+    "competitiveDesc": "Les meilleurs prix du marché",
+    "professional": "Accueil professionnel",
+    "professionalDesc": "Une équipe à votre écoute",
+    "trusted": "Confiance prouvée",
+    "trustedDesc": "Aux côtés des voyageurs et habitants"
+  },
+  "reviews": {
+    "title": "Avis de nos clients",
+    "subtitle": "Ce que nos clients disent de nous sur Google"
+  },
+  "about": {
+    "title": "À propos de Marouane Devise",
+    "content": "Marouane Devise est un bureau de change de confiance situé au cœur de Casablanca. Nous nous engageons à offrir des taux transparents, des opérations rapides et un service professionnel à chaque client. Que vous soyez voyageur, étudiant, pèlerin ou professionnel, notre équipe est à votre disposition pour répondre à tous vos besoins en change de devises. Avec une note de 4.8/5 sur Google, nous sommes fiers de la confiance que nous accordent nos clients."
+  },
+  "reservation": {
+    "title": "Réserver des devises",
+    "subtitle": "Réservez vos devises à l'avance et garantissez votre taux",
+    "form": {
+      "name": "Nom complet",
+      "phone": "Numéro de téléphone",
+      "currency": "Devise souhaitée",
+      "amount": "Montant estimé",
+      "date": "Date souhaitée",
+      "message": "Message (optionnel)",
+      "submit": "Envoyer la demande",
+      "whatsapp": "Réserver via WhatsApp"
+    },
+    "success": "Votre demande a été envoyée avec succès !"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "subtitle": "Nous sommes à votre disposition pour répondre à vos questions",
+    "call": "Appeler",
+    "whatsapp": "WhatsApp",
+    "direction": "Itinéraire",
+    "hours": "Horaires d'ouverture",
+    "address": "Adresse"
+  },
+  "faq": {
+    "title": "Questions fréquentes",
+    "subtitle": "Trouvez rapidement les réponses à vos questions"
+  },
+  "footer": {
+    "description": "Votre bureau de change de confiance à Casablanca. Taux compétitifs, service rapide, sans commission.",
+    "quickLinks": "Liens rapides",
+    "services": "Services",
+    "contact": "Contact",
+    "legal": "Mentions légales",
+    "copyright": "© 2026 Marouane Devise. Tous droits réservés.",
+    "madeWith": "Fait avec passion à Casablanca"
+  }
+}
