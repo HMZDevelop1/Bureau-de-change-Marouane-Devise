@@ -2,11 +2,17 @@
 
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { MapPin, Phone, Mail, Star } from "lucide-react";
+import { MapPin, Phone, Mail, Star, Clock } from "lucide-react";
 import { contactInfo } from "@/data/contact";
+import { DAY_ORDER, DAY_LABELS, formatTimeDisplay, type DayKey } from "@/lib/hours";
 
 export function Footer() {
   const t = useTranslations("footer");
+
+  const quickHours = [
+    { days: "Lun – Mer", hours: "09:30 – 22:00" },
+    { days: "Jeu – Dim", hours: "09:00 – 22:00" },
+  ];
 
   return (
     <footer className="bg-brand-ocean text-white">
@@ -125,6 +131,17 @@ export function Footer() {
                 >
                   {contactInfo.email}
                 </a>
+              </li>
+              <li className="flex items-start gap-3 mt-2">
+                <Clock className="h-4 w-4 text-brand-gold mt-0.5 shrink-0" />
+                <div className="text-white/60 text-sm space-y-0.5">
+                  {quickHours.map((item, i) => (
+                    <div key={i}>
+                      <span className="text-white/40">{item.days}:</span>{" "}
+                      <span className="text-white/70">{item.hours}</span>
+                    </div>
+                  ))}
+                </div>
               </li>
             </ul>
           </div>

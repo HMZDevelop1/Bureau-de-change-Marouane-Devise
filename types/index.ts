@@ -41,6 +41,11 @@ export interface FAQ {
   answerAr: string;
 }
 
+export interface DayHours {
+  open: string;
+  close: string;
+}
+
 export interface ContactInfo {
   phone: string;
   phoneFormatted: string;
@@ -53,9 +58,13 @@ export interface ContactInfo {
   country: string;
   googleMapsUrl: string;
   openingHours: {
-    weekday: string;
-    saturday: string;
-    sunday: string;
+    monday: DayHours;
+    tuesday: DayHours;
+    wednesday: DayHours;
+    thursday: DayHours;
+    friday: DayHours;
+    saturday: DayHours;
+    sunday: DayHours;
   };
   coordinates: {
     lat: number;

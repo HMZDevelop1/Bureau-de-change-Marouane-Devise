@@ -24,15 +24,15 @@ export function LocalBusinessSchema() {
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "09:00",
-        closes: "19:00",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday"],
+        opens: "09:30",
+        closes: "22:00",
       },
       {
         "@type": "OpeningHoursSpecification",
-        dayOfWeek: "Saturday",
+        dayOfWeek: ["Thursday", "Friday", "Saturday", "Sunday"],
         opens: "09:00",
-        closes: "17:00",
+        closes: "22:00",
       },
     ],
     aggregateRating: {

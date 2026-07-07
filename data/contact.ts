@@ -13,9 +13,13 @@ export const contactInfo: ContactInfo = {
   googleMapsUrl:
     "https://www.google.com/maps/search/Marouane+Devise+Casaablanca",
   openingHours: {
-    weekday: "Lundi - Vendredi : 9h00 - 19h00",
-    saturday: "Samedi : 9h00 - 17h00",
-    sunday: "Dimanche : Fermé",
+    monday: { open: "09:30", close: "22:00" },
+    tuesday: { open: "09:30", close: "22:00" },
+    wednesday: { open: "09:30", close: "22:00" },
+    thursday: { open: "09:00", close: "22:00" },
+    friday: { open: "09:00", close: "22:00" },
+    saturday: { open: "09:00", close: "22:00" },
+    sunday: { open: "09:00", close: "22:00" },
   },
   coordinates: {
     lat: 33.5731,

@@ -2,10 +2,11 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Phone, MessageSquare, MapPin, Clock, ExternalLink } from "lucide-react";
+import { Phone, MessageSquare, MapPin, ExternalLink } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { contactInfo } from "@/data/contact";
+import { OpeningHours } from "@/components/opening-hours";
 
 export function ContactSection() {
   const t = useTranslations("contact");
@@ -125,26 +126,8 @@ export function ContactSection() {
               </CardContent>
             </Card>
 
-            {/* Opening Hours */}
-            <Card className="hover:shadow-card-hover transition-all duration-300 border-brand-ocean/5 bg-white group">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-brand-sm bg-brand-orange/10 flex items-center justify-center group-hover:bg-brand-orange transition-colors">
-                    <Clock className="h-6 w-6 text-brand-orange group-hover:text-white transition-colors" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-brand-ocean mb-2">
-                      {t("hours")}
-                    </h3>
-                    <div className="space-y-1 text-sm text-brand-ocean/50">
-                      <p>{contactInfo.openingHours.weekday}</p>
-                      <p>{contactInfo.openingHours.saturday}</p>
-                      <p>{contactInfo.openingHours.sunday}</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            {/* Opening Hours - Dynamic Component */}
+            <OpeningHours />
           </motion.div>
 
           {/* Map */}
