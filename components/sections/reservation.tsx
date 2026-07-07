@@ -23,7 +23,6 @@ export function ReservationSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // In production, this would call an API
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
   };
@@ -37,7 +36,7 @@ export function ReservationSection() {
   };
 
   return (
-    <section id="reservation" className="py-20 lg:py-32 bg-white dark:bg-navy-900">
+    <section id="reservation" className="py-20 lg:py-32 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <motion.div
@@ -46,10 +45,10 @@ export function ReservationSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-navy-900 dark:text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-brand-ocean mb-4">
               {t("title")}
             </h2>
-            <p className="text-lg text-navy-600 dark:text-gray-400">
+            <p className="text-lg text-brand-ocean/55">
               {t("subtitle")}
             </p>
           </motion.div>
@@ -61,22 +60,22 @@ export function ReservationSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <Card className="shadow-xl border-navy-100 dark:border-navy-800">
+          <Card className="shadow-brand-lg border-brand-ocean/5">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Calendar className="h-5 w-5 text-gold-500" />
+              <CardTitle className="flex items-center gap-2 text-brand-ocean">
+                <Calendar className="h-5 w-5 text-brand-orange" />
                 {t("title")}
               </CardTitle>
             </CardHeader>
             <CardContent>
               {submitted ? (
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-12"
                 >
-                  <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                  <p className="text-xl font-semibold text-navy-900 dark:text-white">
+                  <CheckCircle className="h-16 w-16 text-brand-orange mx-auto mb-4" />
+                  <p className="text-xl font-semibold text-brand-ocean">
                     {t("success")}
                   </p>
                 </motion.div>
@@ -85,7 +84,7 @@ export function ReservationSection() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Full Name */}
                     <div>
-                      <label className="block text-sm font-medium text-navy-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-semibold text-brand-ocean mb-2">
                         {t("form.name")}
                       </label>
                       <input
@@ -95,13 +94,13 @@ export function ReservationSection() {
                         onChange={(e) =>
                           setFormData({ ...formData, fullName: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-xl border border-navy-200 dark:border-navy-700 bg-white dark:bg-navy-800 text-navy-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                        className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean placeholder:text-brand-ocean/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all"
                       />
                     </div>
 
                     {/* Phone */}
                     <div>
-                      <label className="block text-sm font-medium text-navy-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-semibold text-brand-ocean mb-2">
                         {t("form.phone")}
                       </label>
                       <input
@@ -111,13 +110,13 @@ export function ReservationSection() {
                         onChange={(e) =>
                           setFormData({ ...formData, phone: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-xl border border-navy-200 dark:border-navy-700 bg-white dark:bg-navy-800 text-navy-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                        className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean placeholder:text-brand-ocean/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all"
                       />
                     </div>
 
                     {/* Currency */}
                     <div>
-                      <label className="block text-sm font-medium text-navy-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-semibold text-brand-ocean mb-2">
                         {t("form.currency")}
                       </label>
                       <select
@@ -125,7 +124,7 @@ export function ReservationSection() {
                         onChange={(e) =>
                           setFormData({ ...formData, currency: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-xl border border-navy-200 dark:border-navy-700 bg-white dark:bg-navy-800 text-navy-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                        className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all"
                       >
                         {currencies.map((currency) => (
                           <option key={currency.code} value={currency.code}>
@@ -137,7 +136,7 @@ export function ReservationSection() {
 
                     {/* Amount */}
                     <div>
-                      <label className="block text-sm font-medium text-navy-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-semibold text-brand-ocean mb-2">
                         {t("form.amount")}
                       </label>
                       <input
@@ -148,13 +147,13 @@ export function ReservationSection() {
                         onChange={(e) =>
                           setFormData({ ...formData, amount: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-xl border border-navy-200 dark:border-navy-700 bg-white dark:bg-navy-800 text-navy-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                        className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean placeholder:text-brand-ocean/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all"
                       />
                     </div>
 
                     {/* Date */}
                     <div>
-                      <label className="block text-sm font-medium text-navy-700 dark:text-gray-300 mb-2">
+                      <label className="block text-sm font-semibold text-brand-ocean mb-2">
                         {t("form.date")}
                       </label>
                       <input
@@ -164,14 +163,14 @@ export function ReservationSection() {
                         onChange={(e) =>
                           setFormData({ ...formData, date: e.target.value })
                         }
-                        className="w-full px-4 py-3 rounded-xl border border-navy-200 dark:border-navy-700 bg-white dark:bg-navy-800 text-navy-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                        className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all"
                       />
                     </div>
                   </div>
 
                   {/* Message */}
                   <div>
-                    <label className="block text-sm font-medium text-navy-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-semibold text-brand-ocean mb-2">
                       {t("form.message")}
                     </label>
                     <textarea
@@ -180,13 +179,17 @@ export function ReservationSection() {
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      className="w-full px-4 py-3 rounded-xl border border-navy-200 dark:border-navy-700 bg-white dark:bg-navy-800 text-navy-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-gold-500/50 resize-none"
+                      className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean placeholder:text-brand-ocean/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all resize-none"
                     />
                   </div>
 
                   {/* Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4">
-                    <Button type="submit" size="lg" className="rounded-full flex-1">
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="rounded-brand bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold shadow-orange transition-all duration-300 flex-1"
+                    >
                       <Send className="h-5 w-5 mr-2" />
                       {t("form.submit")}
                     </Button>
@@ -194,7 +197,7 @@ export function ReservationSection() {
                       type="button"
                       variant="outline"
                       size="lg"
-                      className="rounded-full flex-1 border-green-500 text-green-600 hover:bg-green-50 dark:hover:bg-green-900/20"
+                      className="rounded-brand border-brand-ocean/20 text-brand-ocean hover:bg-brand-orange hover:border-brand-orange hover:text-white font-semibold transition-all duration-300 flex-1"
                       onClick={handleWhatsApp}
                     >
                       <MessageSquare className="h-5 w-5 mr-2" />

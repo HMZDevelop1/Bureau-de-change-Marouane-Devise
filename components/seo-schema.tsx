@@ -7,7 +7,7 @@ export function LocalBusinessSchema() {
     name: "Marouane Devise",
     description:
       "Bureau de change à Casablanca offrant des taux compétitifs, un service rapide, sans commission et sans frais cachés.",
-    image: "/logo.png",
+    image: "/favicon.svg",
     telephone: contactInfo.phone,
     email: contactInfo.email,
     address: {

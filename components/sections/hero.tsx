@@ -10,6 +10,7 @@ import {
   Zap,
   Eye,
   Star,
+  ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { currencies } from "@/data/currencies";
@@ -30,25 +31,16 @@ const fadeUp = {
   }),
 };
 
-const floatAnimation = {
-  y: [0, -15, 0],
-  transition: {
-    duration: 4,
-    repeat: Infinity,
-    ease: "easeInOut",
-  },
-};
-
 export function HeroSection() {
   const t = useTranslations("hero");
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-navy-50 to-white dark:from-navy-950 dark:to-navy-900">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-hero-gradient">
       {/* Background Pattern */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-gold-500/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-royal-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-navy-500/5 rounded-full blur-3xl" />
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-brand-ocean/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-gold/3 rounded-full blur-3xl" />
       </div>
 
       {/* Floating Currency Cards - Desktop */}
@@ -56,14 +48,14 @@ export function HeroSection() {
         {floatingCurrencies.map((currency, index) => (
           <motion.div
             key={currency.code}
-            className="absolute glass rounded-xl px-4 py-3 shadow-lg"
+            className="absolute bg-white rounded-brand-lg px-5 py-4 shadow-card border border-brand-ocean/5"
             style={{
               top: `${15 + index * 12}%`,
               right: index % 2 === 0 ? "5%" : "12%",
             }}
             animate={{
-              y: [0, -20, 0],
-              rotate: [0, 2, -2, 0],
+              y: [0, -18, 0],
+              rotate: [0, 1.5, -1.5, 0],
             }}
             transition={{
               duration: 5 + index * 0.5,
@@ -72,13 +64,13 @@ export function HeroSection() {
               delay: index * 0.3,
             }}
           >
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <span className="text-2xl">{currency.flag}</span>
               <div>
-                <p className="text-xs font-medium text-navy-900 dark:text-white">
+                <p className="text-xs font-bold text-brand-ocean tracking-wide">
                   {currency.code}
                 </p>
-                <p className="text-xs text-gold-600 dark:text-gold-400 font-semibold">
+                <p className="text-xs font-bold text-brand-orange">
                   {currency.buyRate.toFixed(2)} MAD
                 </p>
               </div>
@@ -95,10 +87,10 @@ export function HeroSection() {
             initial="hidden"
             animate="visible"
             custom={0}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gold-500/10 border border-gold-500/20 mb-6"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/15 border border-brand-gold/30 mb-6"
           >
-            <MapPin className="h-4 w-4 text-gold-600" />
-            <span className="text-sm font-medium text-gold-600 dark:text-gold-400">
+            <MapPin className="h-4 w-4 text-brand-orange" />
+            <span className="text-sm font-semibold text-brand-ocean">
               {t("badge")}
             </span>
           </motion.div>
@@ -109,7 +101,7 @@ export function HeroSection() {
             initial="hidden"
             animate="visible"
             custom={1}
-            className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-navy-900 dark:text-white leading-tight mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-brand-ocean leading-tight mb-6"
           >
             {t("title")}
           </motion.h1>
@@ -120,7 +112,7 @@ export function HeroSection() {
             initial="hidden"
             animate="visible"
             custom={2}
-            className="text-lg text-navy-600 dark:text-gray-300 mb-8 max-w-2xl"
+            className="text-lg text-brand-ocean/65 mb-8 max-w-2xl leading-relaxed"
           >
             {t("subtitle")}
           </motion.p>
@@ -134,19 +126,30 @@ export function HeroSection() {
             className="flex flex-wrap gap-4 mb-12"
           >
             <a href="#rates">
-              <Button size="lg" className="rounded-full">
-                <TrendingUp className="h-5 w-5 mr-2" />
+              <Button
+                size="lg"
+                className="rounded-brand bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold shadow-orange transition-all duration-300 hover:shadow-lg group"
+              >
                 {t("cta_rates")}
+                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>
             <a href={`tel:${contactInfo.phone}`}>
-              <Button size="lg" variant="outline" className="rounded-full">
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-brand border-brand-ocean text-brand-ocean hover:bg-brand-ocean hover:text-white font-semibold transition-all duration-300"
+              >
                 <Phone className="h-5 w-5 mr-2" />
                 {t("cta_call")}
               </Button>
             </a>
             <a href={contactInfo.googleMapsUrl} target="_blank" rel="noopener noreferrer">
-              <Button size="lg" variant="outline" className="rounded-full">
+              <Button
+                size="lg"
+                variant="outline"
+                className="rounded-brand border-brand-ocean/30 text-brand-ocean hover:bg-brand-ocean hover:text-white font-semibold transition-all duration-300"
+              >
                 <MapPin className="h-5 w-5 mr-2" />
                 {t("cta_direction")}
               </Button>
@@ -159,29 +162,27 @@ export function HeroSection() {
             initial="hidden"
             animate="visible"
             custom={4}
-            className="inline-flex items-center gap-3 px-5 py-3 rounded-2xl glass shadow-lg"
+            className="inline-flex items-center gap-3 px-5 py-3 rounded-brand-lg bg-white shadow-card border border-brand-ocean/5"
           >
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-0.5">
               {[1, 2, 3, 4, 5].map((star) => (
                 <Star
                   key={star}
                   className={`h-5 w-5 ${
                     star <= 4
-                      ? "fill-gold-500 text-gold-500"
-                      : "fill-gold-500/50 text-gold-500/50"
+                      ? "fill-brand-gold text-brand-gold"
+                      : "fill-brand-gold/40 text-brand-gold/40"
                   }`}
                 />
               ))}
             </div>
-            <div className="h-6 w-px bg-navy-200 dark:bg-navy-700" />
-            <span className="font-semibold text-navy-900 dark:text-white">
+            <div className="h-6 w-px bg-brand-ocean/10" />
+            <span className="font-bold text-brand-ocean">
               4.8/5
             </span>
-            <span className="text-sm text-navy-500 dark:text-gray-400">
-              Google
-            </span>
-            <span className="text-sm text-navy-400 dark:text-gray-500">•</span>
-            <span className="text-sm text-navy-500 dark:text-gray-400">
+            <span className="text-sm text-brand-ocean/50">Google</span>
+            <span className="text-brand-ocean/20">•</span>
+            <span className="text-sm text-brand-ocean/50">
               19 avis
             </span>
           </motion.div>
@@ -214,12 +215,14 @@ export function HeroSection() {
             ].map((badge, index) => (
               <div
                 key={index}
-                className="flex items-center gap-2 text-navy-600 dark:text-gray-300"
+                className="flex items-center gap-2.5"
               >
-                <div className="w-8 h-8 rounded-lg bg-navy-100 dark:bg-navy-800 flex items-center justify-center">
-                  <badge.icon className="h-4 w-4 text-navy-600 dark:text-gold-400" />
+                <div className="w-9 h-9 rounded-brand-sm bg-brand-orange/10 flex items-center justify-center">
+                  <badge.icon className="h-4 w-4 text-brand-orange" />
                 </div>
-                <span className="text-sm font-medium">{badge.label}</span>
+                <span className="text-sm font-medium text-brand-ocean/70">
+                  {badge.label}
+                </span>
               </div>
             ))}
           </motion.div>

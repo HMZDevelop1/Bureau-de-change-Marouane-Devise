@@ -48,7 +48,7 @@ export function ReviewsSection() {
   };
 
   return (
-    <section className="py-20 lg:py-32 bg-white dark:bg-navy-900">
+    <section className="py-20 lg:py-32 bg-white">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <motion.div
@@ -57,10 +57,10 @@ export function ReviewsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-navy-900 dark:text-white mb-4">
+            <h2 className="text-3xl sm:text-4xl font-display font-bold text-brand-ocean mb-4">
               {t("title")}
             </h2>
-            <p className="text-lg text-navy-600 dark:text-gray-400">
+            <p className="text-lg text-brand-ocean/55">
               {t("subtitle")}
             </p>
           </motion.div>
@@ -80,9 +80,9 @@ export function ReviewsSection() {
                   x: { type: "spring", stiffness: 300, damping: 30 },
                   opacity: { duration: 0.2 },
                 }}
-                className="bg-gray-50 dark:bg-navy-800/50 rounded-2xl p-8 md:p-12"
+                className="bg-brand-ivory rounded-brand-xl p-8 md:p-12 border border-brand-ocean/5"
               >
-                <Quote className="h-10 w-10 text-gold-500/30 mb-6" />
+                <Quote className="h-10 w-10 text-brand-orange/20 mb-6" />
 
                 {/* Stars */}
                 <div className="flex items-center gap-1 mb-4">
@@ -91,33 +91,33 @@ export function ReviewsSection() {
                       key={star}
                       className={`h-5 w-5 ${
                         star <= reviews[current].rating
-                          ? "fill-gold-500 text-gold-500"
-                          : "text-gray-300"
+                          ? "fill-brand-gold text-brand-gold"
+                          : "text-brand-ocean/15"
                       }`}
                     />
                   ))}
                 </div>
 
                 {/* Review Text */}
-                <p className="text-lg md:text-xl text-navy-900 dark:text-white mb-6 leading-relaxed">
+                <p className="text-lg md:text-xl text-brand-ocean mb-6 leading-relaxed font-medium">
                   &ldquo;{reviews[current].text}&rdquo;
                 </p>
 
                 {/* Author */}
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="font-semibold text-navy-900 dark:text-white">
+                    <p className="font-bold text-brand-ocean">
                       {reviews[current].author}
                     </p>
-                    <p className="text-sm text-navy-500 dark:text-gray-400">
+                    <p className="text-sm text-brand-ocean/40">
                       {reviews[current].date}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="text-sm font-medium text-navy-600 dark:text-gray-300">
+                    <span className="text-sm font-medium text-brand-ocean/50">
                       Google Reviews
                     </span>
-                    <Star className="h-4 w-4 fill-gold-500 text-gold-500" />
+                    <Star className="h-4 w-4 fill-brand-gold text-brand-gold" />
                   </div>
                 </div>
               </motion.div>
@@ -130,7 +130,7 @@ export function ReviewsSection() {
               variant="outline"
               size="icon"
               onClick={prev}
-              className="rounded-full"
+              className="rounded-full border-brand-ocean/20 text-brand-ocean hover:bg-brand-orange hover:border-brand-orange hover:text-white transition-all"
             >
               <ChevronLeft className="h-5 w-5" />
             </Button>
@@ -143,10 +143,10 @@ export function ReviewsSection() {
                     setDirection(index > current ? 1 : -1);
                     setCurrent(index);
                   }}
-                  className={`w-2 h-2 rounded-full transition-all ${
+                  className={`h-2 rounded-full transition-all duration-300 ${
                     index === current
-                      ? "w-6 bg-gold-500"
-                      : "bg-navy-300 dark:bg-navy-700"
+                      ? "w-8 bg-brand-orange"
+                      : "w-2 bg-brand-ocean/15 hover:bg-brand-ocean/30"
                   }`}
                 />
               ))}
@@ -156,7 +156,7 @@ export function ReviewsSection() {
               variant="outline"
               size="icon"
               onClick={next}
-              className="rounded-full"
+              className="rounded-full border-brand-ocean/20 text-brand-ocean hover:bg-brand-orange hover:border-brand-orange hover:text-white transition-all"
             >
               <ChevronRight className="h-5 w-5" />
             </Button>
