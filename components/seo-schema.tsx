@@ -12,8 +12,9 @@ export function LocalBusinessSchema() {
     email: contactInfo.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Boulevard Massira Al Khadra",
+      streetAddress: "130 avenue 2 mars, quartier des hôpitaux, magasin 2",
       addressLocality: "Casablanca",
+      postalCode: "20250",
       addressCountry: "MA",
     },
     geo: {
@@ -21,6 +22,7 @@ export function LocalBusinessSchema() {
       latitude: contactInfo.coordinates.lat,
       longitude: contactInfo.coordinates.lng,
     },
+    url: contactInfo.googleMapsUrl,
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",

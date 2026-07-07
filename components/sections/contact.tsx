@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Phone, MessageSquare, MapPin, ExternalLink } from "lucide-react";
+import { Phone, MessageSquare, MapPin, Navigation } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { contactInfo } from "@/data/contact";
@@ -97,36 +97,35 @@ export function ContactSection() {
               </CardContent>
             </Card>
 
-            {/* Address */}
+            {/* Address + Itinerary */}
             <Card className="hover:shadow-card-hover transition-all duration-300 border-brand-ocean/5 bg-white group">
               <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-brand-sm bg-brand-gold/15 flex items-center justify-center group-hover:bg-brand-gold transition-colors">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-brand-sm bg-brand-gold/15 flex items-center justify-center group-hover:bg-brand-gold transition-colors shrink-0">
                     <MapPin className="h-6 w-6 text-brand-gold group-hover:text-brand-ocean transition-colors" />
                   </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-brand-ocean">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-semibold text-brand-ocean mb-1">
                       {t("address")}
                     </h3>
-                    <p className="text-brand-ocean/50">
+                    <p className="text-brand-ocean/50 text-sm leading-relaxed">
                       {contactInfo.address}
                     </p>
+                    <a
+                      href={contactInfo.googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mt-3 text-sm font-semibold text-brand-orange hover:text-brand-ocean transition-colors"
+                    >
+                      <Navigation className="h-4 w-4" />
+                      Obtenir l&apos;itinéraire
+                    </a>
                   </div>
-                  <a
-                    href={contactInfo.googleMapsUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button size="sm" variant="outline" className="rounded-brand border-brand-ocean/20 text-brand-ocean hover:bg-brand-ocean hover:text-white font-semibold transition-all duration-300">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      {t("direction")}
-                    </Button>
-                  </a>
                 </div>
               </CardContent>
             </Card>
 
-            {/* Opening Hours - Dynamic Component */}
+            {/* Opening Hours */}
             <OpeningHours />
           </motion.div>
 
@@ -136,21 +135,37 @@ export function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-4"
           >
-            <Card className="h-full border-brand-ocean/5 overflow-hidden shadow-brand">
-              <div className="relative h-full min-h-[400px]">
+            <Card className="border-brand-ocean/5 overflow-hidden shadow-brand">
+              <div className="relative w-full" style={{ paddingBottom: "75%" }}>
                 <iframe
-                  src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.8489!2d${contactInfo.coordinates.lng}!3d${contactInfo.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDM0JzIzLjEiTiA3wrAzNScyMy4zIlc!5e0!3m2!1sfr!2sma!4v1234567890`}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0, minHeight: "400px" }}
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.8489!2d-7.5898!3d33.5731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDM0JzIzLjEiTiA3wrAzNScyMy4zIlc!5e0!3m2!1sfr!2sma!4v1234567890"
+                  className="absolute inset-0 w-full h-full"
+                  style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0"
+                  title="Marouane Devise - Google Maps"
                 />
               </div>
             </Card>
+
+            {/* Map Button */}
+            <a
+              href={contactInfo.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block"
+            >
+              <Button
+                size="lg"
+                className="w-full rounded-brand bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold shadow-orange transition-all duration-300"
+              >
+                <Navigation className="h-5 w-5 mr-2" />
+                Obtenir l&apos;itinéraire
+              </Button>
+            </a>
           </motion.div>
         </div>
       </div>

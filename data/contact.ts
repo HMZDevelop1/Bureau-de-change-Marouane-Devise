@@ -5,13 +5,13 @@ export const contactInfo: ContactInfo = {
   phoneFormatted: "+212 7 21 79 19 14",
   whatsapp: "+212721791914",
   email: "contact@marouanedevise.ma",
-  address: "Boulevard Massira Al Khadra, Casablanca, Maroc",
-  addressEn: "Boulevard Massira Al Khadra, Casablanca, Morocco",
-  addressAr: "شارع مسيرة الخضراء، الدار البيضاء، المغرب",
+  address: "130 avenue 2 mars, quartier des hôpitaux, magasin 2, Casablanca 20250, Maroc",
+  addressEn: "130 Avenue 2 Mars, Quartier des Hôpitaux, Shop 2, Casablanca 20250, Morocco",
+  addressAr: "130 شارع 2 مارس، حي المستشفيات، متجر 2، الدار البيضاء 20250، المغرب",
   city: "Casablanca",
   country: "Maroc",
   googleMapsUrl:
-    "https://www.google.com/maps/search/Marouane+Devise+Casaablanca",
+    "https://share.google/l6lgD2VWVgm9CF3fK",
   openingHours: {
     monday: { open: "09:30", close: "22:00" },
     tuesday: { open: "09:30", close: "22:00" },
