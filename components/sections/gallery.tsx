@@ -3,6 +3,7 @@
 import { useRef, useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { Camera, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { galleryImages } from "@/data/gallery";
 
@@ -35,7 +36,7 @@ export function Gallery() {
             <Camera className="w-4 h-4" />
             {t("title")}
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
           <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">{t("subtitle")}</p>
         </motion.div>
         <div className="relative">
@@ -43,7 +44,7 @@ export function Gallery() {
             {galleryImages.map((image, index) => (
               <motion.div key={image.id} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.1, duration: 0.5 }} className="flex-shrink-0 snap-center cursor-pointer group" onClick={() => setSelectedImage(index)}>
                 <div className="w-64 h-80 sm:w-80 sm:h-96 rounded-2xl overflow-hidden relative bg-brand-coffee/5 dark:bg-brand-beige/5">
-                  <img src={image.src} alt={image.alt} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" onError={(e) => { (e.target as HTMLImageElement).src = "/images/gallery/placeholder.svg"; }} />
+                  <Image src={image.src} alt={image.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-110" sizes="(max-width: 640px) 256px, 320px" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-coffee/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     <p className="text-brand-beige font-medium text-sm">{image.alt}</p>
@@ -62,7 +63,7 @@ export function Gallery() {
           <button onClick={(e) => { e.stopPropagation(); setSelectedImage(selectedImage === 0 ? galleryImages.length - 1 : selectedImage - 1); }} className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-brand-beige/10 flex items-center justify-center text-brand-beige hover:bg-brand-beige/20 transition-all z-10"><ChevronLeft className="w-6 h-6" /></button>
           <button onClick={(e) => { e.stopPropagation(); setSelectedImage(selectedImage === galleryImages.length - 1 ? 0 : selectedImage + 1); }} className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-brand-beige/10 flex items-center justify-center text-brand-beige hover:bg-brand-beige/20 transition-all z-10"><ChevronRight className="w-6 h-6" /></button>
           <motion.div key={selectedImage} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="max-w-4xl max-h-[80vh] w-full" onClick={(e) => e.stopPropagation()}>
-            <img src={galleryImages[selectedImage].src} alt={galleryImages[selectedImage].alt} className="w-full h-full object-contain rounded-2xl" style={{ maxHeight: "70vh" }} onError={(e) => { (e.target as HTMLImageElement).src = "/images/gallery/placeholder.svg"; }} />
+            <Image src={galleryImages[selectedImage].src} alt={galleryImages[selectedImage].alt} width={800} height={600} className="w-full h-full object-contain rounded-2xl" style={{ maxHeight: "70vh" }} priority />
             <p className="text-brand-beige text-center mt-4 font-medium">{galleryImages[selectedImage].alt}</p>
             <p className="text-brand-beige/40 text-center text-sm mt-1">{selectedImage + 1} / {galleryImages.length}</p>
           </motion.div>

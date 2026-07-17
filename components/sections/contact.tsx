@@ -19,7 +19,7 @@ export function ContactSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-brand-beige dark:from-brand-black via-brand-beige dark:via-brand-black to-brand-beige dark:to-brand-black pointer-events-none" />
       <div className="container-wide relative z-10">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
           <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">{t("subtitle")}</p>
         </motion.div>
 
@@ -42,7 +42,7 @@ export function ContactSection() {
             </div>
             <div>
               <p className="font-semibold text-brand-coffee dark:text-brand-beige">{t("whatsapp")}</p>
-              <p className="text-sm text-green-600 dark:text-green-400 font-medium">Message instantané</p>
+              <p className="text-sm text-green-600 dark:text-green-400 font-medium">Message instantane</p>
             </div>
           </motion.a>
 
@@ -68,7 +68,7 @@ export function ContactSection() {
             <div className="flex items-center gap-2 mb-4">
               <span className={`w-2.5 h-2.5 rounded-full ${open ? "bg-green-500 animate-pulse" : "bg-red-500"}`} />
               <span className={open ? "text-green-600 dark:text-green-400 font-semibold" : "text-red-600 dark:text-red-400 font-semibold"}>
-                {open ? "Ouvert maintenant" : "Fermé"}
+                {open ? "Ouvert maintenant" : "Ferme"}
               </span>
               {open && timeLeft && <span className="text-sm text-brand-coffee/40 dark:text-brand-beige/30">- ferme dans {timeLeft}</span>}
             </div>

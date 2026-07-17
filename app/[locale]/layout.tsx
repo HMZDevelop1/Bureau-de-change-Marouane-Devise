@@ -13,10 +13,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-type Props = {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-};
+type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
@@ -30,11 +27,7 @@ export async function generateMetadata({ params }: Props) {
     metadataBase: new URL(baseUrl),
     alternates: {
       canonical: baseUrl,
-      languages: {
-        fr: `${baseUrl}/fr`,
-        en: `${baseUrl}/en`,
-        ar: `${baseUrl}/ar`,
-      },
+      languages: { fr: `${baseUrl}/fr`, en: `${baseUrl}/en`, ar: `${baseUrl}/ar` },
     },
     openGraph: {
       title: t("title"),
@@ -43,36 +36,17 @@ export async function generateMetadata({ params }: Props) {
       locale: locale === "ar" ? "ar_MA" : locale === "en" ? "en_US" : "fr_FR",
       siteName: "Marouane Devise",
       url: `${baseUrl}/${locale}`,
-      images: [
-        {
-          url: `${baseUrl}/logo/logo-icon.svg`,
-          width: 200,
-          height: 200,
-          alt: "Marouane Devise",
-        },
-      ],
+      images: [{ url: `${baseUrl}/og-image.svg`, width: 1200, height: 630, alt: "Marouane Devise" }],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: t("title"),
-      description: t("description"),
-    },
-    icons: {
-      icon: "/favicon.svg",
-      shortcut: "/favicon.svg",
-      apple: "/favicon.svg",
-    },
+    twitter: { card: "summary_large_image", title: t("title"), description: t("description") },
+    icons: { icon: "/favicon.svg", shortcut: "/favicon.svg", apple: "/favicon.svg" },
   };
 }
 
 export default async function LocaleLayout({ children, params }: Props) {
   const { locale } = await params;
   const messages = await getMessages();
-  const isValidLocale = routing.locales.includes(locale as any);
-
-  if (!isValidLocale) {
-    notFound();
-  }
+  if (!routing.locales.includes(locale as any)) notFound();
 
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
@@ -85,18 +59,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <meta name="theme-color" content="#E1DCC9" media="(prefers-color-scheme: light)" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                try {
-                  var theme = localStorage.getItem('theme');
-                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.classList.add('dark');
-                  } else {
-                    document.documentElement.classList.remove('dark');
-                  }
-                } catch(e) {}
-              })();
-            `,
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches)){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}}catch(e){}})();`,
           }}
         />
       </head>

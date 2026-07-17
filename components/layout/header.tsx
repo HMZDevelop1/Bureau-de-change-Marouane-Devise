@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
@@ -14,7 +15,7 @@ import { generateCallUrl } from "@/lib/whatsapp";
 const locales = [
   { code: "fr", label: "FR", flag: "\u{1F1EB}\u{1F1F7}" },
   { code: "en", label: "EN", flag: "\u{1F1EC}\u{1F1E7}" },
-  { code: "ar", label: "عربي", flag: "\u{1F1F8}\u{1F1E6}" },
+  { code: "ar", label: "\u0639\u0631\u0628\u064A", flag: "\u{1F1F8}\u{1F1E6}" },
 ];
 
 export function Header() {
@@ -70,13 +71,20 @@ export function Header() {
         </div>
       </div>
 
-      <nav className="container-wide flex items-center justify-between h-16 md:h-18">
-        <Link href={`/${locale}`} className="flex items-center gap-3 group">
-          <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-brand-coffee dark:bg-brand-beige flex items-center justify-center shadow-brand group-hover:shadow-brand-hover transition-shadow duration-300">
-            <span className="text-brand-beige dark:text-brand-coffee font-bold text-lg md:text-xl">M</span>
+      <nav className="container-wide flex items-center justify-between h-16 md:h-[72px]">
+        <Link href={`/${locale}`} className="flex items-center gap-3 group" aria-label="Marouane Devise - Accueil">
+          <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl overflow-hidden shadow-brand group-hover:shadow-brand-hover transition-shadow duration-300 flex-shrink-0">
+            <Image
+              src="/logo/logo-official.png"
+              alt="Marouane Devise Logo"
+              fill
+              className="object-contain"
+              sizes="44px"
+              priority
+            />
           </div>
           <div className="hidden sm:block">
-            <span className="block text-sm md:text-base font-bold text-brand-coffee dark:text-brand-beige leading-tight">
+            <span className="block text-sm md:text-base font-bold text-brand-coffee dark:text-brand-beige leading-tight font-display">
               Marouane
             </span>
             <span className="block text-xs md:text-sm font-semibold text-brand-brown leading-tight">
@@ -223,9 +231,7 @@ function ThemeToggle() {
   };
 
   if (!mounted) {
-    return (
-      <button className="p-2 rounded-lg w-10 h-10" aria-label="Toggle theme" />
-    );
+    return <button className="p-2 rounded-lg w-10 h-10" aria-label="Toggle theme" />;
   }
 
   return (

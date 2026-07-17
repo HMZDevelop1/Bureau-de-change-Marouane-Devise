@@ -1,4 +1,4 @@
-export const GOOGLE_MAPS_URL = "https://share.google/87vHBZVqnDcJe8S7n";
+export const GOOGLE_MAPS_URL = "https://share.google/9ZPajHR1QrPs0ONM7";
 
 export const businessInfo = {
   name: "Marouane Devise",

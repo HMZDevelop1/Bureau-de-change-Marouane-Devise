@@ -17,8 +17,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               variant === "default" || variant === "coffee",
             "border border-brand-brown/15 bg-brand-beige text-brand-coffee hover:bg-brand-brown/5 hover:border-brand-brown/30 shadow-sm":
               variant === "outline",
-            "border border-brand-beige/10 bg-brand-beige/[0.04] text-brand-beige hover:bg-brand-beige/[0.08] shadow-sm dark:border-brand-beige/10 dark:bg-brand-beige/[0.04] dark:text-brand-beige dark:hover:bg-brand-beige/[0.08]":
-              variant === "outline",
             "text-brand-coffee hover:bg-brand-brown/5 hover:text-brand-brown":
               variant === "ghost",
             "text-brand-coffee/60 hover:text-brand-brown hover:underline underline-offset-4":

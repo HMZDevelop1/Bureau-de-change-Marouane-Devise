@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" fill="none">
   <rect width="40" height="40" rx="10" fill="#E1DCC9"/>
   <path d="M10 28V12h2.5l7.5 10.5L27.5 12H30v16h-2.5V17L19.5 27h-1.5L12.5 17v11H10z" fill="#1F150C"/>
-  <text x="52" y="18" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#1F150C">Marouane</text>
-  <text x="52" y="34" font-family="Inter, system-ui, sans-serif" font-size="14" font-weight="700" fill="#412D15">Devise</text>
+  <text x="52" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#1F150C">Marouane</text>
+  <text x="52" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" fill="#412D15">Devise</text>
 </svg>

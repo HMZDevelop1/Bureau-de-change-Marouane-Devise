@@ -31,14 +31,14 @@ export function ReservationSection() {
               <Calendar className="w-4 h-4" />
               {t("title")}
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-6">{t("title")}</h2>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-6">{t("title")}</h2>
             <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 mb-8 leading-relaxed">{t("subtitle")}</p>
             <div className="space-y-4">
               <div className="flex items-center gap-4 p-4 rounded-xl bg-green-500/10 dark:bg-green-500/10 border border-green-500/20">
                 <div className="w-12 h-12 rounded-xl bg-green-600 flex items-center justify-center"><MessageSquare className="w-6 h-6 text-white" /></div>
                 <div>
                   <p className="font-semibold text-brand-coffee dark:text-brand-beige">{t("form.whatsapp")}</p>
-                  <p className="text-sm text-brand-coffee/50 dark:text-brand-beige/40">Réponse rapide garantie</p>
+                  <p className="text-sm text-brand-coffee/50 dark:text-brand-beige/40">Reponse rapide garantie</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 p-4 rounded-xl bg-brand-brown/5 dark:bg-brand-beige/5 border border-brand-brown/20 dark:border-brand-beige/20">

@@ -21,7 +21,7 @@ export function FAQSection() {
             <HelpCircle className="w-4 h-4" />
             {t("title")}
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
           <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40">{t("subtitle")}</p>
         </motion.div>
 

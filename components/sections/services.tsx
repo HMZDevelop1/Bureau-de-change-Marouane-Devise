@@ -24,7 +24,7 @@ export function ServicesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
           <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">{t("subtitle")}</p>
         </motion.div>
 
@@ -43,7 +43,7 @@ export function ServicesSection() {
                 <div className="w-12 h-12 rounded-xl bg-brand-brown/10 dark:bg-brand-beige/10 flex items-center justify-center mb-5 group-hover:bg-brand-brown group-hover:text-brand-beige text-brand-brown dark:text-brand-beige transition-all duration-300">
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-lg font-bold text-brand-coffee dark:text-brand-beige mb-3">
+                <h3 className="text-lg font-display font-bold text-brand-coffee dark:text-brand-beige mb-3">
                   {service.title[locale as keyof typeof service.title]}
                 </h3>
                 <p className="text-brand-coffee/50 dark:text-brand-beige/40 text-sm leading-relaxed mb-4">
