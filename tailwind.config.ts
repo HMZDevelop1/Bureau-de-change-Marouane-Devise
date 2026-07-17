@@ -12,38 +12,38 @@ const config: Config = {
       colors: {
         brand: {
           black: "#000000",
-          ocean: "#233D4D",
-          orange: "#FE7F2D",
-          gold: "#FCCA46",
-          ivory: "#FEF6E4",
-          cream: "#F8F4EA",
+          coffee: "#1F150C",
+          brown: "#412D15",
+          beige: "#E1DCC9",
           white: "#FFFFFF",
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-plus-jakarta)", "system-ui", "sans-serif"],
+        sans: ["var(--font-inter)", "system-ui", "-apple-system", "sans-serif"],
+        display: ["var(--font-manrope)", "system-ui", "-apple-system", "sans-serif"],
       },
       backgroundImage: {
         "brand-gradient":
-          "linear-gradient(135deg, #233D4D 0%, #1a2d3a 100%)",
-        "orange-gradient":
-          "linear-gradient(135deg, #FE7F2D 0%, #e67324 100%)",
-        "gold-gradient":
-          "linear-gradient(135deg, #FCCA46 0%, #f0b830 100%)",
-        "hero-gradient":
-          "linear-gradient(135deg, #FEF6E4 0%, #FFFFFF 50%, #F8F4EA 100%)",
-        "hero-gradient-dark":
-          "linear-gradient(135deg, #000000 0%, #111111 50%, #000000 100%)",
+          "linear-gradient(135deg, #1F150C 0%, #0d0a06 100%)",
+        "beige-gradient":
+          "linear-gradient(135deg, #E1DCC9 0%, #d4cfb8 100%)",
+        "dark-gradient":
+          "linear-gradient(180deg, #000000 0%, #0d0a06 50%, #000000 100%)",
+        "dark-card":
+          "linear-gradient(135deg, rgba(31,21,12,0.4) 0%, rgba(31,21,12,0.2) 100%)",
+        "coffee-gradient":
+          "linear-gradient(135deg, #412D15 0%, #1F150C 100%)",
       },
       boxShadow: {
-        brand: "0 4px 20px rgba(35, 61, 77, 0.08)",
-        "brand-hover": "0 8px 30px rgba(35, 61, 77, 0.12)",
-        "brand-lg": "0 20px 60px rgba(35, 61, 77, 0.15)",
-        orange: "0 4px 20px rgba(254, 127, 45, 0.25)",
-        gold: "0 4px 20px rgba(252, 204, 70, 0.3)",
+        brand: "0 4px 20px rgba(31, 21, 12, 0.08)",
+        "brand-hover": "0 8px 30px rgba(31, 21, 12, 0.12)",
+        "brand-lg": "0 20px 60px rgba(31, 21, 12, 0.15)",
+        coffee: "0 4px 20px rgba(65, 45, 21, 0.25)",
+        "coffee-lg": "0 8px 40px rgba(65, 45, 21, 0.35)",
         card: "0 2px 12px rgba(0, 0, 0, 0.04)",
         "card-hover": "0 8px 30px rgba(0, 0, 0, 0.08)",
+        glass: "0 8px 32px rgba(0, 0, 0, 0.12)",
+        "glass-lg": "0 16px 48px rgba(0, 0, 0, 0.2)",
       },
       borderRadius: {
         brand: "16px",
@@ -58,6 +58,7 @@ const config: Config = {
         shimmer: "shimmer 2s linear infinite",
         "pulse-soft": "pulse-soft 3s ease-in-out infinite",
         "fade-in-up": "fadeInUp 0.6s ease-out forwards",
+        glow: "glow 3s ease-in-out infinite alternate",
       },
       keyframes: {
         float: {
@@ -75,6 +76,10 @@ const config: Config = {
         fadeInUp: {
           from: { opacity: "0", transform: "translateY(30px)" },
           to: { opacity: "1", transform: "translateY(0)" },
+        },
+        glow: {
+          "0%": { boxShadow: "0 0 20px rgba(65, 45, 21, 0.15)" },
+          "100%": { boxShadow: "0 0 40px rgba(65, 45, 21, 0.25)" },
         },
       },
     },

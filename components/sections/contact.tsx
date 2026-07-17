@@ -1,171 +1,93 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
-import { Phone, MessageSquare, MapPin, Navigation } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { contactInfo } from "@/data/contact";
-import { OpeningHours } from "@/components/opening-hours";
+import { Phone, MessageSquare, MapPin, Clock, ExternalLink } from "lucide-react";
+import { businessInfo, GOOGLE_MAPS_URL } from "@/data/business";
+import { generateCallUrl, generateWhatsAppUrl } from "@/lib/whatsapp";
+import { isOpenNow, getFullOpeningHours, getTimeUntilClose } from "@/lib/hours";
 
 export function ContactSection() {
   const t = useTranslations("contact");
+  const locale = useLocale();
+  const open = isOpenNow();
+  const timeLeft = getTimeUntilClose();
+  const hours = getFullOpeningHours(locale);
 
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-brand-ivory">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-brand-ocean mb-4">
-              {t("title")}
-            </h2>
-            <p className="text-lg text-brand-ocean/55">
-              {t("subtitle")}
-            </p>
-          </motion.div>
+    <section id="contact" className="section-padding bg-brand-beige dark:bg-brand-black relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-beige dark:from-brand-black via-brand-beige dark:via-brand-black to-brand-beige dark:to-brand-black pointer-events-none" />
+      <div className="container-wide relative z-10">
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
+          <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">{t("subtitle")}</p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+          <motion.a href={generateCallUrl()} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="flex items-center gap-4 p-6 bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass hover:shadow-brand dark:hover:shadow-glass-lg hover:border-brand-brown/20 dark:hover:border-brand-beige/[0.12] transition-all duration-500 group">
+            <div className="w-12 h-12 rounded-xl bg-brand-brown/10 dark:bg-brand-beige/10 flex items-center justify-center group-hover:bg-brand-brown group-hover:text-brand-beige text-brand-brown dark:text-brand-beige transition-all duration-300">
+              <Phone className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="font-semibold text-brand-coffee dark:text-brand-beige">{t("call")}</p>
+              <p className="text-sm text-brand-brown dark:text-brand-beige font-medium">{businessInfo.phoneFormatted}</p>
+            </div>
+          </motion.a>
+
+          <motion.a href={generateWhatsAppUrl()} target="_blank" rel="noopener noreferrer" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+            className="flex items-center gap-4 p-6 bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass hover:shadow-brand dark:hover:shadow-glass-lg hover:border-brand-brown/20 dark:hover:border-brand-beige/[0.12] transition-all duration-500 group">
+            <div className="w-12 h-12 rounded-xl bg-green-500/10 dark:bg-green-500/10 flex items-center justify-center group-hover:bg-green-600 group-hover:text-white text-green-600 transition-all duration-300">
+              <MessageSquare className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="font-semibold text-brand-coffee dark:text-brand-beige">{t("whatsapp")}</p>
+              <p className="text-sm text-green-600 dark:text-green-400 font-medium">Message instantané</p>
+            </div>
+          </motion.a>
+
+          <motion.a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}
+            className="flex items-center gap-4 p-6 bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass hover:shadow-brand dark:hover:shadow-glass-lg hover:border-brand-brown/20 dark:hover:border-brand-beige/[0.12] transition-all duration-500 group">
+            <div className="w-12 h-12 rounded-xl bg-brand-brown/10 dark:bg-brand-beige/10 flex items-center justify-center group-hover:bg-brand-brown group-hover:text-brand-beige text-brand-brown dark:text-brand-beige transition-all duration-300">
+              <MapPin className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="font-semibold text-brand-coffee dark:text-brand-beige">{t("direction")}</p>
+              <p className="text-sm text-brand-brown dark:text-brand-beige font-medium flex items-center gap-1">{businessInfo.address} <ExternalLink className="w-3 h-3" /></p>
+            </div>
+          </motion.a>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-4"
-          >
-            {/* Phone */}
-            <Card className="hover:shadow-card-hover transition-all duration-300 border-brand-ocean/5 bg-white group">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-brand-sm bg-brand-orange/10 flex items-center justify-center group-hover:bg-brand-orange transition-colors">
-                    <Phone className="h-6 w-6 text-brand-orange group-hover:text-white transition-colors" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-brand-ocean">
-                      {t("call")}
-                    </h3>
-                    <p className="text-brand-ocean/50">
-                      {contactInfo.phoneFormatted}
-                    </p>
-                  </div>
-                  <a href={`tel:${contactInfo.phone}`}>
-                    <Button size="sm" className="rounded-brand bg-brand-ocean hover:bg-brand-orange text-white font-semibold transition-all duration-300">
-                      <Phone className="h-4 w-4 mr-2" />
-                      {t("call")}
-                    </Button>
-                  </a>
+        <div className="grid md:grid-cols-2 gap-6">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+            className="bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <Clock className="w-5 h-5 text-brand-brown dark:text-brand-beige" />
+              <h3 className="font-semibold text-brand-coffee dark:text-brand-beige">{t("hours")}</h3>
+            </div>
+            <div className="flex items-center gap-2 mb-4">
+              <span className={`w-2.5 h-2.5 rounded-full ${open ? "bg-green-500 animate-pulse" : "bg-red-500"}`} />
+              <span className={open ? "text-green-600 dark:text-green-400 font-semibold" : "text-red-600 dark:text-red-400 font-semibold"}>
+                {open ? "Ouvert maintenant" : "Fermé"}
+              </span>
+              {open && timeLeft && <span className="text-sm text-brand-coffee/40 dark:text-brand-beige/30">- ferme dans {timeLeft}</span>}
+            </div>
+            <div className="space-y-2">
+              {hours.map((h) => (
+                <div key={h.day} className="flex justify-between text-sm">
+                  <span className="text-brand-coffee/60 dark:text-brand-beige/50">{h.day}</span>
+                  <span className="font-medium text-brand-coffee dark:text-brand-beige">{h.hours}</span>
                 </div>
-              </CardContent>
-            </Card>
-
-            {/* WhatsApp */}
-            <Card className="hover:shadow-card-hover transition-all duration-300 border-brand-ocean/5 bg-white group">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-brand-sm bg-green-500/10 flex items-center justify-center group-hover:bg-green-500 transition-colors">
-                    <MessageSquare className="h-6 w-6 text-green-500 group-hover:text-white transition-colors" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-brand-ocean">
-                      WhatsApp
-                    </h3>
-                    <p className="text-brand-ocean/50">
-                      {contactInfo.phoneFormatted}
-                    </p>
-                  </div>
-                  <a
-                    href={`https://wa.me/${contactInfo.whatsapp}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="rounded-brand border-green-500/30 text-green-600 hover:bg-green-500 hover:text-white font-semibold transition-all duration-300"
-                    >
-                      <MessageSquare className="h-4 w-4 mr-2" />
-                      WhatsApp
-                    </Button>
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Address + Itinerary */}
-            <Card className="hover:shadow-card-hover transition-all duration-300 border-brand-ocean/5 bg-white group">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-brand-sm bg-brand-gold/15 flex items-center justify-center group-hover:bg-brand-gold transition-colors shrink-0">
-                    <MapPin className="h-6 w-6 text-brand-gold group-hover:text-brand-ocean transition-colors" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-brand-ocean mb-1">
-                      {t("address")}
-                    </h3>
-                    <p className="text-brand-ocean/50 text-sm leading-relaxed">
-                      {contactInfo.address}
-                    </p>
-                    <a
-                      href={contactInfo.googleMapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 mt-3 text-sm font-semibold text-brand-orange hover:text-brand-ocean transition-colors"
-                    >
-                      <Navigation className="h-4 w-4" />
-                      Obtenir l&apos;itinéraire
-                    </a>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Opening Hours */}
-            <OpeningHours />
+              ))}
+            </div>
           </motion.div>
 
-          {/* Map */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-4"
-          >
-            <Card className="border-brand-ocean/5 overflow-hidden shadow-brand">
-              <div className="relative w-full" style={{ paddingBottom: "75%" }}>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.8489!2d-7.5898!3d33.5731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDM0JzIzLjEiTiA3wrAzNScyMy4zIlc!5e0!3m2!1sfr!2sma!4v1234567890"
-                  className="absolute inset-0 w-full h-full"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Marouane Devise - Google Maps"
-                />
-              </div>
-            </Card>
-
-            {/* Map Button */}
-            <a
-              href={contactInfo.googleMapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
-            >
-              <Button
-                size="lg"
-                className="w-full rounded-brand bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold shadow-orange transition-all duration-300"
-              >
-                <Navigation className="h-5 w-5 mr-2" />
-                Obtenir l&apos;itinéraire
-              </Button>
-            </a>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
+            className="rounded-2xl overflow-hidden border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass h-72 md:h-auto min-h-[300px]">
+            <iframe
+              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.0!2d${businessInfo.coordinates.lng}!3d${businessInfo.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z${businessInfo.coordinates.lat}!5e0!3m2!1sfr!2sma!4v1`}
+              width="100%" height="100%" style={{ border: 0, minHeight: "300px" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Marouane Devise - Casablanca"
+            />
           </motion.div>
         </div>
       </div>

@@ -1,88 +1,62 @@
-"use client";
+﻿"use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
-import { Shield, Clock, Users, Award } from "lucide-react";
+import { Star, Users, GraduationCap, Compass, Briefcase, Heart, Building2 } from "lucide-react";
+import { businessInfo } from "@/data/business";
 
 export function AboutSection() {
   const t = useTranslations("about");
+  const locale = useLocale();
+  const audiences = [
+    { icon: Users, label: t("travelers") },
+    { icon: GraduationCap, label: t("students") },
+    { icon: Compass, label: t("pilgrims") },
+    { icon: Briefcase, label: t("professionals") },
+    { icon: Heart, label: t("families") },
+    { icon: Building2, label: t("missions") },
+  ];
 
   return (
-    <section id="about" className="py-20 lg:py-32 bg-brand-ivory">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-brand-ocean mb-6">
-              {t("title")}
-            </h2>
-            <p className="text-lg text-brand-ocean/60 leading-relaxed mb-8">
-              {t("content")}
-            </p>
-
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { icon: Shield, label: "Transparence" },
-                { icon: Clock, label: "Rapidité" },
-                { icon: Users, label: "Professionnalisme" },
-                { icon: Award, label: "Confiance" },
-              ].map((item, index) => (
-                <div
-                  key={index}
-                  className="flex items-center gap-3 p-4 rounded-brand bg-white border border-brand-ocean/5 shadow-card"
-                >
-                  <div className="w-10 h-10 rounded-brand-sm bg-brand-gold/15 flex items-center justify-center">
-                    <item.icon className="h-5 w-5 text-brand-gold" />
-                  </div>
-                  <span className="font-semibold text-brand-ocean text-sm">
-                    {item.label}
-                  </span>
-                </div>
+    <section id="about" className="section-padding bg-brand-beige dark:bg-brand-black relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-beige dark:from-brand-black via-brand-beige dark:via-brand-black to-brand-beige dark:to-brand-black pointer-events-none" />
+      <div className="container-wide relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
+            <h2 className="text-3xl md:text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-6">{t("title")}</h2>
+            <p className="text-lg text-brand-coffee/60 dark:text-brand-beige/50 leading-relaxed mb-8">{t("content")}</p>
+            <div className="grid grid-cols-3 gap-4">
+              {audiences.map((item, i) => (
+                <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
+                  className="flex flex-col items-center gap-2 p-3 rounded-xl bg-brand-coffee/[0.03] dark:bg-brand-beige/[0.03] border border-brand-coffee/[0.04] dark:border-brand-beige/[0.04] hover:border-brand-brown/20 dark:hover:border-brand-beige/[0.08] transition-all duration-300">
+                  <item.icon className="w-5 h-5 text-brand-brown dark:text-brand-beige" />
+                  <span className="text-xs font-medium text-brand-coffee/60 dark:text-brand-beige/50 text-center">{item.label}</span>
+                </motion.div>
               ))}
             </div>
           </motion.div>
-
-          {/* Visual */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="aspect-square rounded-brand-xl bg-brand-ocean p-8 shadow-brand-lg">
-              <div className="h-full rounded-brand-lg bg-white/5 backdrop-blur-sm border border-white/10 p-8 flex flex-col justify-center">
-                <div className="text-center">
-                  <div className="text-7xl font-display font-bold text-white mb-3">
-                    4.8
-                  </div>
-                  <div className="flex items-center justify-center gap-1 mb-4">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <svg
-                        key={star}
-                        className={`h-7 w-7 ${
-                          star <= 4 ? "text-brand-gold" : "text-brand-gold/40"
-                        } fill-current`}
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                  </div>
-                  <p className="text-white/60 text-lg">Google Reviews</p>
-                  <p className="text-white/40 text-sm mt-1">19 avis vérifiés</p>
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, delay: 0.2 }}>
+            <div className="relative bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass p-8 backdrop-blur-xl">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-brand-brown/10 dark:bg-brand-beige/10 flex items-center justify-center">
+                  <Star className="w-8 h-8 fill-brand-brown text-brand-brown dark:fill-brand-beige dark:text-brand-beige" />
+                </div>
+                <div>
+                  <p className="text-4xl font-bold text-brand-coffee dark:text-brand-beige">{businessInfo.googleRating}</p>
+                  <p className="text-sm text-brand-coffee/40 dark:text-brand-beige/30">sur Google</p>
                 </div>
               </div>
+              <div className="flex gap-1 mb-3">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} className={`w-6 h-6 ${i < Math.floor(businessInfo.googleRating) ? "fill-brand-brown text-brand-brown dark:fill-brand-beige dark:text-brand-beige" : "fill-brand-coffee/10 dark:fill-brand-beige/10 text-brand-coffee/10 dark:text-brand-beige/10"}`} />
+                ))}
+              </div>
+              <p className="text-brand-coffee/50 dark:text-brand-beige/40 text-sm">{businessInfo.totalReviews} avis vérifiés sur Google</p>
+              <div className="mt-6 pt-6 border-t border-brand-coffee/[0.06] dark:border-brand-beige/[0.06]">
+                <p className="text-sm text-brand-coffee/40 dark:text-brand-beige/30 italic">{"Service rapide et professionnel. Les taux sont très compétitifs."}</p>
+                <p className="text-xs text-brand-coffee/30 dark:text-brand-beige/20 mt-2">- Ahmed B., avis Google</p>
+              </div>
             </div>
-
-            {/* Decorative elements */}
-            <div className="absolute -top-4 -right-4 w-24 h-24 bg-brand-orange/15 rounded-full blur-2xl" />
-            <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-brand-gold/15 rounded-full blur-2xl" />
           </motion.div>
         </div>
       </div>

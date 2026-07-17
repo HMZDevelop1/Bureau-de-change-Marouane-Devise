@@ -1,100 +1,92 @@
-import { Review } from "@/types";
+import type { Review } from "@/types";
 
 export const reviews: Review[] = [
   {
-    id: 1,
+    id: "r1",
+    author: "Ahmed B.",
+    rating: 5,
+    text: {
+      fr: "Service rapide et professionnel. Les taux sont très compétitifs. Je recommande vivement.",
+      en: "Fast and professional service. The rates are very competitive. Highly recommended.",
+      ar: "خدمة سريعة واحترافية. الأسعار تنافسية جداً. أوصي بشدة.",
+    },
+    date: "2026-06-15",
+  },
+  {
+    id: "r2",
+    author: "Fatima Z.",
+    rating: 5,
+    text: {
+      fr: "Très accueillant et professionnel. Le personnel est courtois et les taux sont honnêtes.",
+      en: "Very welcoming and professional. The staff is courteous and the rates are honest.",
+      ar: "مرحباً واحترافي جداً. الموظفون مهذبون والأسعار صادقة.",
+    },
+    date: "2026-05-28",
+  },
+  {
+    id: "r3",
+    author: "Mohammed R.",
+    rating: 5,
+    text: {
+      fr: "Excellent service, transparence totale sur les taux. Merci !",
+      en: "Excellent service, complete transparency on rates. Thank you!",
+      ar: "خدمة ممتازة، شفافية كاملة على الأسعار. شكراً!",
+    },
+    date: "2026-05-10",
+  },
+  {
+    id: "r4",
+    author: "Sara L.",
+    rating: 4,
+    text: {
+      fr: "Bon service et taux intéressants. L'équipe est disponible et à l'écoute.",
+      en: "Good service and interesting rates. The team is available and attentive.",
+      ar: "خدمة جيدة وأسعار مثيرة للاهتمام. الفريق متاح ومنتبه.",
+    },
+    date: "2026-04-22",
+  },
+  {
+    id: "r5",
     author: "Youssef A.",
     rating: 5,
-    text: "Service rapide, professionnel et accueillant. Les taux sont très compétitifs, je recommande vivement ce bureau de change.",
-    textEn:
-      "Fast, professional and welcoming service. The rates are very competitive, I highly recommend this exchange office.",
-    textAr:
-      "خدمة سريعة واحترافية وترحيبية. الأسعار تنافسية جداً، أنصح بشدة بمكتب الصرف هذا.",
-    date: "2026-06-15",
-    source: "google",
+    text: {
+      fr: "Le meilleur bureau de change dans le quartier. Rapide, efficace et très professionnel.",
+      en: "The best exchange office in the area. Fast, efficient and very professional.",
+      ar: "أفضل مكتب صرف في المنطقة. سريع وفعال واحترافي جداً.",
+    },
+    date: "2026-04-05",
   },
   {
-    id: 2,
-    author: "Sarah M.",
+    id: "r6",
+    author: "Karim M.",
     rating: 5,
-    text: "Très bon service, personnel courtois et taux avantageux. J'y vais toujours pour mes besoins de change.",
-    textEn:
-      "Very good service, courteous staff and advantageous rates. I always go there for my exchange needs.",
-    textAr:
-      "خدمة ممتازة، موظفون مهذبون وأسعار مميزة. أذهب دائماً هناك لاحتياجات الصرف.",
-    date: "2026-05-28",
-    source: "google",
+    text: {
+      fr: "Service impeccable pour mon voyage. Merci beaucoup !",
+      en: "Impeccable service for my trip. Thank you very much!",
+      ar: "خدمة لا تشوبها شائبة لرحلتي. شكراً جزيلاً!",
+    },
+    date: "2026-03-18",
   },
   {
-    id: 3,
-    author: "Mohammed B.",
+    id: "r7",
+    author: "Nadia H.",
     rating: 5,
-    text: "Meilleur bureau de change à Casablanca. Transparence totale, pas de frais cachés, et le service est vraiment rapide.",
-    textEn:
-      "Best exchange office in Casablanca. Full transparency, no hidden fees, and the service is really fast.",
-    textAr:
-      "أفضل مكتب صرف في الدار البيضاء. شفافية تامة، لا رسوم مخفية، والخدمة سريعة حقاً.",
-    date: "2026-06-02",
-    source: "google",
+    text: {
+      fr: "Très satisfaite de mon expérience. Personnel courtois et taux compétitifs.",
+      en: "Very satisfied with my experience. Courteous staff and competitive rates.",
+      ar: "راضية جداً عن تجربتي. موظفون مهذبون وأسعار تنافسية.",
+    },
+    date: "2026-03-02",
   },
   {
-    id: 4,
-    author: "Fatima Z.",
+    id: "r8",
+    author: "Omar T.",
     rating: 4,
-    text: "Excellent service, rapide et efficace. Le personnel est très professionnel. Taux toujours au top.",
-    textEn:
-      "Excellent service, fast and efficient. The staff is very professional. Rates are always great.",
-    textAr:
-      "خدمة ممتازة وسريعة وفعالة. الموظفون محترفون جداً. الأسعار دائماً ممتازة.",
-    date: "2026-06-20",
-    source: "google",
-  },
-  {
-    id: 5,
-    author: "Ahmed K.",
-    rating: 5,
-    text: "Service impeccable pour la dotation pèlerinage. Très professionnel et accueillant. Merci pour votre aide.",
-    textEn:
-      "Impeccable service for pilgrimage allowance. Very professional and welcoming. Thank you for your help.",
-    textAr:
-      "خدمة لا تشوبها شائبة لمخصص الحج. احترافي جداً وترحيبي. شكراً لمساعدتكم.",
-    date: "2026-04-10",
-    source: "google",
-  },
-  {
-    id: 6,
-    author: "Claire D.",
-    rating: 5,
-    text: "Good rate and very professional. I always come here when I visit Casablanca. Highly recommended!",
-    textEn:
-      "Good rate and very professional. I always come here when I visit Casablanca. Highly recommended!",
-    textAr:
-      "سعر جيد ومحترف جداً. أذهب دائماً إلى هنا عندما أزور الدار البيضاء. أنصح بشدة!",
-    date: "2026-05-15",
-    source: "google",
-  },
-  {
-    id: 7,
-    author: "Rachid H.",
-    rating: 5,
-    text: "Taux compétitifs et service rapide. Le personnel est très courtois et professionnel. Je recommande.",
-    textEn:
-      "Competitive rates and fast service. The staff is very courteous and professional. I recommend.",
-    textAr:
-      "أسعار تنافسية وخدمة سريعة. الموظفون مهذبون ومحترفون جداً. أنصح.",
-    date: "2026-06-25",
-    source: "google",
-  },
-  {
-    id: 8,
-    author: "Nadia L.",
-    rating: 4,
-    text: "Très bon accueil, taux intéressants et service efficace. Je reviendrai sans hésiter.",
-    textEn:
-      "Very good welcome, interesting rates and efficient service. I will come back without hesitation.",
-    textAr:
-      "ترحيب ممتاز وأسعار مثيرة وخدمة فعالة. سأعود دون تردد.",
-    date: "2026-06-08",
-    source: "google",
+    text: {
+      fr: "Bon rapport qualité-prix pour le change. Service au top.",
+      en: "Good value for money for exchange. Top service.",
+      ar: "قيمة جيدة مقابل المال للصرف. خدمة ممتازة.",
+    },
+    date: "2026-02-14",
   },
 ];

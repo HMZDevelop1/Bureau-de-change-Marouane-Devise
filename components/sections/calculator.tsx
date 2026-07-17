@@ -1,152 +1,141 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { ArrowUpDown, Calculator as CalcIcon, AlertCircle } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Calculator, ArrowUpDown, RotateCcw } from "lucide-react";
 import { currencies } from "@/data/currencies";
+import { cn } from "@/lib/utils";
 
 export function CalculatorSection() {
   const t = useTranslations("calculator");
-  const [amount, setAmount] = useState("1000");
+  const [amount, setAmount] = useState("");
   const [fromCurrency, setFromCurrency] = useState("EUR");
   const [result, setResult] = useState<number | null>(null);
 
-  const selectedCurrency = currencies.find((c) => c.code === fromCurrency);
-
-  useEffect(() => {
-    if (selectedCurrency && amount) {
+  const calculate = () => {
+    const curr = currencies.find((c) => c.code === fromCurrency);
+    if (curr && amount) {
       const numAmount = parseFloat(amount);
       if (!isNaN(numAmount) && numAmount > 0) {
-        setResult(numAmount * selectedCurrency.buyRate);
+        setResult(numAmount * curr.sell);
       } else {
         setResult(null);
       }
     }
-  }, [amount, selectedCurrency]);
+  };
+
+  const reset = () => {
+    setAmount("");
+    setFromCurrency("EUR");
+    setResult(null);
+  };
 
   return (
-    <section id="calculator" className="py-20 lg:py-32 bg-brand-ivory">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+    <section className="section-padding bg-brand-beige dark:bg-brand-black relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-beige dark:from-brand-black via-brand-beige dark:via-brand-black to-brand-beige dark:to-brand-black pointer-events-none" />
+      <div className="container-wide relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-brand-ocean mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-brown/10 dark:bg-brand-beige/10 border border-brand-brown/20 dark:border-brand-beige/20 text-brand-brown dark:text-brand-beige text-sm font-semibold mb-6">
+              <Calculator className="w-4 h-4" />
               {t("title")}
-            </h2>
-            <p className="text-lg text-brand-ocean/55">
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-6">
               {t("subtitle")}
+            </h2>
+            <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 mb-8 leading-relaxed">
+              {t("disclaimer")}
             </p>
+            <div className="flex items-center gap-3 px-4 py-3 rounded-xl bg-green-500/10 dark:bg-green-500/10 border border-green-500/20">
+              <span className="w-2 h-2 rounded-full bg-green-500" />
+              <span className="text-sm font-medium text-green-700 dark:text-green-400">{t("no_commission")}</span>
+            </div>
           </motion.div>
-        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <Card className="shadow-brand-lg border-brand-ocean/5">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-brand-ocean">
-                <CalcIcon className="h-5 w-5 text-brand-orange" />
-                {t("title")}
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              {/* Amount Input */}
-              <div>
-                <label className="block text-sm font-semibold text-brand-ocean mb-2">
-                  {t("amount")}
-                </label>
-                <input
-                  type="number"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean text-lg font-bold focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all"
-                  min="0"
-                />
-              </div>
-
-              {/* Currency Selection */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <div className="bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass p-6 md:p-8 backdrop-blur-xl">
+              <div className="space-y-5">
                 <div>
-                  <label className="block text-sm font-semibold text-brand-ocean mb-2">
-                    {t("from")}
-                  </label>
+                  <label className="block text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/40 mb-2">{t("amount")}</label>
+                  <input
+                    type="number"
+                    value={amount}
+                    onChange={(e) => { setAmount(e.target.value); setResult(null); }}
+                    placeholder="1000"
+                    className="w-full px-4 py-3.5 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/30 dark:placeholder:text-brand-beige/30 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 focus:border-brand-brown/50 text-lg font-semibold transition-all duration-300"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/40 mb-2">{t("from")}</label>
                   <select
                     value={fromCurrency}
-                    onChange={(e) => setFromCurrency(e.target.value)}
-                    className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all"
+                    onChange={(e) => { setFromCurrency(e.target.value); setResult(null); }}
+                    className="w-full px-4 py-3.5 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-brown/30 focus:border-brand-brown/50 font-medium transition-all duration-300"
                   >
-                    {currencies.map((currency) => (
-                      <option key={currency.code} value={currency.code}>
-                        {currency.flag} {currency.code} - {currency.name}
-                      </option>
+                    {currencies.map((c) => (
+                      <option key={c.code} value={c.code}>{c.flag} {c.code} - {c.name}</option>
                     ))}
                   </select>
                 </div>
 
-                <div className="flex justify-center">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-full bg-brand-ocean/5 hover:bg-brand-orange/10 text-brand-ocean hover:text-brand-orange transition-all"
+                <div className="flex items-center justify-center">
+                  <button
+                    onClick={() => setFromCurrency(fromCurrency === "EUR" ? "USD" : "EUR")}
+                    className="p-3 rounded-xl bg-brand-brown/10 dark:bg-brand-beige/10 text-brand-brown dark:text-brand-beige hover:bg-brand-brown hover:text-brand-beige transition-all duration-300 hover:rotate-180"
+                    aria-label={t("swap")}
                   >
-                    <ArrowUpDown className="h-5 w-5" />
-                  </Button>
+                    <ArrowUpDown className="w-5 h-5" />
+                  </button>
                 </div>
 
-                <div>
-                  <label className="block text-sm font-semibold text-brand-ocean mb-2">
-                    {t("to")}
-                  </label>
-                  <div className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-brand-ivory">
-                    <span className="text-lg font-bold text-brand-ocean">MAD</span>
-                    <span className="text-brand-ocean/40 ml-2 text-sm">
-                      Dirham Marocain
-                    </span>
-                  </div>
+                <div className="text-center p-4 rounded-xl bg-brand-coffee/[0.03] dark:bg-brand-beige/[0.03] border border-brand-coffee/[0.04] dark:border-brand-beige/[0.04]">
+                  <p className="text-sm text-brand-coffee/40 dark:text-brand-beige/30 mb-1">{t("result")}</p>
+                  {result !== null ? (
+                    <p className="text-3xl font-bold text-brand-brown dark:text-brand-beige">
+                      {result.toFixed(2)} <span className="text-lg text-brand-coffee/40 dark:text-brand-beige/30">MAD</span>
+                    </p>
+                  ) : (
+                    <p className="text-3xl font-bold text-brand-coffee/20 dark:text-brand-beige/10">-- MAD</p>
+                  )}
+                </div>
+
+                <div className="flex gap-3">
+                  <button
+                    onClick={calculate}
+                    disabled={!amount}
+                    className={cn(
+                      "flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-semibold transition-all duration-300",
+                      amount
+                        ? "bg-brand-coffee text-brand-beige shadow-coffee hover:shadow-coffee-lg hover:bg-brand-brown active:scale-[0.98]"
+                        : "bg-brand-coffee/10 dark:bg-brand-beige/[0.04] text-brand-coffee/30 dark:text-brand-beige/20 cursor-not-allowed"
+                    )}
+                  >
+                    {t("calculate")}
+                  </button>
+                  <button
+                    onClick={reset}
+                    className="px-4 py-3.5 rounded-xl border border-brand-brown/10 dark:border-brand-beige/[0.08] text-brand-coffee/40 dark:text-brand-beige/30 hover:text-brand-brown hover:border-brand-brown/30 transition-all duration-300"
+                    aria-label={t("swap")}
+                  >
+                    <RotateCcw className="w-5 h-5" />
+                  </button>
                 </div>
               </div>
-
-              {/* Result */}
-              {result !== null && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="bg-brand-gold/10 border border-brand-gold/30 rounded-brand-lg p-6"
-                >
-                  <p className="text-sm font-semibold text-brand-ocean/60 mb-2">
-                    {t("result")}
-                  </p>
-                  <p className="text-3xl font-bold text-brand-ocean">
-                    {result.toFixed(2)}{" "}
-                    <span className="text-lg font-medium text-brand-ocean/50">
-                      MAD
-                    </span>
-                  </p>
-                  <div className="flex items-center gap-2 mt-3 text-sm font-medium text-brand-orange">
-                    <span className="w-2 h-2 rounded-full bg-brand-orange" />
-                    {t("no_commission")}
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Disclaimer */}
-              <div className="flex items-start gap-2.5 text-sm text-brand-ocean/45 bg-brand-ocean/3 rounded-brand p-4">
-                <AlertCircle className="h-5 w-5 shrink-0 mt-0.5 text-brand-ocean/30" />
-                <p>{t("disclaimer")}</p>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

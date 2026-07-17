@@ -1,28 +1,34 @@
-import { contactInfo } from "@/data/contact";
+"use client";
+
+import { businessInfo, GOOGLE_MAPS_URL } from "@/data/business";
 
 export function LocalBusinessSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Marouane Devise",
-    description:
-      "Bureau de change à Casablanca offrant des taux compétitifs, un service rapide, sans commission et sans frais cachés.",
-    image: "/favicon.svg",
-    telephone: contactInfo.phone,
-    email: contactInfo.email,
+    name: businessInfo.nameFull,
+    description: "Bureau de change à Casablanca avec taux compétitifs, service rapide, sans commission et sans frais cachés.",
+    url: GOOGLE_MAPS_URL,
+    telephone: businessInfo.phone,
+    email: businessInfo.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "130 avenue 2 mars, quartier des hôpitaux, magasin 2",
       addressLocality: "Casablanca",
-      postalCode: "20250",
       addressCountry: "MA",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: contactInfo.coordinates.lat,
-      longitude: contactInfo.coordinates.lng,
+      latitude: businessInfo.coordinates.lat,
+      longitude: businessInfo.coordinates.lng,
     },
-    url: contactInfo.googleMapsUrl,
+    hasMap: GOOGLE_MAPS_URL,
+    sameAs: [GOOGLE_MAPS_URL],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: businessInfo.googleRating,
+      reviewCount: businessInfo.totalReviews,
+      bestRating: 5,
+    },
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -37,14 +43,9 @@ export function LocalBusinessSchema() {
         closes: "22:00",
       },
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      reviewCount: "19",
-      bestRating: "5",
-    },
     priceRange: "$$",
-    currency: "MAD",
+    currenciesAccepted: "MAD, EUR, USD, GBP, CAD, CHF, AED, SAR, TRY",
+    paymentAccepted: "Cash",
   };
 
   return (
@@ -58,18 +59,16 @@ export function LocalBusinessSchema() {
 export function FAQSchema() {
   const faqs = [
     {
-      question: "Quels documents sont nécessaires pour effectuer un change ?",
-      answer:
-        "Une pièce d'identité valide (passeport, carte nationale ou permis de conduire) est requise pour toute opération de change.",
+      question: "Quels sont vos horaires d'ouverture ?",
+      answer: "Nous sommes ouverts du lundi au mercredi de 9h30 à 22h, et du jeudi au dimanche de 9h à 22h.",
     },
     {
-      question: "Y a-t-il une commission sur les opérations de change ?",
-      answer: "Non, nous ne prélevons aucune commission.",
+      question: "Acceptez-vous toutes les devises ?",
+      answer: "Nous acceptons les principales devises internationales : EUR, USD, GBP, CAD, CHF, AED, SAR, TRY et plus encore.",
     },
     {
-      question: "Peut-on réserver une devise à l'avance ?",
-      answer:
-        "Oui, nous offrons un service de réservation de devises via téléphone ou WhatsApp.",
+      question: "Y a-t-il des frais de commission ?",
+      answer: "Non, nous ne facturons aucune commission. Nos taux sont transparents et compétitifs.",
     },
   ];
 

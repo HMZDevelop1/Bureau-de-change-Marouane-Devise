@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { LocalBusinessSchema, FAQSchema } from "@/components/seo-schema";
+import { WhatsAppButton } from "@/components/common/whatsapp-button";
+import { BackToTop } from "@/components/common/back-to-top";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -41,6 +43,14 @@ export async function generateMetadata({ params }: Props) {
       locale: locale === "ar" ? "ar_MA" : locale === "en" ? "en_US" : "fr_FR",
       siteName: "Marouane Devise",
       url: `${baseUrl}/${locale}`,
+      images: [
+        {
+          url: `${baseUrl}/logo/logo-icon.svg`,
+          width: 200,
+          height: 200,
+          alt: "Marouane Devise",
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
@@ -50,6 +60,7 @@ export async function generateMetadata({ params }: Props) {
     icons: {
       icon: "/favicon.svg",
       shortcut: "/favicon.svg",
+      apple: "/favicon.svg",
     },
   };
 }
@@ -68,13 +79,35 @@ export default async function LocaleLayout({ children, params }: Props) {
       <head>
         <LocalBusinessSchema />
         <FAQSchema />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
+        <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+        <meta name="theme-color" content="#E1DCC9" media="(prefers-color-scheme: light)" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
       </head>
       <body className="font-sans antialiased">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+        <ThemeProvider>
           <NextIntlClientProvider messages={messages}>
             <Header />
             <main className="min-h-screen">{children}</main>
             <Footer />
+            <WhatsAppButton />
+            <BackToTop />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>

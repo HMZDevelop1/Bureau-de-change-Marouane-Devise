@@ -1,49 +1,56 @@
+export type Locale = "fr" | "en" | "ar";
+
+export interface DayHours {
+  open: string;
+  close: string;
+}
+
+export interface OpeningHours {
+  monday: DayHours;
+  tuesday: DayHours;
+  wednesday: DayHours;
+  thursday: DayHours;
+  friday: DayHours;
+  saturday: DayHours;
+  sunday: DayHours;
+}
+
 export interface CurrencyRate {
   code: string;
   name: string;
   nameEn: string;
   nameAr: string;
   flag: string;
-  buyRate: number;
-  sellRate: number;
+  buy: number;
+  sell: number;
+  trend: "up" | "down" | "stable";
   lastUpdated: string;
 }
 
 export interface Service {
   id: string;
-  title: string;
-  titleEn: string;
-  titleAr: string;
-  description: string;
-  descriptionEn: string;
-  descriptionAr: string;
   icon: string;
+  title: Record<Locale, string>;
+  description: Record<Locale, string>;
 }
 
 export interface Review {
-  id: number;
+  id: string;
   author: string;
   rating: number;
-  text: string;
-  textEn: string;
-  textAr: string;
+  text: Record<Locale, string>;
   date: string;
-  source: "google" | "other";
 }
 
 export interface FAQ {
-  id: number;
-  question: string;
-  questionEn: string;
-  questionAr: string;
-  answer: string;
-  answerEn: string;
-  answerAr: string;
+  id: string;
+  question: Record<Locale, string>;
+  answer: Record<Locale, string>;
 }
 
-export interface DayHours {
-  open: string;
-  close: string;
+export interface NavLink {
+  href: string;
+  label: Record<Locale, string>;
 }
 
 export interface ContactInfo {
@@ -52,33 +59,28 @@ export interface ContactInfo {
   whatsapp: string;
   email: string;
   address: string;
-  addressEn: string;
-  addressAr: string;
   city: string;
   country: string;
-  googleMapsUrl: string;
-  openingHours: {
-    monday: DayHours;
-    tuesday: DayHours;
-    wednesday: DayHours;
-    thursday: DayHours;
-    friday: DayHours;
-    saturday: DayHours;
-    sunday: DayHours;
-  };
+  mapsUrl: string;
   coordinates: {
     lat: number;
     lng: number;
   };
+  openingHours: OpeningHours;
 }
 
 export interface ReservationForm {
-  fullName: string;
-  phone: string;
+  name: string;
   currency: string;
-  amount: number;
+  amount: string;
   date: string;
   message: string;
 }
 
-export type Locale = "fr" | "en" | "ar";
+export interface GalleryImage {
+  id: string;
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}

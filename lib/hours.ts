@@ -1,171 +1,81 @@
-import { DayHours } from "@/types";
+import { businessInfo } from "@/data/business";
+import type { OpeningHours, DayHours } from "@/types";
 
-const TIMEZONE = "Africa/Casablanca";
+const hours: OpeningHours = businessInfo.openingHours;
 
-export type DayKey = "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+const DAY_KEYS: (keyof OpeningHours)[] = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
 
-export const DAY_LABELS: Record<DayKey, { fr: string; en: string; ar: string }> = {
-  monday: { fr: "Lundi", en: "Monday", ar: "الإثنين" },
-  tuesday: { fr: "Mardi", en: "Tuesday", ar: "الثلاثاء" },
-  wednesday: { fr: "Mercredi", en: "Wednesday", ar: "الأربعاء" },
-  thursday: { fr: "Jeudi", en: "Thursday", ar: "الخميس" },
-  friday: { fr: "Vendredi", en: "Friday", ar: "الجمعة" },
-  saturday: { fr: "Samedi", en: "Saturday", ar: "السبت" },
-  sunday: { fr: "Dimanche", en: "Sunday", ar: "الأحد" },
-};
+function getDayKey(date: Date): keyof OpeningHours {
+  return DAY_KEYS[date.getDay()];
+}
 
-export const DAY_ORDER: DayKey[] = [
-  "monday",
-  "tuesday",
-  "wednesday",
-  "thursday",
-  "friday",
-  "saturday",
-  "sunday",
-];
+function timeToMinutes(time: string): number {
+  const [h, m] = time.split(":").map(Number);
+  return h * 60 + m;
+}
 
-export function getCurrentTimeInCasablanca(): Date {
+export function getTodayHours(): DayHours {
+  const day = getDayKey(new Date());
+  return hours[day];
+}
+
+export function isOpenNow(): boolean {
   const now = new Date();
-  const casablancaTime = new Date(
-    now.toLocaleString("en-US", { timeZone: TIMEZONE })
-  );
-  return casablancaTime;
-}
-
-export function getTodayKey(): DayKey {
-  const now = getCurrentTimeInCasablanca();
-  const dayIndex = now.getDay();
-  const mapping: DayKey[] = [
-    "sunday",
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-  ];
-  return mapping[dayIndex];
-}
-
-export function timeToMinutes(time: string): number {
-  const [hours, minutes] = time.split(":").map(Number);
-  return hours * 60 + minutes;
-}
-
-export function minutesToTime(minutes: number): string {
-  const h = Math.floor(minutes / 60);
-  const m = minutes % 60;
-  return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}`;
-}
-
-export function formatTimeDisplay(time: string): string {
-  const [hours, minutes] = time.split(":").map(Number);
-  const period = hours >= 12 ? "PM" : "AM";
-  const displayHours = hours > 12 ? hours - 12 : hours === 0 ? 12 : hours;
-  return `${displayHours}:${minutes.toString().padStart(2, "0")} ${period}`;
-}
-
-export function isOpenNow(
-  openingHours: Record<DayKey, DayHours>
-): { isOpen: boolean; status: string; todayHours: DayHours | null } {
-  const today = getTodayKey();
-  const todayHours = openingHours[today];
-
-  if (!todayHours) {
-    return { isOpen: false, status: "Fermé", todayHours: null };
-  }
-
-  const now = getCurrentTimeInCasablanca();
-  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+  const casablancaTime = new Date(now.toLocaleString("en-US", { timeZone: "Africa/Casablanca" }));
+  const currentMinutes = casablancaTime.getHours() * 60 + casablancaTime.getMinutes();
+  const today = getDayKey(casablancaTime);
+  const todayHours = hours[today];
+  if (!todayHours) return false;
   const openMinutes = timeToMinutes(todayHours.open);
   const closeMinutes = timeToMinutes(todayHours.close);
-
-  const isOpen = currentMinutes >= openMinutes && currentMinutes < closeMinutes;
-
-  return {
-    isOpen,
-    status: isOpen ? "Ouvert" : "Fermé",
-    todayHours,
-  };
+  return currentMinutes >= openMinutes && currentMinutes < closeMinutes;
 }
 
-export function getTimeUntilClose(
-  openingHours: Record<DayKey, DayHours>
-): string | null {
-  const today = getTodayKey();
-  const todayHours = openingHours[today];
-
+export function getTimeUntilClose(): string | null {
+  if (!isOpenNow()) return null;
+  const now = new Date();
+  const casablancaTime = new Date(now.toLocaleString("en-US", { timeZone: "Africa/Casablanca" }));
+  const currentMinutes = casablancaTime.getHours() * 60 + casablancaTime.getMinutes();
+  const today = getDayKey(casablancaTime);
+  const todayHours = hours[today];
   if (!todayHours) return null;
-
-  const now = getCurrentTimeInCasablanca();
-  const currentMinutes = now.getHours() * 60 + now.getMinutes();
   const closeMinutes = timeToMinutes(todayHours.close);
-
-  if (currentMinutes >= closeMinutes) return null;
-
-  const remaining = closeMinutes - currentMinutes;
-  const hours = Math.floor(remaining / 60);
-  const minutes = remaining % 60;
-
-  if (hours > 0) {
-    return `${hours}h ${minutes}min`;
-  }
-  return `${minutes}min`;
+  const diff = closeMinutes - currentMinutes;
+  if (diff <= 0) return null;
+  const h = Math.floor(diff / 60);
+  const m = diff % 60;
+  if (h > 0 && m > 0) return `${h}h${m.toString().padStart(2, "0")}`;
+  if (h > 0) return `${h}h`;
+  return `${m}min`;
 }
 
-export function getTimeUntilOpen(
-  openingHours: Record<DayKey, DayHours>
-): string | null {
-  const now = getCurrentTimeInCasablanca();
-  const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
-  const today = getTodayKey();
-  const todayHours = openingHours[today];
-
-  if (todayHours) {
-    const openMinutes = timeToMinutes(todayHours.open);
-    if (currentMinutes < openMinutes) {
-      const remaining = openMinutes - currentMinutes;
-      const hours = Math.floor(remaining / 60);
-      const minutes = remaining % 60;
-      if (hours > 0) {
-        return `${hours}h ${minutes}min`;
-      }
-      return `${minutes}min`;
-    }
-  }
-
-  // Find next opening day
-  const todayIndex = DAY_ORDER.indexOf(today);
-  for (let i = 1; i <= 7; i++) {
-    const nextDayIndex = (todayIndex + i) % 7;
-    const nextDay = DAY_ORDER[nextDayIndex];
-    const nextDayHours = openingHours[nextDay];
-    if (nextDayHours) {
-      return DAY_LABELS[nextDay].fr;
-    }
-  }
-
+export function getTimeUntilOpen(): string | null {
+  if (isOpenNow()) return null;
   return null;
 }
 
-export function getNextCloseTime(
-  openingHours: Record<DayKey, DayHours>
-): Date | null {
-  const today = getTodayKey();
-  const todayHours = openingHours[today];
+export function formatTimeDisplay(time: string): string {
+  const [h, m] = time.split(":").map(Number);
+  return `${h}h${m.toString().padStart(2, "0")}`;
+}
 
-  if (!todayHours) return null;
+export function getDayName(day: keyof OpeningHours, locale: string = "fr"): string {
+  const dayMap: Record<keyof OpeningHours, Record<string, string>> = {
+    monday: { fr: "Lundi", en: "Monday", ar: "الإثنين" },
+    tuesday: { fr: "Mardi", en: "Tuesday", ar: "الثلاثاء" },
+    wednesday: { fr: "Mercredi", en: "Wednesday", ar: "الأربعاء" },
+    thursday: { fr: "Jeudi", en: "Thursday", ar: "الخميس" },
+    friday: { fr: "Vendredi", en: "Friday", ar: "الجمعة" },
+    saturday: { fr: "Samedi", en: "Saturday", ar: "السبت" },
+    sunday: { fr: "Dimanche", en: "Sunday", ar: "الأحد" },
+  };
+  return dayMap[day][locale] || dayMap[day]["fr"];
+}
 
-  const now = getCurrentTimeInCasablanca();
-  const currentMinutes = now.getHours() * 60 + now.getMinutes();
-  const closeMinutes = timeToMinutes(todayHours.close);
-
-  if (currentMinutes >= closeMinutes) return null;
-
-  const [closeH, closeM] = todayHours.close.split(":").map(Number);
-  const result = new Date(now);
-  result.setHours(closeH, closeM, 0, 0);
-
-  return result;
+export function getFullOpeningHours(locale: string = "fr"): { day: string; hours: string }[] {
+  const dayOrder: (keyof OpeningHours)[] = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"];
+  return dayOrder.map((day) => ({
+    day: getDayName(day, locale),
+    hours: `${formatTimeDisplay(hours[day].open)} - ${formatTimeDisplay(hours[day].close)}`,
+  }));
 }

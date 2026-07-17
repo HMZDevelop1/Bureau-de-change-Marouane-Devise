@@ -1,232 +1,165 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
-import {
-  Phone,
-  MapPin,
-  TrendingUp,
-  Shield,
-  Zap,
-  Eye,
-  Star,
-  ArrowRight,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowDown, Phone, MapPin, Star, Shield, Zap, TrendingUp, Clock } from "lucide-react";
+import { businessInfo, GOOGLE_MAPS_URL } from "@/data/business";
 import { currencies } from "@/data/currencies";
-import { contactInfo } from "@/data/contact";
+import { generateCallUrl } from "@/lib/whatsapp";
+import { isOpenNow } from "@/lib/hours";
 
-const floatingCurrencies = currencies.slice(0, 6);
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.1,
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94],
-    },
-  }),
-};
+const floatingCurrencies = [
+  { code: "EUR", flag: "\u{1F1EA}\u{1F1FA}", rate: "10.72" },
+  { code: "USD", flag: "\u{1F1FA}\u{1F1F8}", rate: "9.82" },
+  { code: "GBP", flag: "\u{1F1EC}\u{1F1E7}", rate: "12.45" },
+];
 
 export function HeroSection() {
   const t = useTranslations("hero");
+  const locale = useLocale();
+  const open = isOpenNow();
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-hero-gradient">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-brand-orange/5 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-brand-ocean/5 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-gold/3 rounded-full blur-3xl" />
-      </div>
+    <section id="hero" className="relative min-h-[100vh] flex items-center overflow-hidden bg-brand-beige dark:bg-brand-black">
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-beige via-brand-beige to-brand-beige dark:from-brand-black dark:via-brand-black dark:to-brand-black" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-brown/5 dark:bg-brand-brown/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-brand-coffee/5 dark:bg-brand-coffee/10 rounded-full blur-3xl" />
 
-      {/* Floating Currency Cards - Desktop */}
-      <div className="hidden lg:block absolute inset-0 pointer-events-none">
-        {floatingCurrencies.map((currency, index) => (
-          <motion.div
-            key={currency.code}
-            className="absolute bg-white rounded-brand-lg px-5 py-4 shadow-card border border-brand-ocean/5"
-            style={{
-              top: `${15 + index * 12}%`,
-              right: index % 2 === 0 ? "5%" : "12%",
-            }}
-            animate={{
-              y: [0, -18, 0],
-              rotate: [0, 1.5, -1.5, 0],
-            }}
-            transition={{
-              duration: 5 + index * 0.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: index * 0.3,
-            }}
-          >
-            <div className="flex items-center gap-3">
-              <span className="text-2xl">{currency.flag}</span>
-              <div>
-                <p className="text-xs font-bold text-brand-ocean tracking-wide">
-                  {currency.code}
-                </p>
-                <p className="text-xs font-bold text-brand-orange">
-                  {currency.buyRate.toFixed(2)} MAD
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+      <div className="container-wide relative z-10 pt-32 pb-20 md:pt-40 md:pb-28">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-brown/10 dark:bg-brand-brown/10 border border-brand-brown/20 mb-6"
+            >
+              <span className={`w-2 h-2 rounded-full ${open ? "bg-green-500 animate-pulse" : "bg-red-500"}`} />
+              <span className="text-sm font-medium text-brand-brown dark:text-brand-beige">{t("badge")}</span>
+            </motion.div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-        <div className="max-w-3xl">
-          {/* Badge */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={0}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/15 border border-brand-gold/30 mb-6"
-          >
-            <MapPin className="h-4 w-4 text-brand-orange" />
-            <span className="text-sm font-semibold text-brand-ocean">
-              {t("badge")}
-            </span>
-          </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-brand-coffee dark:text-brand-beige leading-[1.1] mb-6"
+            >
+              {t("title")}{" "}
+              <span className="text-brand-brown dark:text-brand-beige">{t("titleHighlight")}</span>
+              <br />
+              {t("titleEnd")}
+            </motion.h1>
 
-          {/* Title */}
-          <motion.h1
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={1}
-            className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-brand-ocean leading-tight mb-6"
-          >
-            {t("title")}
-          </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg md:text-xl text-brand-coffee/60 dark:text-brand-beige/50 mb-8 max-w-lg leading-relaxed"
+            >
+              {t("subtitle")}
+            </motion.p>
 
-          {/* Subtitle */}
-          <motion.p
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={2}
-            className="text-lg text-brand-ocean/65 mb-8 max-w-2xl leading-relaxed"
-          >
-            {t("subtitle")}
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={3}
-            className="flex flex-wrap gap-4 mb-12"
-          >
-            <a href="#rates">
-              <Button
-                size="lg"
-                className="rounded-brand bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold shadow-orange transition-all duration-300 hover:shadow-lg group"
-              >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-wrap gap-4 mb-10"
+            >
+              <a href="#rates" className="inline-flex items-center gap-2 px-7 py-3.5 bg-brand-coffee text-brand-beige font-semibold rounded-xl shadow-coffee hover:shadow-coffee-lg hover:bg-brand-brown active:scale-[0.98] transition-all duration-300">
+                <TrendingUp className="w-5 h-5" />
                 {t("cta_rates")}
-                <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </a>
-            <a href={`tel:${contactInfo.phone}`}>
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-brand border-brand-ocean text-brand-ocean hover:bg-brand-ocean hover:text-white font-semibold transition-all duration-300"
-              >
-                <Phone className="h-5 w-5 mr-2" />
+              </a>
+              <a href={generateCallUrl()} className="inline-flex items-center gap-2 px-7 py-3.5 border border-brand-brown/15 dark:border-brand-beige/10 text-brand-coffee dark:text-brand-beige font-semibold rounded-xl hover:border-brand-brown/30 dark:hover:border-brand-beige/20 hover:text-brand-brown hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] active:scale-[0.98] transition-all duration-300">
+                <Phone className="w-5 h-5" />
                 {t("cta_call")}
-              </Button>
-            </a>
-            <a href={contactInfo.googleMapsUrl} target="_blank" rel="noopener noreferrer">
-              <Button
-                size="lg"
-                variant="outline"
-                className="rounded-brand border-brand-ocean/30 text-brand-ocean hover:bg-brand-ocean hover:text-white font-semibold transition-all duration-300"
-              >
-                <MapPin className="h-5 w-5 mr-2" />
+              </a>
+              <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-7 py-3.5 border border-brand-brown/15 dark:border-brand-beige/10 text-brand-coffee dark:text-brand-beige font-semibold rounded-xl hover:border-brand-brown/30 dark:hover:border-brand-beige/20 hover:text-brand-brown hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] active:scale-[0.98] transition-all duration-300">
+                <MapPin className="w-5 h-5" />
                 {t("cta_direction")}
-              </Button>
-            </a>
-          </motion.div>
+              </a>
+            </motion.div>
 
-          {/* Google Rating Badge */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={4}
-            className="inline-flex items-center gap-3 px-5 py-3 rounded-brand-lg bg-white shadow-card border border-brand-ocean/5"
-          >
-            <div className="flex items-center gap-0.5">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Star
-                  key={star}
-                  className={`h-5 w-5 ${
-                    star <= 4
-                      ? "fill-brand-gold text-brand-gold"
-                      : "fill-brand-gold/40 text-brand-gold/40"
-                  }`}
-                />
-              ))}
-            </div>
-            <div className="h-6 w-px bg-brand-ocean/10" />
-            <span className="font-bold text-brand-ocean">
-              4.8/5
-            </span>
-            <span className="text-sm text-brand-ocean/50">Google</span>
-            <span className="text-brand-ocean/20">•</span>
-            <span className="text-sm text-brand-ocean/50">
-              19 avis
-            </span>
-          </motion.div>
-
-          {/* Trust Badges */}
-          <motion.div
-            variants={fadeUp}
-            initial="hidden"
-            animate="visible"
-            custom={5}
-            className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12"
-          >
-            {[
-              {
-                icon: Shield,
-                label: t("trust_no_commission"),
-              },
-              {
-                icon: Zap,
-                label: t("trust_fast"),
-              },
-              {
-                icon: Eye,
-                label: t("trust_transparent"),
-              },
-              {
-                icon: TrendingUp,
-                label: t("trust_secure"),
-              },
-            ].map((badge, index) => (
-              <div
-                key={index}
-                className="flex items-center gap-2.5"
-              >
-                <div className="w-9 h-9 rounded-brand-sm bg-brand-orange/10 flex items-center justify-center">
-                  <badge.icon className="h-4 w-4 text-brand-orange" />
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex flex-wrap gap-6"
+            >
+              {[
+                { icon: Shield, label: t("trust_no_commission") },
+                { icon: Zap, label: t("trust_fast") },
+                { icon: TrendingUp, label: t("trust_transparent") },
+              ].map((badge, i) => (
+                <div key={i} className="flex items-center gap-2 text-sm text-brand-coffee/50 dark:text-brand-beige/40">
+                  <badge.icon className="w-4 h-4 text-brand-brown dark:text-brand-beige" />
+                  <span>{badge.label}</span>
                 </div>
-                <span className="text-sm font-medium text-brand-ocean/70">
-                  {badge.label}
-                </span>
+              ))}
+              <div className="flex items-center gap-2 text-sm">
+                <Star className="w-4 h-4 fill-brand-brown text-brand-brown dark:fill-brand-beige dark:text-brand-beige" />
+                <span className="font-semibold text-brand-coffee dark:text-brand-beige">{businessInfo.googleRating}/5</span>
+                <span className="text-brand-coffee/40 dark:text-brand-beige/30">({t("trust_reviews")})</span>
               </div>
-            ))}
-          </motion.div>
+            </motion.div>
+          </div>
+
+          <div className="relative hidden lg:block">
+            <div className="relative w-full aspect-square max-w-lg mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-brown/10 to-brand-coffee/10 rounded-3xl rotate-6" />
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-coffee/5 to-brand-brown/5 rounded-3xl -rotate-3" />
+              <div className="relative bg-brand-beige dark:bg-brand-coffee/40 rounded-3xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass p-8 backdrop-blur-xl">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-10 h-10 rounded-xl bg-brand-brown/10 dark:bg-brand-beige/10 flex items-center justify-center">
+                    <TrendingUp className="w-5 h-5 text-brand-brown dark:text-brand-beige" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-brand-coffee dark:text-brand-beige">Taux du jour</p>
+                    <p className="text-xs text-brand-coffee/40 dark:text-brand-beige/30">Mis à jour quotidiennement</p>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  {floatingCurrencies.map((curr, i) => (
+                    <motion.div
+                      key={curr.code}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.6 + i * 0.15 }}
+                      className="flex items-center justify-between p-3 rounded-xl bg-brand-coffee/[0.03] dark:bg-brand-beige/[0.03] border border-brand-coffee/[0.04] dark:border-brand-beige/[0.04]"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{curr.flag}</span>
+                        <div>
+                          <p className="font-semibold text-brand-coffee dark:text-brand-beige text-sm">{curr.code}/MAD</p>
+                          <p className="text-xs text-brand-coffee/40 dark:text-brand-beige/30">{currencies.find(c => c.code === curr.code)?.name}</p>
+                        </div>
+                      </div>
+                      <div className="text-right">
+                        <p className="font-bold text-brand-brown dark:text-brand-beige text-lg">{curr.rate}</p>
+                        <p className="text-xs text-brand-coffee/40 dark:text-brand-beige/30">MAD</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="mt-4 pt-4 border-t border-brand-coffee/[0.06] dark:border-brand-beige/[0.06] flex items-center gap-2 text-xs text-brand-coffee/40 dark:text-brand-beige/30">
+                  <Clock className="w-3.5 h-3.5" />
+                  <span>Les taux peuvent varier selon le montant</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 0.6 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block"
+        >
+          <a href="#rates" className="flex flex-col items-center gap-2 text-brand-coffee/30 dark:text-brand-beige/20 hover:text-brand-brown dark:hover:text-brand-beige transition-colors">
+            <span className="text-xs font-medium uppercase tracking-widest">Scroll</span>
+            <ArrowDown className="w-5 h-5 animate-bounce" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

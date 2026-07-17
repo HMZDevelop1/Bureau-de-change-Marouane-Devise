@@ -3,212 +3,102 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Calendar, MessageSquare, Send, CheckCircle } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { MessageSquare, Phone, Calendar, User, CreditCard } from "lucide-react";
 import { currencies } from "@/data/currencies";
-import { contactInfo } from "@/data/contact";
+import { generateWhatsAppReservationUrl, generateCallUrl, getPhoneFormatted } from "@/lib/whatsapp";
+import { cn } from "@/lib/utils";
 
 export function ReservationSection() {
   const t = useTranslations("reservation");
-  const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    phone: "",
-    currency: "EUR",
-    amount: "",
-    date: "",
-    message: "",
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-  };
+  const [name, setName] = useState("");
+  const [currency, setCurrency] = useState("EUR");
+  const [amount, setAmount] = useState("");
+  const [date, setDate] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleWhatsApp = () => {
-    const text = `Bonjour, je souhaite réserver des devises:\n\nNom: ${formData.fullName}\nTéléphone: ${formData.phone}\nDevise: ${formData.currency}\nMontant: ${formData.amount}\nDate: ${formData.date}\nMessage: ${formData.message}`;
-    window.open(
-      `https://wa.me/${contactInfo.whatsapp}?text=${encodeURIComponent(text)}`,
-      "_blank"
-    );
+    if (!name || !amount) return;
+    window.open(generateWhatsAppReservationUrl({ name, currency, amount, date, message }), "_blank");
   };
 
   return (
-    <section id="reservation" className="py-20 lg:py-32 bg-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <h2 className="text-3xl sm:text-4xl font-display font-bold text-brand-ocean mb-4">
+    <section id="reservation" className="section-padding bg-brand-beige dark:bg-brand-black relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-b from-brand-beige dark:from-brand-black via-brand-beige dark:via-brand-black to-brand-beige dark:to-brand-black pointer-events-none" />
+      <div className="container-wide relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-brown/10 dark:bg-brand-beige/10 border border-brand-brown/20 dark:border-brand-beige/20 text-brand-brown dark:text-brand-beige text-sm font-semibold mb-6">
+              <Calendar className="w-4 h-4" />
               {t("title")}
-            </h2>
-            <p className="text-lg text-brand-ocean/55">
-              {t("subtitle")}
-            </p>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-6">{t("title")}</h2>
+            <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 mb-8 leading-relaxed">{t("subtitle")}</p>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-green-500/10 dark:bg-green-500/10 border border-green-500/20">
+                <div className="w-12 h-12 rounded-xl bg-green-600 flex items-center justify-center"><MessageSquare className="w-6 h-6 text-white" /></div>
+                <div>
+                  <p className="font-semibold text-brand-coffee dark:text-brand-beige">{t("form.whatsapp")}</p>
+                  <p className="text-sm text-brand-coffee/50 dark:text-brand-beige/40">Réponse rapide garantie</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 p-4 rounded-xl bg-brand-brown/5 dark:bg-brand-beige/5 border border-brand-brown/20 dark:border-brand-beige/20">
+                <div className="w-12 h-12 rounded-xl bg-brand-coffee dark:bg-brand-beige flex items-center justify-center"><Phone className="w-6 h-6 text-brand-beige dark:text-brand-coffee" /></div>
+                <div>
+                  <p className="font-semibold text-brand-coffee dark:text-brand-beige">{t("form.submit")}</p>
+                  <p className="text-sm text-brand-coffee/50 dark:text-brand-beige/40">{getPhoneFormatted()}</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6, delay: 0.2 }}>
+            <div className="bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass p-6 md:p-8 backdrop-blur-xl">
+              <div className="space-y-5">
+                <div>
+                  <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/40 mb-2"><User className="w-4 h-4" />{t("form.name")}</label>
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Mohamed Alami"
+                    className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/30 dark:placeholder:text-brand-beige/30 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300" />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/40 mb-2"><CreditCard className="w-4 h-4" />{t("form.currency")}</label>
+                    <select value={currency} onChange={(e) => setCurrency(e.target.value)}
+                      className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300">
+                      {currencies.map((c) => (<option key={c.code} value={c.code}>{c.flag} {c.code}</option>))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/40 mb-2 block">{t("form.amount")}</label>
+                    <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="1000"
+                      className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/30 dark:placeholder:text-brand-beige/30 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300" />
+                  </div>
+                </div>
+                <div>
+                  <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/40 mb-2"><Calendar className="w-4 h-4" />{t("form.date")}</label>
+                  <input type="date" value={date} onChange={(e) => setDate(e.target.value)}
+                    className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300" />
+                </div>
+                <div>
+                  <label className="text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/40 mb-2 block">{t("form.message")}</label>
+                  <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={3} placeholder="Message optionnel..."
+                    className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/30 dark:placeholder:text-brand-beige/30 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300 resize-none" />
+                </div>
+                <div className="flex gap-3">
+                  <button onClick={handleWhatsApp} disabled={!name || !amount}
+                    className={cn("flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-semibold transition-all duration-300",
+                      name && amount ? "bg-green-600 text-white hover:bg-green-700 shadow-lg hover:shadow-xl active:scale-[0.98]" : "bg-brand-coffee/10 dark:bg-brand-beige/[0.04] text-brand-coffee/30 dark:text-brand-beige/20 cursor-not-allowed"
+                    )}>
+                    <MessageSquare className="w-5 h-5" />
+                    {t("form.whatsapp")}
+                  </button>
+                  <a href={generateCallUrl()} className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold border border-brand-brown/30 dark:border-brand-beige/30 text-brand-brown dark:text-brand-beige hover:bg-brand-brown hover:text-brand-beige active:scale-[0.98] transition-all duration-300">
+                    <Phone className="w-5 h-5" />
+                  </a>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <Card className="shadow-brand-lg border-brand-ocean/5">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-brand-ocean">
-                <Calendar className="h-5 w-5 text-brand-orange" />
-                {t("title")}
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {submitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-12"
-                >
-                  <CheckCircle className="h-16 w-16 text-brand-orange mx-auto mb-4" />
-                  <p className="text-xl font-semibold text-brand-ocean">
-                    {t("success")}
-                  </p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Full Name */}
-                    <div>
-                      <label className="block text-sm font-semibold text-brand-ocean mb-2">
-                        {t("form.name")}
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.fullName}
-                        onChange={(e) =>
-                          setFormData({ ...formData, fullName: e.target.value })
-                        }
-                        className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean placeholder:text-brand-ocean/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all"
-                      />
-                    </div>
-
-                    {/* Phone */}
-                    <div>
-                      <label className="block text-sm font-semibold text-brand-ocean mb-2">
-                        {t("form.phone")}
-                      </label>
-                      <input
-                        type="tel"
-                        required
-                        value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
-                        className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean placeholder:text-brand-ocean/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all"
-                      />
-                    </div>
-
-                    {/* Currency */}
-                    <div>
-                      <label className="block text-sm font-semibold text-brand-ocean mb-2">
-                        {t("form.currency")}
-                      </label>
-                      <select
-                        value={formData.currency}
-                        onChange={(e) =>
-                          setFormData({ ...formData, currency: e.target.value })
-                        }
-                        className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all"
-                      >
-                        {currencies.map((currency) => (
-                          <option key={currency.code} value={currency.code}>
-                            {currency.flag} {currency.code} - {currency.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Amount */}
-                    <div>
-                      <label className="block text-sm font-semibold text-brand-ocean mb-2">
-                        {t("form.amount")}
-                      </label>
-                      <input
-                        type="number"
-                        required
-                        min="0"
-                        value={formData.amount}
-                        onChange={(e) =>
-                          setFormData({ ...formData, amount: e.target.value })
-                        }
-                        className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean placeholder:text-brand-ocean/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all"
-                      />
-                    </div>
-
-                    {/* Date */}
-                    <div>
-                      <label className="block text-sm font-semibold text-brand-ocean mb-2">
-                        {t("form.date")}
-                      </label>
-                      <input
-                        type="date"
-                        required
-                        value={formData.date}
-                        onChange={(e) =>
-                          setFormData({ ...formData, date: e.target.value })
-                        }
-                        className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Message */}
-                  <div>
-                    <label className="block text-sm font-semibold text-brand-ocean mb-2">
-                      {t("form.message")}
-                    </label>
-                    <textarea
-                      rows={4}
-                      value={formData.message}
-                      onChange={(e) =>
-                        setFormData({ ...formData, message: e.target.value })
-                      }
-                      className="w-full px-4 py-3 rounded-brand border border-brand-ocean/10 bg-white text-brand-ocean placeholder:text-brand-ocean/30 focus:outline-none focus:ring-2 focus:ring-brand-orange/30 focus:border-brand-orange transition-all resize-none"
-                    />
-                  </div>
-
-                  {/* Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4">
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="rounded-brand bg-brand-orange hover:bg-brand-orange/90 text-white font-semibold shadow-orange transition-all duration-300 flex-1"
-                    >
-                      <Send className="h-5 w-5 mr-2" />
-                      {t("form.submit")}
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="lg"
-                      className="rounded-brand border-brand-ocean/20 text-brand-ocean hover:bg-brand-orange hover:border-brand-orange hover:text-white font-semibold transition-all duration-300 flex-1"
-                      onClick={handleWhatsApp}
-                    >
-                      <MessageSquare className="h-5 w-5 mr-2" />
-                      {t("form.whatsapp")}
-                    </Button>
-                  </div>
-                </form>
-              )}
-            </CardContent>
-          </Card>
-        </motion.div>
       </div>
     </section>
   );

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { MapPin, Phone, Mail, Star, Clock } from "lucide-react";
 import { contactInfo } from "@/data/contact";
-import { DAY_ORDER, DAY_LABELS, formatTimeDisplay, type DayKey } from "@/lib/hours";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -15,130 +14,104 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-brand-ocean text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <footer className="bg-brand-black border-t border-brand-beige/[0.06]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-brand-sm bg-brand-orange flex items-center justify-center">
-                <span className="text-white font-display font-bold text-lg">
-                  M
-                </span>
+          <div className="space-y-5">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-brand-coffee flex items-center justify-center ring-1 ring-brand-beige/10">
+                <span className="text-brand-beige font-extrabold text-lg tracking-tight">MD</span>
               </div>
               <div>
-                <span className="font-display font-bold text-xl">Marouane</span>
-                <span className="font-display font-bold text-xl text-brand-gold ml-0.5">
+                <span className="font-bold text-lg text-brand-beige tracking-tight">Marouane</span>
+                <span className="font-bold text-lg text-brand-beige/60 ml-0.5 tracking-tight">
                   Devise
                 </span>
               </div>
-            </div>
-            <p className="text-white/60 text-sm leading-relaxed">
+            </Link>
+            <p className="text-brand-beige/40 text-sm leading-relaxed">
               {t("description")}
             </p>
-            <div className="flex items-center gap-1.5 bg-white/10 w-fit px-3 py-1.5 rounded-full">
-              <Star className="h-4 w-4 fill-brand-gold text-brand-gold" />
-              <span className="text-sm font-semibold">4.8/5</span>
-              <span className="text-white/50 text-sm">Google</span>
+            <div className="flex items-center gap-2 bg-brand-beige/[0.05] w-fit px-3 py-1.5 rounded-full border border-brand-beige/[0.06]">
+              <Star className="h-4 w-4 fill-brand-beige text-brand-beige" />
+              <span className="text-sm font-semibold text-brand-beige">4.8/5</span>
+              <span className="text-brand-beige/40 text-sm">Google</span>
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
-            <h3 className="font-semibold mb-4 text-brand-gold">{t("quickLinks")}</h3>
+            <h3 className="font-semibold mb-5 text-brand-beige text-sm uppercase tracking-wider">{t("quickLinks")}</h3>
             <ul className="space-y-3">
-              <li>
-                <Link
-                  href="#rates"
-                  className="text-white/60 hover:text-brand-orange transition-colors text-sm"
-                >
-                  Taux de change
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#services"
-                  className="text-white/60 hover:text-brand-orange transition-colors text-sm"
-                >
-                  {t("services")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#about"
-                  className="text-white/60 hover:text-brand-orange transition-colors text-sm"
-                >
-                  À propos
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#reservation"
-                  className="text-white/60 hover:text-brand-orange transition-colors text-sm"
-                >
-                  Réservation
-                </Link>
-              </li>
+              {[
+                { href: "#taux", label: "Taux de change" },
+                { href: "#services", label: t("services") },
+                { href: "#apropos", label: "À propos" },
+                { href: "#avis", label: "Avis" },
+                { href: "#faq", label: "FAQ" },
+                { href: "#contact", label: t("contact") },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-brand-beige/40 hover:text-brand-beige transition-colors duration-300 text-sm"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Services */}
           <div>
-            <h3 className="font-semibold mb-4 text-brand-gold">{t("services")}</h3>
+            <h3 className="font-semibold mb-5 text-brand-beige text-sm uppercase tracking-wider">{t("services")}</h3>
             <ul className="space-y-3">
-              <li>
-                <span className="text-white/60 text-sm">Échange instantané</span>
-              </li>
-              <li>
-                <span className="text-white/60 text-sm">Dotation touristique</span>
-              </li>
-              <li>
-                <span className="text-white/60 text-sm">Dotation pèlerinage</span>
-              </li>
-              <li>
-                <span className="text-white/60 text-sm">Départ scolarité</span>
-              </li>
-              <li>
-                <span className="text-white/60 text-sm">Sans commission</span>
-              </li>
+              {[
+                "Échange instantané",
+                "Dotation touristique",
+                "Dotation pèlerinage",
+                "Départ scolarité",
+                "Sans commission",
+                "Réservation de devises",
+              ].map((service) => (
+                <li key={service}>
+                  <span className="text-brand-beige/40 text-sm">{service}</span>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <h3 className="font-semibold mb-4 text-brand-gold">{t("contact")}</h3>
+            <h3 className="font-semibold mb-5 text-brand-beige text-sm uppercase tracking-wider">{t("contact")}</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <MapPin className="h-4 w-4 text-brand-gold mt-0.5 shrink-0" />
-                <span className="text-white/60 text-sm">
-                  {contactInfo.address}
-                </span>
+                <MapPin className="h-4 w-4 text-brand-beige mt-0.5 shrink-0" />
+                <span className="text-brand-beige/40 text-sm">{contactInfo.city}, {contactInfo.country}</span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-brand-gold shrink-0" />
+                <Phone className="h-4 w-4 text-brand-beige shrink-0" />
                 <a
                   href={`tel:${contactInfo.phone}`}
-                  className="text-white/60 hover:text-brand-orange transition-colors text-sm"
+                  className="text-brand-beige/40 hover:text-brand-beige transition-colors text-sm"
                 >
                   {contactInfo.phoneFormatted}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-brand-gold shrink-0" />
+                <Mail className="h-4 w-4 text-brand-beige shrink-0" />
                 <a
                   href={`mailto:${contactInfo.email}`}
-                  className="text-white/60 hover:text-brand-orange transition-colors text-sm"
+                  className="text-brand-beige/40 hover:text-brand-beige transition-colors text-sm"
                 >
                   {contactInfo.email}
                 </a>
               </li>
               <li className="flex items-start gap-3 mt-2">
-                <Clock className="h-4 w-4 text-brand-gold mt-0.5 shrink-0" />
-                <div className="text-white/60 text-sm space-y-0.5">
+                <Clock className="h-4 w-4 text-brand-beige mt-0.5 shrink-0" />
+                <div className="text-brand-beige/40 text-sm space-y-0.5">
                   {quickHours.map((item, i) => (
                     <div key={i}>
-                      <span className="text-white/40">{item.days}:</span>{" "}
-                      <span className="text-white/70">{item.hours}</span>
+                      <span className="text-brand-beige/30">{item.days}:</span>{" "}
+                      <span className="text-brand-beige/50">{item.hours}</span>
                     </div>
                   ))}
                 </div>
@@ -147,13 +120,12 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom */}
-        <div className="mt-12 pt-8 border-t border-white/10">
+        <div className="mt-12 pt-8 border-t border-brand-beige/[0.06]">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-white/40 text-sm">{t("copyright")}</p>
-            <div className="flex items-center gap-1.5 text-white/40 text-sm">
+            <p className="text-brand-beige/30 text-sm">{t("copyright")}</p>
+            <div className="flex items-center gap-1.5 text-brand-beige/30 text-sm">
               <span>{t("madeWith")}</span>
-              <span className="text-brand-orange">♥</span>
+              <span className="text-brand-beige">♥</span>
             </div>
           </div>
         </div>
