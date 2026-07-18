@@ -74,7 +74,7 @@ export default async function LocaleLayout({ children, params }: Props) {
         <ThemeProvider>
           <NextIntlClientProvider messages={messages} locale={locale} timeZone="Africa/Casablanca">
             <GlobalErrorHandler />
-            <ErrorBoundary>
+            <ErrorBoundary key={locale}>
               <ClientShell />
               <LocalBusinessSchema locale={locale} />
               <FAQSchema locale={locale} />

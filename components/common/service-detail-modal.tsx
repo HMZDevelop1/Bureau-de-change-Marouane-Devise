@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, MessageSquare, Phone, Clock, FileText, ListChecks, ArrowLeftRight, Plane, Compass, GraduationCap, Briefcase, Building2 } from "lucide-react";
@@ -21,11 +21,16 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
   const locale = useLocale();
   const overlayRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const onCloseRef = useRef(onClose);
+  onCloseRef.current = onClose;
 
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (service === null) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
-        onClose();
+        onCloseRef.current();
         return;
       }
       if (e.key === "Tab") {
@@ -47,13 +52,8 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
           }
         }
       }
-    },
-    [onClose]
-  );
+    };
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (service === null) return;
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", handleKeyDown);
     const focusTimer = setTimeout(() => closeButtonRef.current?.focus(), 100);
@@ -62,7 +62,7 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
       document.removeEventListener("keydown", handleKeyDown);
       clearTimeout(focusTimer);
     };
-  }, [service, handleKeyDown]);
+  }, [service]);
 
   if (!service) return null;
 

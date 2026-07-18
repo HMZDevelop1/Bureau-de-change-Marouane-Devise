@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "@/lib/i18n-navigation";
 import { useTheme } from "next-themes";
 import { Menu, X, Phone, Sun, Moon, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -46,9 +46,11 @@ export function Header() {
   }, [isOpen]);
 
   const switchLocale = (newLocale: string) => {
-    const segments = pathname.split("/");
-    segments[1] = newLocale;
-    router.push(segments.join("/"));
+    if (!pathname) {
+      router.push(`/${newLocale}`);
+      return;
+    }
+    router.replace(pathname, { locale: newLocale });
   };
 
   const currentLocale = locales.find((l) => l.code === locale) || locales[0];
