@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
+import { useTheme } from "next-themes";
 import { Menu, X, Phone, Sun, Moon, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -213,37 +214,27 @@ export function Header() {
 }
 
 function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const [theme, setThemeState] = useState<"light" | "dark">("dark");
 
   useEffect(() => {
     setMounted(true);
-    const saved = localStorage.getItem("theme") as "light" | "dark" | null;
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initial = saved || (prefersDark ? "dark" : "light");
-    setThemeState(initial);
-    document.documentElement.classList.toggle("dark", initial === "dark");
   }, []);
-
-  const toggleTheme = () => {
-    const next = theme === "dark" ? "light" : "dark";
-    setThemeState(next);
-    localStorage.setItem("theme", next);
-    document.documentElement.classList.toggle("dark", next === "dark");
-  };
 
   if (!mounted) {
     return <button className="p-2.5 min-h-[44px] min-w-[44px] rounded-lg flex items-center justify-center" aria-label="Toggle theme" />;
   }
 
+  const isDark = theme === "dark";
+
   return (
     <button
-      onClick={toggleTheme}
-      className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center text-brand-coffee/60 dark:text-brand-beige/60 hover:text-brand-brown dark:hover:text-brand-beige rounded-lg hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] transition-all duration-300"
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center text-brand-coffee/70 dark:text-brand-beige/70 hover:text-brand-brown dark:hover:text-brand-beige rounded-lg hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.06] transition-all duration-300"
+      aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
     >
       <AnimatePresence mode="wait">
-        {theme === "dark" ? (
+        {isDark ? (
           <motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
             <Sun className="w-5 h-5" />
           </motion.div>

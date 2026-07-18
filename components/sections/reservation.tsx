@@ -32,20 +32,20 @@ export function ReservationSection() {
               {t("title")}
             </div>
             <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-6">{t("title")}</h2>
-            <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 mb-8 leading-relaxed">{t("subtitle")}</p>
+            <p className="text-lg text-brand-coffee/70 dark:text-brand-beige/55 mb-8 leading-relaxed">{t("subtitle")}</p>
             <div className="space-y-4">
               <div className="flex items-center gap-4 p-4 rounded-xl bg-green-500/10 dark:bg-green-500/10 border border-green-500/20">
                 <div className="w-12 h-12 rounded-xl bg-green-600 flex items-center justify-center"><MessageSquare className="w-6 h-6 text-white" /></div>
                 <div>
                   <p className="font-semibold text-brand-coffee dark:text-brand-beige">{t("form.whatsapp")}</p>
-                  <p className="text-sm text-brand-coffee/50 dark:text-brand-beige/40">{t("quickResponse")}</p>
+                  <p className="text-sm text-brand-coffee/70 dark:text-brand-beige/55">{t("quickResponse")}</p>
                 </div>
               </div>
               <div className="flex items-center gap-4 p-4 rounded-xl bg-brand-brown/5 dark:bg-brand-beige/5 border border-brand-brown/20 dark:border-brand-beige/20">
                 <div className="w-12 h-12 rounded-xl bg-brand-coffee dark:bg-brand-beige flex items-center justify-center"><Phone className="w-6 h-6 text-brand-beige dark:text-brand-coffee" /></div>
                 <div>
                   <p className="font-semibold text-brand-coffee dark:text-brand-beige">{t("form.submit")}</p>
-                  <p className="text-sm text-brand-coffee/50 dark:text-brand-beige/40">{getPhoneFormatted()}</p>
+                  <p className="text-sm text-brand-coffee/70 dark:text-brand-beige/55">{getPhoneFormatted()}</p>
                 </div>
               </div>
             </div>
@@ -55,38 +55,38 @@ export function ReservationSection() {
             <div className="bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass p-6 md:p-8 backdrop-blur-xl">
               <div className="space-y-5">
                 <div>
-                  <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/40 mb-2"><User className="w-4 h-4" />{t("form.name")}</label>
+                  <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2"><User className="w-4 h-4" />{t("form.name")}</label>
                   <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Mohamed Alami"
-                    className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/30 dark:placeholder:text-brand-beige/30 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300" />
+                    className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/50 dark:placeholder:text-brand-beige/50 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300" />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/40 mb-2"><CreditCard className="w-4 h-4" />{t("form.currency")}</label>
+                    <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2"><CreditCard className="w-4 h-4" />{t("form.currency")}</label>
                     <select value={currency} onChange={(e) => setCurrency(e.target.value)}
                       className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300">
                       {currencies.map((c) => (<option key={c.code} value={c.code}>{c.flag} {c.code}</option>))}
                     </select>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/40 mb-2 block">{t("form.amount")}</label>
+                    <label className="text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2 block">{t("form.amount")}</label>
                     <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="1000"
-                      className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/30 dark:placeholder:text-brand-beige/30 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300" />
+                      className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/50 dark:placeholder:text-brand-beige/50 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300" />
                   </div>
                 </div>
                 <div>
-                  <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/40 mb-2"><Calendar className="w-4 h-4" />{t("form.date")}</label>
+                  <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2"><Calendar className="w-4 h-4" />{t("form.date")}</label>
                   <input type="date" value={date} onChange={(e) => setDate(e.target.value)}
                     className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/40 mb-2 block">{t("form.message")}</label>
+                  <label className="text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2 block">{t("form.message")}</label>
                   <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={3} placeholder="Message optionnel..."
-                    className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/30 dark:placeholder:text-brand-beige/30 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300 resize-none" />
+                    className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/50 dark:placeholder:text-brand-beige/50 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300 resize-none" />
                 </div>
                 <div className="flex gap-3">
                   <button onClick={handleWhatsApp} disabled={!name || !amount}
                     className={cn("flex-1 flex items-center justify-center gap-2 py-3.5 rounded-xl font-semibold transition-all duration-300",
-                      name && amount ? "bg-green-600 text-white hover:bg-green-700 shadow-lg hover:shadow-xl active:scale-[0.98]" : "bg-brand-coffee/10 dark:bg-brand-beige/[0.04] text-brand-coffee/30 dark:text-brand-beige/20 cursor-not-allowed"
+                      name && amount ? "bg-green-600 text-white hover:bg-green-700 shadow-lg hover:shadow-xl active:scale-[0.98]" : "bg-brand-coffee/10 dark:bg-brand-beige/[0.04] text-brand-coffee/50 dark:text-brand-beige/55 cursor-not-allowed"
                     )}>
                     <MessageSquare className="w-5 h-5" />
                     {t("form.whatsapp")}

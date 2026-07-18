@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
@@ -24,13 +24,13 @@ export function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
             <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-6">{t("title")}</h2>
-            <p className="text-base sm:text-lg text-brand-coffee/60 dark:text-brand-beige/50 leading-relaxed mb-8">{t("content")}</p>
+            <p className="text-base sm:text-lg text-brand-coffee/60 dark:text-brand-beige/65 leading-relaxed mb-8">{t("content")}</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
               {audiences.map((item, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
                   className="flex flex-col items-center gap-2 p-3 rounded-xl bg-brand-coffee/[0.03] dark:bg-brand-beige/[0.03] border border-brand-coffee/[0.04] dark:border-brand-beige/[0.04] hover:border-brand-brown/20 dark:hover:border-brand-beige/[0.08] transition-all duration-300">
                   <item.icon className="w-5 h-5 text-brand-brown dark:text-brand-beige" />
-                  <span className="text-xs font-medium text-brand-coffee/60 dark:text-brand-beige/50 text-center">{item.label}</span>
+                  <span className="text-xs font-medium text-brand-coffee/60 dark:text-brand-beige/65 text-center">{item.label}</span>
                 </motion.div>
               ))}
             </div>
@@ -43,7 +43,7 @@ export function AboutSection() {
                 </div>
                 <div>
                   <p className="text-4xl font-bold text-brand-coffee dark:text-brand-beige">{businessInfo.googleRating}</p>
-                  <p className="text-sm text-brand-coffee/40 dark:text-brand-beige/30">{t("googleRating")}</p>
+                  <p className="text-sm text-brand-coffee/60 dark:text-brand-beige/45">{t("googleRating")}</p>
                 </div>
               </div>
               <div className="flex gap-1 mb-3">
@@ -51,10 +51,10 @@ export function AboutSection() {
                   <Star key={i} className={`w-6 h-6 ${i < Math.floor(businessInfo.googleRating) ? "fill-brand-brown text-brand-brown dark:fill-brand-beige dark:text-brand-beige" : "fill-brand-coffee/10 dark:fill-brand-beige/10 text-brand-coffee/10 dark:text-brand-beige/10"}`} />
                 ))}
               </div>
-              <p className="text-brand-coffee/50 dark:text-brand-beige/40 text-sm">{businessInfo.totalReviews} {t("verifiedReviews")}</p>
+              <p className="text-brand-coffee/70 dark:text-brand-beige/55 text-sm">{businessInfo.totalReviews} {t("verifiedReviews")}</p>
               <div className="mt-6 pt-6 border-t border-brand-coffee/[0.06] dark:border-brand-beige/[0.06]">
-                <p className="text-sm text-brand-coffee/40 dark:text-brand-beige/30 italic">{t("sampleReview")}</p>
-                <p className="text-xs text-brand-coffee/30 dark:text-brand-beige/20 mt-2">{t("sampleAuthor")}</p>
+                <p className="text-sm text-brand-coffee/60 dark:text-brand-beige/45 italic">{t("sampleReview")}</p>
+                <p className="text-xs text-brand-coffee/50 dark:text-brand-beige/55 mt-2">{t("sampleAuthor")}</p>
               </div>
             </div>
           </motion.div>

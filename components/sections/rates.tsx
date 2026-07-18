@@ -24,7 +24,7 @@ export function RatesSection() {
   const TrendIcon = ({ trend }: { trend: "up" | "down" | "stable" }) => {
     if (trend === "up") return <TrendingUp className="w-4 h-4 text-green-500" />;
     if (trend === "down") return <TrendingDown className="w-4 h-4 text-red-500" />;
-    return <Minus className="w-4 h-4 text-brand-coffee/30 dark:text-brand-beige/30" />;
+    return <Minus className="w-4 h-4 text-brand-coffee/50 dark:text-brand-beige/45" />;
   };
 
   return (
@@ -45,7 +45,7 @@ export function RatesSection() {
           <h2 className="text-3xl md:text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-4">
             {t("title")}
           </h2>
-          <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">
+          <p className="text-lg text-brand-coffee/70 dark:text-brand-beige/55 max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
         </motion.div>
@@ -58,13 +58,13 @@ export function RatesSection() {
           className="max-w-md mx-auto mb-10"
         >
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-coffee/30 dark:text-brand-beige/30" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-coffee/50 dark:text-brand-beige/45" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={t("search")}
-              className="w-full pl-12 pr-4 py-3.5 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/30 dark:placeholder:text-brand-beige/30 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 focus:border-brand-brown/50 transition-all duration-300"
+              className="w-full pl-12 pr-4 py-3.5 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/50 dark:placeholder:text-brand-beige/50 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 focus:border-brand-brown/50 transition-all duration-300"
             />
           </div>
         </motion.div>
@@ -72,11 +72,11 @@ export function RatesSection() {
         <div className="hidden md:block">
           <div className="bg-brand-beige dark:bg-brand-beige/[0.03] rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass overflow-hidden">
             <div className="grid grid-cols-5 gap-4 px-6 py-4 bg-brand-coffee/[0.03] dark:bg-brand-beige/[0.03] border-b border-brand-brown/[0.06] dark:border-brand-beige/[0.06]">
-              <span className="text-sm font-semibold text-brand-coffee/50 dark:text-brand-beige/40">{t("all")}</span>
-              <span className="text-sm font-semibold text-brand-coffee/50 dark:text-brand-beige/40 text-right">{t("buy")}</span>
-              <span className="text-sm font-semibold text-brand-coffee/50 dark:text-brand-beige/40 text-right">{t("sell")}</span>
-              <span className="text-sm font-semibold text-brand-coffee/50 dark:text-brand-beige/40 text-right">{t("spread")}</span>
-              <span className="text-sm font-semibold text-brand-coffee/50 dark:text-brand-beige/40 text-right">{t("trend")}</span>
+              <span className="text-sm font-semibold text-brand-coffee/70 dark:text-brand-beige/55">{t("all")}</span>
+              <span className="text-sm font-semibold text-brand-coffee/70 dark:text-brand-beige/55 text-right">{t("buy")}</span>
+              <span className="text-sm font-semibold text-brand-coffee/70 dark:text-brand-beige/55 text-right">{t("sell")}</span>
+              <span className="text-sm font-semibold text-brand-coffee/70 dark:text-brand-beige/55 text-right">{t("spread")}</span>
+              <span className="text-sm font-semibold text-brand-coffee/70 dark:text-brand-beige/55 text-right">{t("trend")}</span>
             </div>
             {displayed.map((currency, i) => (
               <motion.div
@@ -91,7 +91,7 @@ export function RatesSection() {
                   <span className="text-xl">{currency.flag}</span>
                   <div>
                     <p className="font-semibold text-brand-coffee dark:text-brand-beige text-sm">{currency.code}/MAD</p>
-                    <p className="text-xs text-brand-coffee/40 dark:text-brand-beige/30">{locale === "en" ? currency.nameEn : locale === "ar" ? currency.nameAr : currency.name}</p>
+                    <p className="text-xs text-brand-coffee/60 dark:text-brand-beige/45">{locale === "en" ? currency.nameEn : locale === "ar" ? currency.nameAr : currency.name}</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -101,7 +101,7 @@ export function RatesSection() {
                   <p className="font-bold text-brand-brown dark:text-brand-beige">{currency.sell.toFixed(2)}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm text-brand-coffee/40 dark:text-brand-beige/30">{(currency.sell - currency.buy).toFixed(2)}</p>
+                  <p className="text-sm text-brand-coffee/60 dark:text-brand-beige/45">{(currency.sell - currency.buy).toFixed(2)}</p>
                 </div>
                 <div className="flex justify-end items-center">
                   <TrendIcon trend={currency.trend} />
@@ -128,11 +128,11 @@ export function RatesSection() {
               </div>
               <div className="space-y-1">
                 <div className="flex justify-between text-sm">
-                  <span className="text-brand-coffee/40 dark:text-brand-beige/30">{t("buy")}</span>
+                  <span className="text-brand-coffee/60 dark:text-brand-beige/45">{t("buy")}</span>
                   <span className="font-bold text-brand-coffee dark:text-brand-beige">{currency.buy.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-brand-coffee/40 dark:text-brand-beige/30">{t("sell")}</span>
+                  <span className="text-brand-coffee/60 dark:text-brand-beige/45">{t("sell")}</span>
                   <span className="font-bold text-brand-brown dark:text-brand-beige">{currency.sell.toFixed(2)}</span>
                 </div>
               </div>

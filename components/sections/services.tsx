@@ -30,7 +30,7 @@ export function ServicesSection() {
             className="text-center mb-10 md:mb-16"
           >
             <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
-            <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">{t("subtitle")}</p>
+            <p className="text-lg text-brand-coffee/70 dark:text-brand-beige/55 max-w-2xl mx-auto">{t("subtitle")}</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -51,7 +51,7 @@ export function ServicesSection() {
                   <h3 className="text-lg font-display font-bold text-brand-coffee dark:text-brand-beige mb-3">
                     {service.title[locale as keyof typeof service.title]}
                   </h3>
-                  <p className="text-brand-coffee/50 dark:text-brand-beige/40 text-sm leading-relaxed mb-4">
+                  <p className="text-brand-coffee/70 dark:text-brand-beige/55 text-sm leading-relaxed mb-4">
                     {service.description[locale as keyof typeof service.description]}
                   </p>
                   <button

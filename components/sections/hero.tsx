@@ -55,7 +55,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-base sm:text-lg md:text-xl text-brand-coffee/60 dark:text-brand-beige/50 mb-8 max-w-lg leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-brand-coffee/60 dark:text-brand-beige/65 mb-8 max-w-lg leading-relaxed"
             >
               {t("subtitle")}
             </motion.p>
@@ -91,7 +91,7 @@ export function HeroSection() {
                 { icon: Zap, label: t("trust_fast") },
                 { icon: TrendingUp, label: t("trust_transparent") },
               ].map((badge, i) => (
-                <div key={i} className="flex items-center gap-2 text-sm text-brand-coffee/50 dark:text-brand-beige/40">
+                <div key={i} className="flex items-center gap-2 text-sm text-brand-coffee/70 dark:text-brand-beige/55">
                   <badge.icon className="w-4 h-4 text-brand-brown dark:text-brand-beige" />
                   <span>{badge.label}</span>
                 </div>
@@ -99,7 +99,7 @@ export function HeroSection() {
               <div className="flex items-center gap-2 text-sm">
                 <Star className="w-4 h-4 fill-brand-brown text-brand-brown dark:fill-brand-beige dark:text-brand-beige" />
                 <span className="font-semibold text-brand-coffee dark:text-brand-beige">{businessInfo.googleRating}/5</span>
-                <span className="text-brand-coffee/40 dark:text-brand-beige/30">({t("trust_reviews")})</span>
+                <span className="text-brand-coffee/60 dark:text-brand-beige/45">({t("trust_reviews")})</span>
               </div>
             </motion.div>
           </div>
@@ -115,7 +115,7 @@ export function HeroSection() {
                   </div>
                   <div>
                     <p className="text-sm font-semibold text-brand-coffee dark:text-brand-beige">{t("ratesTitle")}</p>
-                    <p className="text-xs text-brand-coffee/40 dark:text-brand-beige/30">{t("ratesSubtitle")}</p>
+                    <p className="text-xs text-brand-coffee/60 dark:text-brand-beige/45">{t("ratesSubtitle")}</p>
                   </div>
                 </div>
                 <div className="space-y-4">
@@ -131,17 +131,17 @@ export function HeroSection() {
                         <span className="text-2xl">{curr.flag}</span>
                         <div>
                           <p className="font-semibold text-brand-coffee dark:text-brand-beige text-sm">{curr.code}/MAD</p>
-                          <p className="text-xs text-brand-coffee/40 dark:text-brand-beige/30">{currencies.find(c => c.code === curr.code)?.name}</p>
+                          <p className="text-xs text-brand-coffee/60 dark:text-brand-beige/45">{currencies.find(c => c.code === curr.code)?.name}</p>
                         </div>
                       </div>
                       <div className="text-right">
                         <p className="font-bold text-brand-brown dark:text-brand-beige text-lg">{curr.rate}</p>
-                        <p className="text-xs text-brand-coffee/40 dark:text-brand-beige/30">MAD</p>
+                        <p className="text-xs text-brand-coffee/60 dark:text-brand-beige/45">MAD</p>
                       </div>
                     </motion.div>
                   ))}
                 </div>
-                <div className="mt-4 pt-4 border-t border-brand-coffee/[0.06] dark:border-brand-beige/[0.06] flex items-center gap-2 text-xs text-brand-coffee/40 dark:text-brand-beige/30">
+                <div className="mt-4 pt-4 border-t border-brand-coffee/[0.06] dark:border-brand-beige/[0.06] flex items-center gap-2 text-xs text-brand-coffee/60 dark:text-brand-beige/45">
                   <Clock className="w-3.5 h-3.5" />
                   <span>{t("ratesDisclaimer")}</span>
                 </div>
@@ -156,7 +156,7 @@ export function HeroSection() {
           transition={{ delay: 1, duration: 0.6 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block"
         >
-          <a href="#rates" className="flex flex-col items-center gap-2 text-brand-coffee/30 dark:text-brand-beige/20 hover:text-brand-brown dark:hover:text-brand-beige transition-colors">
+          <a href="#rates" className="flex flex-col items-center gap-2 text-brand-coffee/50 dark:text-brand-beige/55 hover:text-brand-brown dark:hover:text-brand-beige transition-colors">
             <span className="text-xs font-medium uppercase tracking-widest">{t("scroll")}</span>
             <ArrowDown className="w-5 h-5 animate-bounce" />
           </a>

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRef, useState, useEffect, useCallback } from "react";
 import { useTranslations, useLocale } from "next-intl";
@@ -45,7 +45,7 @@ export function ReviewsSection() {
             {t("title")}
           </div>
           <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
-          <p className="text-base sm:text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">{t("subtitle")}</p>
+          <p className="text-base sm:text-lg text-brand-coffee/70 dark:text-brand-beige/55 max-w-2xl mx-auto">{t("subtitle")}</p>
         </motion.div>
 
         <div className="relative">
@@ -74,10 +74,10 @@ export function ReviewsSection() {
                     </div>
                   </div>
                 </div>
-                <p className="text-brand-coffee/60 dark:text-brand-beige/50 text-sm leading-relaxed mb-4">{review.text[locale as keyof typeof review.text]}</p>
+                <p className="text-brand-coffee/60 dark:text-brand-beige/65 text-sm leading-relaxed mb-4">{review.text[locale as keyof typeof review.text]}</p>
                 <div className="flex items-center justify-between">
-                  <span className="text-xs text-brand-coffee/30 dark:text-brand-beige/20">{review.date}</span>
-                  <span className="text-xs text-brand-coffee/30 dark:text-brand-beige/20">Google</span>
+                  <span className="text-xs text-brand-coffee/50 dark:text-brand-beige/55">{review.date}</span>
+                  <span className="text-xs text-brand-coffee/50 dark:text-brand-beige/55">Google</span>
                 </div>
               </motion.div>
             ))}

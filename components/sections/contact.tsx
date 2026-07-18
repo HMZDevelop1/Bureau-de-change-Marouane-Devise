@@ -20,7 +20,7 @@ export function ContactSection() {
       <div className="container-wide relative z-10">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
-          <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">{t("subtitle")}</p>
+          <p className="text-lg text-brand-coffee/70 dark:text-brand-beige/55 max-w-2xl mx-auto">{t("subtitle")}</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
@@ -70,12 +70,12 @@ export function ContactSection() {
               <span className={open ? "text-green-600 dark:text-green-400 font-semibold" : "text-red-600 dark:text-red-400 font-semibold"}>
                 {open ? t("openNow") : t("closed")}
               </span>
-              {open && timeLeft && <span className="text-sm text-brand-coffee/40 dark:text-brand-beige/30">- {t("closesIn")} {timeLeft}</span>}
+              {open && timeLeft && <span className="text-sm text-brand-coffee/60 dark:text-brand-beige/45">- {t("closesIn")} {timeLeft}</span>}
             </div>
             <div className="space-y-2">
               {hours.map((h) => (
                 <div key={h.day} className="flex justify-between text-sm">
-                  <span className="text-brand-coffee/60 dark:text-brand-beige/50">{h.day}</span>
+                  <span className="text-brand-coffee/60 dark:text-brand-beige/65">{h.day}</span>
                   <span className="font-medium text-brand-coffee dark:text-brand-beige">{h.hours}</span>
                 </div>
               ))}

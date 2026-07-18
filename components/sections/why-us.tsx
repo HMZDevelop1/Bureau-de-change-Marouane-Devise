@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useTranslations } from "next-intl";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
@@ -33,7 +33,7 @@ export function WhyUsSection() {
       <div className="container-wide relative z-10">
         <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="text-center mb-10 md:mb-16">
           <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
-          <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">{t("subtitle")}</p>
+          <p className="text-lg text-brand-coffee/70 dark:text-brand-beige/55 max-w-2xl mx-auto">{t("subtitle")}</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {features.map((feature, i) => (
@@ -43,7 +43,7 @@ export function WhyUsSection() {
                 <feature.icon className="w-6 h-6" />
               </div>
               <h3 className="font-bold text-brand-coffee dark:text-brand-beige mb-2">{feature.title}</h3>
-              <p className="text-sm text-brand-coffee/50 dark:text-brand-beige/40">{feature.description}</p>
+              <p className="text-sm text-brand-coffee/70 dark:text-brand-beige/55">{feature.description}</p>
             </motion.div>
           ))}
         </div>
@@ -59,7 +59,7 @@ export function WhyUsSection() {
               <Star key={i} className={`w-5 h-5 ${i < Math.floor(businessInfo.googleRating) ? "fill-brand-brown text-brand-brown dark:fill-brand-beige dark:text-brand-beige" : "fill-brand-coffee/10 dark:fill-brand-beige/10 text-brand-coffee/10 dark:text-brand-beige/10"}`} />
             ))}
           </div>
-          <p className="text-sm text-brand-coffee/40 dark:text-brand-beige/30">{t("reviews")}</p>
+          <p className="text-sm text-brand-coffee/60 dark:text-brand-beige/45">{t("reviews")}</p>
         </motion.div>
       </div>
     </section>

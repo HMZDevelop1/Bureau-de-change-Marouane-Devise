@@ -17,6 +17,20 @@ const config: Config = {
           beige: "#E1DCC9",
           white: "#FFFFFF",
         },
+        surface: {
+          primary: "var(--bg-primary)",
+          secondary: "var(--bg-secondary)",
+          tertiary: "var(--bg-tertiary)",
+          card: "var(--card-bg)",
+          "card-hover": "var(--card-hover)",
+        },
+        foreground: {
+          primary: "var(--text-primary)",
+          secondary: "var(--text-secondary)",
+          heading: "var(--text-heading)",
+          muted: "var(--text-muted)",
+          link: "var(--text-link)",
+        },
       },
       fontFamily: {
         sans: ["var(--font-manrope)", "system-ui", "-apple-system", "sans-serif"],

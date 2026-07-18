@@ -121,7 +121,7 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
               <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-brand-brown/5 dark:bg-brand-beige/[0.04] border border-brand-brown/[0.06] dark:border-brand-beige/[0.06]">
                 <Clock className="w-4 h-4 text-brand-brown dark:text-brand-beige flex-shrink-0" />
                 <span className="text-sm font-medium text-brand-coffee dark:text-brand-beige">{t("modalEstimatedTime")}:</span>
-                <span className="text-sm text-brand-coffee/60 dark:text-brand-beige/50">{details.estimatedTime[localeKey]}</span>
+                <span className="text-sm text-brand-coffee/60 dark:text-brand-beige/65">{details.estimatedTime[localeKey]}</span>
               </div>
 
               <div>
@@ -131,7 +131,7 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
                 </div>
                 <ul className="space-y-2">
                   {details.documents[localeKey].map((doc, i) => (
-                    <li key={i} className="flex items-start gap-2.5 text-sm text-brand-coffee/60 dark:text-brand-beige/50">
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-brand-coffee/60 dark:text-brand-beige/65">
                       <span className="w-1.5 h-1.5 rounded-full bg-brand-brown/40 dark:bg-brand-beige/40 mt-1.5 flex-shrink-0" />
                       {doc}
                     </li>
@@ -146,7 +146,7 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
                 </div>
                 <ol className="space-y-2.5">
                   {details.process[localeKey].map((step, i) => (
-                    <li key={i} className="flex items-start gap-3 text-sm text-brand-coffee/60 dark:text-brand-beige/50">
+                    <li key={i} className="flex items-start gap-3 text-sm text-brand-coffee/60 dark:text-brand-beige/65">
                       <span className="w-5 h-5 rounded-full bg-brand-brown/10 dark:bg-brand-beige/10 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <span className="text-[10px] font-bold text-brand-brown dark:text-brand-beige">{i + 1}</span>
                       </span>
@@ -176,7 +176,7 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
               </a>
               <button
                 onClick={onClose}
-                className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-brand-coffee/50 dark:text-brand-beige/40 hover:text-brand-coffee dark:hover:text-brand-beige hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.06] transition-all duration-300 text-sm"
+                className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-brand-coffee/70 dark:text-brand-beige/55 hover:text-brand-coffee dark:hover:text-brand-beige hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.06] transition-all duration-300 text-sm"
               >
                 {t("modalClose")}
               </button>

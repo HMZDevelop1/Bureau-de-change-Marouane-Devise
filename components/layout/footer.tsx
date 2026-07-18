@@ -35,13 +35,13 @@ export function Footer() {
                 <span className="font-bold text-lg text-brand-beige/60 ml-0.5 tracking-tight">Devise</span>
               </div>
             </Link>
-            <p className="text-brand-beige/40 text-sm leading-relaxed">
+            <p className="text-brand-beige/60 text-sm leading-relaxed">
               {t("description")}
             </p>
             <div className="flex items-center gap-2 bg-brand-beige/[0.05] w-fit px-3 py-1.5 rounded-full border border-brand-beige/[0.06]">
               <Star className="h-4 w-4 fill-brand-beige text-brand-beige" />
               <span className="text-sm font-semibold text-brand-beige">4.8/5</span>
-              <span className="text-brand-beige/40 text-sm">Google</span>
+              <span className="text-brand-beige/60 text-sm">Google</span>
             </div>
           </div>
 
@@ -59,7 +59,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-brand-beige/40 hover:text-brand-beige transition-colors duration-300 text-sm"
+                    className="text-brand-beige/60 hover:text-brand-beige transition-colors duration-300 text-sm"
                   >
                     {link.label}
                   </Link>
@@ -80,7 +80,7 @@ export function Footer() {
                 t("serviceReservation"),
               ].map((service) => (
                 <li key={service}>
-                  <span className="text-brand-beige/40 text-sm">{service}</span>
+                  <span className="text-brand-beige/60 text-sm">{service}</span>
                 </li>
               ))}
             </ul>
@@ -91,13 +91,13 @@ export function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin className="h-4 w-4 text-brand-beige mt-0.5 shrink-0" />
-                <span className="text-brand-beige/40 text-sm">{contactInfo.city}, {contactInfo.country}</span>
+                <span className="text-brand-beige/60 text-sm">{contactInfo.city}, {contactInfo.country}</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-brand-beige shrink-0" />
                 <a
                   href={`tel:${contactInfo.phone}`}
-                  className="text-brand-beige/40 hover:text-brand-beige transition-colors text-sm"
+                  className="text-brand-beige/60 hover:text-brand-beige transition-colors text-sm"
                 >
                   {contactInfo.phoneFormatted}
                 </a>
@@ -106,18 +106,18 @@ export function Footer() {
                 <Mail className="h-4 w-4 text-brand-beige shrink-0" />
                 <a
                   href={`mailto:${contactInfo.email}`}
-                  className="text-brand-beige/40 hover:text-brand-beige transition-colors text-sm break-all"
+                  className="text-brand-beige/60 hover:text-brand-beige transition-colors text-sm break-all"
                 >
                   {contactInfo.email}
                 </a>
               </li>
               <li className="flex items-start gap-3 mt-2">
                 <Clock className="h-4 w-4 text-brand-beige mt-0.5 shrink-0" />
-                <div className="text-brand-beige/40 text-sm space-y-0.5">
+                <div className="text-brand-beige/60 text-sm space-y-0.5">
                   {quickHours.map((item, i) => (
                     <div key={i}>
-                      <span className="text-brand-beige/30">{item.days}:</span>{" "}
-                      <span className="text-brand-beige/50">{item.hours}</span>
+                      <span className="text-brand-beige/50">{item.days}:</span>{" "}
+                      <span className="text-brand-beige/70">{item.hours}</span>
                     </div>
                   ))}
                 </div>
@@ -128,8 +128,8 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-brand-beige/[0.06]">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-brand-beige/30 text-sm">{t("copyright")}</p>
-            <div className="flex items-center gap-1.5 text-brand-beige/30 text-sm">
+            <p className="text-brand-beige/50 text-sm">{t("copyright")}</p>
+            <div className="flex items-center gap-1.5 text-brand-beige/50 text-sm">
               <span>{t("madeWith")}</span>
               <span className="text-brand-beige">&hearts;</span>
             </div>

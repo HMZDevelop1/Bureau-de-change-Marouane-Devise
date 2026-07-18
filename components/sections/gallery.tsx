@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import { useTranslations } from "next-intl";
@@ -83,7 +83,7 @@ export function Gallery() {
             {t("title")}
           </div>
           <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
-          <p className="text-base sm:text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">{t("subtitle")}</p>
+          <p className="text-base sm:text-lg text-brand-coffee/70 dark:text-brand-beige/55 max-w-2xl mx-auto">{t("subtitle")}</p>
         </motion.div>
 
         <div className="relative">
@@ -189,7 +189,7 @@ export function Gallery() {
                 />
               </div>
               <p className="text-brand-beige text-center mt-4 font-medium text-sm sm:text-base">{galleryImages[selectedImage].alt}</p>
-              <p className="text-brand-beige/40 text-center text-xs sm:text-sm mt-1">{selectedImage + 1} / {galleryImages.length}</p>
+              <p className="text-brand-beige/60 text-center text-xs sm:text-sm mt-1">{selectedImage + 1} / {galleryImages.length}</p>
             </motion.div>
           </motion.div>
         )}

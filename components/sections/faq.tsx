@@ -22,7 +22,7 @@ export function FAQSection() {
             {t("title")}
           </div>
           <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
-          <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40">{t("subtitle")}</p>
+          <p className="text-lg text-brand-coffee/70 dark:text-brand-beige/55">{t("subtitle")}</p>
         </motion.div>
 
         <div className="space-y-3">
@@ -36,12 +36,12 @@ export function FAQSection() {
                 <span className={cn("font-semibold text-sm md:text-base", openId === faq.id ? "text-brand-brown dark:text-brand-beige" : "text-brand-coffee dark:text-brand-beige")}>
                   {faq.question[locale as keyof typeof faq.question]}
                 </span>
-                <ChevronDown className={cn("w-5 h-5 shrink-0 transition-transform duration-300", openId === faq.id ? "rotate-180 text-brand-brown dark:text-brand-beige" : "text-brand-coffee/30 dark:text-brand-beige/30")} />
+                <ChevronDown className={cn("w-5 h-5 shrink-0 transition-transform duration-300", openId === faq.id ? "rotate-180 text-brand-brown dark:text-brand-beige" : "text-brand-coffee/50 dark:text-brand-beige/45")} />
               </button>
               <AnimatePresence>
                 {openId === faq.id && (
                   <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
-                    <p className="px-5 py-4 text-sm text-brand-coffee/60 dark:text-brand-beige/50 leading-relaxed">
+                    <p className="px-5 py-4 text-sm text-brand-coffee/60 dark:text-brand-beige/65 leading-relaxed">
                       {faq.answer[locale as keyof typeof faq.answer]}
                     </p>
                   </motion.div>
