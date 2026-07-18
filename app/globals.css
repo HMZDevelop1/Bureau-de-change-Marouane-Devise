@@ -51,24 +51,29 @@
     --btn-hover-bg: #D9D4C0;
   }
 
-  html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 80px;
-    background-color: var(--bg-primary);
-    overscroll-behavior: none;
-  }
-
+  html,
   body {
     margin: 0;
     padding: 0;
+    border: 0;
+    outline: 0;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "cv11", "ss01";
-    transition: background-color 0.3s ease, color 0.3s ease;
     min-height: 100vh;
     min-height: 100dvh;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    overscroll-behavior: none;
+  }
+
+  body {
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {

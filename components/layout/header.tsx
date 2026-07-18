@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
@@ -21,6 +21,7 @@ const locales = [
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const t = useTranslations("nav");
   const tc = useTranslations("common");
   const locale = useLocale();
@@ -28,32 +29,66 @@ export function Header() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    setMounted(true);
   }, []);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (!mounted) return;
+    const handleScroll = () => {
+      try {
+        setScrolled(window.scrollY > 20);
+      } catch {
+        // ignore
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [mounted]);
+
+  useEffect(() => {
+    if (!mounted || typeof document === "undefined") return;
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "";
+      if (typeof document !== "undefined") {
+        document.body.style.overflow = "";
+      }
     };
-  }, [isOpen]);
+  }, [isOpen, mounted]);
 
-  const switchLocale = (newLocale: string) => {
-    if (!pathname) {
-      router.push(`/${newLocale}`);
-      return;
-    }
-    router.replace(pathname, { locale: newLocale });
-  };
+  const switchLocale = useCallback(
+    (newLocale: string) => {
+      try {
+        if (!pathname) {
+          router.push(`/${newLocale}`);
+          return;
+        }
+        router.replace(pathname, { locale: newLocale });
+      } catch {
+        if (typeof window !== "undefined") {
+          window.location.href = `/${newLocale}`;
+        }
+      }
+    },
+    [pathname, router]
+  );
 
   const currentLocale = locales.find((l) => l.code === locale) || locales[0];
+
+  if (!mounted) {
+    return (
+      <header className="fixed top-0 left-0 right-0 z-50 h-16 md:h-[72px]">
+        <nav className="container-wide flex items-center justify-between h-full">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-brand-brown/10 animate-pulse" />
+          </div>
+        </nav>
+      </header>
+    );
+  }
 
   return (
     <header
@@ -241,17 +276,7 @@ function ThemeToggle() {
       className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center text-brand-coffee/70 dark:text-brand-beige/70 hover:text-brand-brown dark:hover:text-brand-beige rounded-lg hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.06] transition-all duration-300"
       aria-label={`${t("toggleTheme")} (${isDark ? t("themeLight") : t("themeDark")})`}
     >
-      <AnimatePresence mode="wait">
-        {isDark ? (
-          <motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-            <Sun className="w-5 h-5" />
-          </motion.div>
-        ) : (
-          <motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-            <Moon className="w-5 h-5" />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
     </button>
   );
 }

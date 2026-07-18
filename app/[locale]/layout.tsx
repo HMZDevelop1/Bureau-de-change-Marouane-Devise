@@ -6,8 +6,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { LocalBusinessSchema, FAQSchema } from "@/components/seo-schema";
-import { ErrorBoundary } from "@/components/common/error-boundary";
-import { GlobalErrorHandler } from "@/components/common/global-error-handler";
 import { ClientShell } from "@/components/common/client-shell";
 
 export function generateStaticParams() {
@@ -57,7 +55,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} dir={dir} suppressHydrationWarning className="overflow-x-hidden">
+    <html lang={locale} dir={dir} suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -66,22 +64,19 @@ export default async function LocaleLayout({ children, params }: Props) {
         <meta name="theme-color" content="#E1DCC9" media="(prefers-color-scheme: light)" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(!t||t==='system'){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}if(t==='dark'){document.documentElement.classList.add('dark');document.documentElement.style.backgroundColor='#000000';document.body.style.backgroundColor='#000000'}else{document.documentElement.classList.remove('dark');document.documentElement.style.backgroundColor='#E1DCC9';document.body.style.backgroundColor='#E1DCC9'}}catch(e){document.documentElement.style.backgroundColor='#000000';document.body.style.backgroundColor='#000000'}})();`,
+            __html: "(function(){try{var t=localStorage.getItem('theme');if(!t||t==='system'){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}if(t==='dark'){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}}catch(e){}})();",
           }}
         />
       </head>
-      <body className="font-sans antialiased" style={{ backgroundColor: "var(--bg-primary)" }}>
+      <body suppressHydrationWarning className="font-sans antialiased">
         <ThemeProvider>
           <NextIntlClientProvider messages={messages} locale={locale} timeZone="Africa/Casablanca">
-            <GlobalErrorHandler />
-            <ErrorBoundary key={locale}>
-              <ClientShell />
-              <LocalBusinessSchema locale={locale} />
-              <FAQSchema locale={locale} />
-              <Header />
-              <main id="main-content" className="min-h-screen">{children}</main>
-              <Footer />
-            </ErrorBoundary>
+            <Header />
+            <main id="main-content">{children}</main>
+            <Footer />
+            <ClientShell />
+            <LocalBusinessSchema locale={locale} />
+            <FAQSchema locale={locale} />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
