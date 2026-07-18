@@ -75,8 +75,8 @@ export function RatesSection() {
               <span className="text-sm font-semibold text-brand-coffee/50 dark:text-brand-beige/40">{t("all")}</span>
               <span className="text-sm font-semibold text-brand-coffee/50 dark:text-brand-beige/40 text-right">{t("buy")}</span>
               <span className="text-sm font-semibold text-brand-coffee/50 dark:text-brand-beige/40 text-right">{t("sell")}</span>
-              <span className="text-sm font-semibold text-brand-coffee/50 dark:text-brand-beige/40 text-right">Spread</span>
-              <span className="text-sm font-semibold text-brand-coffee/50 dark:text-brand-beige/40 text-right">Tendance</span>
+              <span className="text-sm font-semibold text-brand-coffee/50 dark:text-brand-beige/40 text-right">{t("spread")}</span>
+              <span className="text-sm font-semibold text-brand-coffee/50 dark:text-brand-beige/40 text-right">{t("trend")}</span>
             </div>
             {displayed.map((currency, i) => (
               <motion.div

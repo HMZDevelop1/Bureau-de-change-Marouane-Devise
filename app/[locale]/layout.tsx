@@ -8,6 +8,7 @@ import { Footer } from "@/components/layout/footer";
 import { LocalBusinessSchema, FAQSchema } from "@/components/seo-schema";
 import { WhatsAppButton } from "@/components/common/whatsapp-button";
 import { BackToTop } from "@/components/common/back-to-top";
+import { ScrollProgress } from "@/components/common/scroll-progress";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -69,6 +70,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="font-sans antialiased">
         <ThemeProvider>
           <NextIntlClientProvider messages={messages}>
+            <ScrollProgress />
             <LocalBusinessSchema />
             <FAQSchema />
             <Header />

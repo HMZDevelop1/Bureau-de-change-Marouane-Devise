@@ -5,14 +5,15 @@ import { motion } from "framer-motion";
 import { ArrowDown, Phone, MapPin, Star, Shield, Zap, TrendingUp, Clock } from "lucide-react";
 import { businessInfo, GOOGLE_MAPS_URL } from "@/data/business";
 import { currencies } from "@/data/currencies";
+import { getCurrencyByCode } from "@/data/currencies";
 import { generateCallUrl } from "@/lib/whatsapp";
 import { isOpenNow } from "@/lib/hours";
 
-const floatingCurrencies = [
-  { code: "EUR", flag: "\u{1F1EA}\u{1F1FA}", rate: "10.72" },
-  { code: "USD", flag: "\u{1F1FA}\u{1F1F8}", rate: "9.82" },
-  { code: "GBP", flag: "\u{1F1EC}\u{1F1E7}", rate: "12.45" },
-];
+const floatingCurrencyCodes = ["EUR", "USD", "GBP"];
+const floatingCurrencies = floatingCurrencyCodes.map((code) => {
+  const curr = getCurrencyByCode(code);
+  return { code, flag: curr?.flag ?? "", rate: curr?.sell.toFixed(2) ?? "0.00" };
+});
 
 export function HeroSection() {
   const t = useTranslations("hero");
@@ -113,8 +114,8 @@ export function HeroSection() {
                     <TrendingUp className="w-5 h-5 text-brand-brown dark:text-brand-beige" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-brand-coffee dark:text-brand-beige">Taux du jour</p>
-                    <p className="text-xs text-brand-coffee/40 dark:text-brand-beige/30">Mis à jour quotidiennement</p>
+                    <p className="text-sm font-semibold text-brand-coffee dark:text-brand-beige">{t("ratesTitle")}</p>
+                    <p className="text-xs text-brand-coffee/40 dark:text-brand-beige/30">{t("ratesSubtitle")}</p>
                   </div>
                 </div>
                 <div className="space-y-4">
@@ -142,7 +143,7 @@ export function HeroSection() {
                 </div>
                 <div className="mt-4 pt-4 border-t border-brand-coffee/[0.06] dark:border-brand-beige/[0.06] flex items-center gap-2 text-xs text-brand-coffee/40 dark:text-brand-beige/30">
                   <Clock className="w-3.5 h-3.5" />
-                  <span>Les taux peuvent varier selon le montant</span>
+                  <span>{t("ratesDisclaimer")}</span>
                 </div>
               </div>
             </div>
@@ -156,7 +157,7 @@ export function HeroSection() {
           className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block"
         >
           <a href="#rates" className="flex flex-col items-center gap-2 text-brand-coffee/30 dark:text-brand-beige/20 hover:text-brand-brown dark:hover:text-brand-beige transition-colors">
-            <span className="text-xs font-medium uppercase tracking-widest">Scroll</span>
+            <span className="text-xs font-medium uppercase tracking-widest">{t("scroll")}</span>
             <ArrowDown className="w-5 h-5 animate-bounce" />
           </a>
         </motion.div>

@@ -36,13 +36,19 @@
     "trust_fast": "Service rapide",
     "trust_transparent": "Taux compétitifs",
     "trust_rating": "4.8/5 sur Google",
-    "trust_reviews": "19 avis"
+    "trust_reviews": "19 avis",
+    "ratesTitle": "Taux du jour",
+    "ratesSubtitle": "Mis à jour quotidiennement",
+    "ratesDisclaimer": "Les taux peuvent varier selon le montant",
+    "scroll": "Scroll"
   },
   "rates": {
     "title": "Taux de change du jour",
     "subtitle": "Consultez nos taux en temps réel pour toutes les devises",
     "buy": "Achat",
     "sell": "Vente",
+    "spread": "Spread",
+    "trend": "Tendance",
     "updated": "Taux actualisés chaque jour",
     "search": "Rechercher une devise...",
     "popular": "Populaires",
@@ -65,7 +71,8 @@
   },
   "services": {
     "title": "Nos services",
-    "subtitle": "Une gamme complète de services de change pour répondre à tous vos besoins"
+    "subtitle": "Une gamme complète de services de change pour répondre à tous vos besoins",
+    "learnMore": "En savoir plus"
   },
   "whyUs": {
     "title": "Pourquoi nous choisir",
@@ -98,7 +105,8 @@
       "submit": "Appeler maintenant",
       "whatsapp": "Réserver via WhatsApp"
     },
-    "success": "Votre demande a été envoyée avec succès !"
+    "success": "Votre demande a été envoyée avec succès !",
+    "quickResponse": "Réponse rapide garantie"
   },
   "reviews": {
     "title": "Avis de nos clients",
@@ -113,7 +121,11 @@
     "pilgrims": "Pèlerins",
     "professionals": "Professionnels",
     "families": "Familles",
-    "missions": "Missions"
+    "missions": "Missions",
+    "googleRating": "sur Google",
+    "verifiedReviews": "avis vérifiés sur Google",
+    "sampleReview": "Service rapide et professionnel. Les taux sont très compétitifs.",
+    "sampleAuthor": "- Ahmed B., avis Google"
   },
   "contact": {
     "title": "Contactez-nous",
@@ -125,7 +137,11 @@
     "address": "Adresse",
     "phone": "Téléphone",
     "email": "Email",
-    "maps": "Voir sur Google Maps"
+    "maps": "Voir sur Google Maps",
+    "instantMessage": "Message instantané",
+    "openNow": "Ouvert maintenant",
+    "closed": "Fermé",
+    "closesIn": "ferme dans"
   },
   "faq": {
     "title": "Questions fréquentes",

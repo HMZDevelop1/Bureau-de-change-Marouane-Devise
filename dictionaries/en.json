@@ -36,13 +36,19 @@
     "trust_fast": "Fast service",
     "trust_transparent": "Competitive rates",
     "trust_rating": "4.8/5 on Google",
-    "trust_reviews": "19 reviews"
+    "trust_reviews": "19 reviews",
+    "ratesTitle": "Today's Rates",
+    "ratesSubtitle": "Updated daily",
+    "ratesDisclaimer": "Rates may vary depending on the amount",
+    "scroll": "Scroll"
   },
   "rates": {
     "title": "Today's Exchange Rates",
     "subtitle": "Check our real-time rates for all currencies",
     "buy": "Buy",
     "sell": "Sell",
+    "spread": "Spread",
+    "trend": "Trend",
     "updated": "Rates updated daily",
     "search": "Search currency...",
     "popular": "Popular",
@@ -65,7 +71,8 @@
   },
   "services": {
     "title": "Our Services",
-    "subtitle": "A complete range of exchange services to meet all your needs"
+    "subtitle": "A complete range of exchange services to meet all your needs",
+    "learnMore": "Learn more"
   },
   "whyUs": {
     "title": "Why Choose Us",
@@ -98,7 +105,8 @@
       "submit": "Call Now",
       "whatsapp": "Reserve via WhatsApp"
     },
-    "success": "Your request has been sent successfully!"
+    "success": "Your request has been sent successfully!",
+    "quickResponse": "Quick response guaranteed"
   },
   "reviews": {
     "title": "Customer Reviews",
@@ -113,7 +121,11 @@
     "pilgrims": "Pilgrims",
     "professionals": "Professionals",
     "families": "Families",
-    "missions": "Missions"
+    "missions": "Missions",
+    "googleRating": "on Google",
+    "verifiedReviews": "verified reviews on Google",
+    "sampleReview": "Fast and professional service. The rates are very competitive.",
+    "sampleAuthor": "- Ahmed B., Google review"
   },
   "contact": {
     "title": "Contact Us",
@@ -125,7 +137,11 @@
     "address": "Address",
     "phone": "Phone",
     "email": "Email",
-    "maps": "View on Google Maps"
+    "maps": "View on Google Maps",
+    "instantMessage": "Instant message",
+    "openNow": "Open now",
+    "closed": "Closed",
+    "closesIn": "closes in"
   },
   "faq": {
     "title": "Frequently Asked Questions",

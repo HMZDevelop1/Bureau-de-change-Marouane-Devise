@@ -29,6 +29,7 @@ export function FAQSection() {
           {faqs.map((faq, i) => (
             <motion.div key={faq.id} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}>
               <button onClick={() => setOpenId(openId === faq.id ? null : faq.id)}
+                aria-expanded={openId === faq.id}
                 className={cn("w-full flex items-center justify-between gap-4 p-5 rounded-xl border text-left transition-all duration-300",
                   openId === faq.id ? "bg-brand-brown/5 dark:bg-brand-beige/[0.06] border-brand-brown/20 dark:border-brand-beige/20" : "bg-brand-beige dark:bg-brand-coffee/40 border-brand-brown/[0.06] dark:border-brand-beige/[0.06] hover:border-brand-brown/20 dark:hover:border-brand-beige/[0.12]"
                 )}>

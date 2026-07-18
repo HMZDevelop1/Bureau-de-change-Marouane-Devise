@@ -50,7 +50,7 @@ export function ServicesSection() {
                   {service.description[locale as keyof typeof service.description]}
                 </p>
                 <div className="flex items-center gap-2 text-brand-brown dark:text-brand-beige text-sm font-medium md:opacity-0 md:group-hover:opacity-100 md:translate-x-[-10px] md:group-hover:translate-x-0 transition-all duration-300">
-                  <span>En savoir plus</span>
+                  <span>{t("learnMore")}</span>
                   <ArrowRight className="w-4 h-4" />
                 </div>
               </motion.div>

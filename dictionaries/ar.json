@@ -36,13 +36,19 @@
     "trust_fast": "خدمة سريعة",
     "trust_transparent": "أسعار تنافسية",
     "trust_rating": "4.8/5 على Google",
-    "trust_reviews": "19 تقييم"
+    "trust_reviews": "19 تقييم",
+    "ratesTitle": "أسعار اليوم",
+    "ratesSubtitle": "محدّثة يومياً",
+    "ratesDisclaimer": "قد تختلف الأسعار حسب المبلغ",
+    "scroll": "اسحب للأسفل"
   },
   "rates": {
     "title": "أسعار الصرف اليوم",
     "subtitle": "تحقق من أسعارنا في الوقت الحقيقي لجميع العملات",
     "buy": "شراء",
     "sell": "بيع",
+    "spread": "السبريد",
+    "trend": "الاتجاه",
     "updated": "الأسعار محدثة يومياً",
     "search": "البحث عن عملة...",
     "popular": "الشائعة",
@@ -65,7 +71,8 @@
   },
   "services": {
     "title": "خدماتنا",
-    "subtitle": "مجموعة كاملة من خدمات الصرف لتلبية جميع احتياجاتك"
+    "subtitle": "مجموعة كاملة من خدمات الصرف لتلبية جميع احتياجاتك",
+    "learnMore": "اعرف المزيد"
   },
   "whyUs": {
     "title": "لماذا تختارنا",
@@ -98,7 +105,8 @@
       "submit": "اتصل الآن",
       "whatsapp": "حجز عبر واتساب"
     },
-    "success": "تم إرسال طلبك بنجاح!"
+    "success": "تم إرسال طلبك بنجاح!",
+    "quickResponse": "رد سريع مضمون"
   },
   "reviews": {
     "title": "تقييمات عملائنا",
@@ -113,7 +121,11 @@
     "pilgrims": "الحجاج",
     "professionals": "المهنيون",
     "families": "العائلات",
-    "missions": "المهام"
+    "missions": "المهام",
+    "googleRating": "على Google",
+    "verifiedReviews": "تقييمات موثقة على Google",
+    "sampleReview": "خدمة سريعة واحترافية. الأسعار تنافسية جداً.",
+    "sampleAuthor": "- أحمد ب., تقييم Google"
   },
   "contact": {
     "title": "اتصل بنا",
@@ -125,7 +137,11 @@
     "address": "العنوان",
     "phone": "الهاتف",
     "email": "البريد الإلكتروني",
-    "maps": "عرض على خرائط Google"
+    "maps": "عرض على خرائط Google",
+    "instantMessage": "رسالة فورية",
+    "openNow": "مفتوح الآن",
+    "closed": "مغلق",
+    "closesIn": "يغلق في"
   },
   "faq": {
     "title": "الأسئلة الشائعة",

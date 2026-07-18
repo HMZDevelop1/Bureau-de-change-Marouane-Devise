@@ -42,7 +42,7 @@ export function ContactSection() {
             </div>
             <div>
               <p className="font-semibold text-brand-coffee dark:text-brand-beige">{t("whatsapp")}</p>
-              <p className="text-sm text-green-600 dark:text-green-400 font-medium">Message instantane</p>
+              <p className="text-sm text-green-600 dark:text-green-400 font-medium">{t("instantMessage")}</p>
             </div>
           </motion.a>
 
@@ -68,9 +68,9 @@ export function ContactSection() {
             <div className="flex items-center gap-2 mb-4">
               <span className={`w-2.5 h-2.5 rounded-full ${open ? "bg-green-500 animate-pulse" : "bg-red-500"}`} />
               <span className={open ? "text-green-600 dark:text-green-400 font-semibold" : "text-red-600 dark:text-red-400 font-semibold"}>
-                {open ? "Ouvert maintenant" : "Ferme"}
+                {open ? t("openNow") : t("closed")}
               </span>
-              {open && timeLeft && <span className="text-sm text-brand-coffee/40 dark:text-brand-beige/30">- ferme dans {timeLeft}</span>}
+              {open && timeLeft && <span className="text-sm text-brand-coffee/40 dark:text-brand-beige/30">- {t("closesIn")} {timeLeft}</span>}
             </div>
             <div className="space-y-2">
               {hours.map((h) => (
