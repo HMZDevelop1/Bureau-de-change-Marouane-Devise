@@ -20,12 +20,12 @@ export function HeroSection() {
   const open = isOpenNow();
 
   return (
-    <section id="hero" className="relative min-h-[100vh] flex items-center overflow-hidden bg-brand-beige dark:bg-brand-black">
+    <section id="hero" className="relative min-h-[100dvh] min-h-[100vh] flex items-center overflow-hidden bg-brand-beige dark:bg-brand-black">
       <div className="absolute inset-0 bg-gradient-to-br from-brand-beige via-brand-beige to-brand-beige dark:from-brand-black dark:via-brand-black dark:to-brand-black" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand-brown/5 dark:bg-brand-brown/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-brand-coffee/5 dark:bg-brand-coffee/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-brand-brown/5 dark:bg-brand-brown/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-brand-coffee/5 dark:bg-brand-coffee/10 rounded-full blur-3xl" />
 
-      <div className="container-wide relative z-10 pt-32 pb-20 md:pt-40 md:pb-28">
+      <div className="container-wide relative z-10 pt-24 pb-16 md:pt-40 md:pb-28">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
             <motion.div
@@ -42,7 +42,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-brand-coffee dark:text-brand-beige leading-[1.1] mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-brand-coffee dark:text-brand-beige leading-[1.1] mb-6"
             >
               {t("title")}{" "}
               <span className="text-brand-brown dark:text-brand-beige">{t("titleHighlight")}</span>
@@ -54,7 +54,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg md:text-xl text-brand-coffee/60 dark:text-brand-beige/50 mb-8 max-w-lg leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-brand-coffee/60 dark:text-brand-beige/50 mb-8 max-w-lg leading-relaxed"
             >
               {t("subtitle")}
             </motion.p>
@@ -63,17 +63,17 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap gap-4 mb-10"
+              className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-10"
             >
-              <a href="#rates" className="inline-flex items-center gap-2 px-7 py-3.5 bg-brand-coffee text-brand-beige font-semibold rounded-xl shadow-coffee hover:shadow-coffee-lg hover:bg-brand-brown active:scale-[0.98] transition-all duration-300">
+              <a href="#rates" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-coffee text-brand-beige font-semibold rounded-xl shadow-coffee hover:shadow-coffee-lg hover:bg-brand-brown active:scale-[0.98] transition-all duration-300 text-sm sm:text-base">
                 <TrendingUp className="w-5 h-5" />
                 {t("cta_rates")}
               </a>
-              <a href={generateCallUrl()} className="inline-flex items-center gap-2 px-7 py-3.5 border border-brand-brown/15 dark:border-brand-beige/10 text-brand-coffee dark:text-brand-beige font-semibold rounded-xl hover:border-brand-brown/30 dark:hover:border-brand-beige/20 hover:text-brand-brown hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] active:scale-[0.98] transition-all duration-300">
+              <a href={generateCallUrl()} className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-brand-brown/15 dark:border-brand-beige/10 text-brand-coffee dark:text-brand-beige font-semibold rounded-xl hover:border-brand-brown/30 dark:hover:border-brand-beige/20 hover:text-brand-brown hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] active:scale-[0.98] transition-all duration-300 text-sm sm:text-base">
                 <Phone className="w-5 h-5" />
                 {t("cta_call")}
               </a>
-              <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-7 py-3.5 border border-brand-brown/15 dark:border-brand-beige/10 text-brand-coffee dark:text-brand-beige font-semibold rounded-xl hover:border-brand-brown/30 dark:hover:border-brand-beige/20 hover:text-brand-brown hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] active:scale-[0.98] transition-all duration-300">
+              <a href={GOOGLE_MAPS_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 border border-brand-brown/15 dark:border-brand-beige/10 text-brand-coffee dark:text-brand-beige font-semibold rounded-xl hover:border-brand-brown/30 dark:hover:border-brand-beige/20 hover:text-brand-brown hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] active:scale-[0.98] transition-all duration-300 text-sm sm:text-base">
                 <MapPin className="w-5 h-5" />
                 {t("cta_direction")}
               </a>
@@ -83,7 +83,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-6"
+              className="flex flex-wrap gap-4 sm:gap-6"
             >
               {[
                 { icon: Shield, label: t("trust_no_commission") },

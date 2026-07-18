@@ -103,11 +103,11 @@ export function CalculatorSection() {
                 <div className="text-center p-4 rounded-xl bg-brand-coffee/[0.03] dark:bg-brand-beige/[0.03] border border-brand-coffee/[0.04] dark:border-brand-beige/[0.04]">
                   <p className="text-sm text-brand-coffee/40 dark:text-brand-beige/30 mb-1">{t("result")}</p>
                   {result !== null ? (
-                    <p className="text-3xl font-bold text-brand-brown dark:text-brand-beige">
-                      {result.toFixed(2)} <span className="text-lg text-brand-coffee/40 dark:text-brand-beige/30">MAD</span>
+                    <p className="text-2xl sm:text-3xl font-bold text-brand-brown dark:text-brand-beige">
+                      {result.toFixed(2)} <span className="text-base sm:text-lg text-brand-coffee/40 dark:text-brand-beige/30">MAD</span>
                     </p>
                   ) : (
-                    <p className="text-3xl font-bold text-brand-coffee/20 dark:text-brand-beige/10">-- MAD</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-brand-coffee/20 dark:text-brand-beige/10">-- MAD</p>
                   )}
                 </div>
 

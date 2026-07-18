@@ -22,7 +22,7 @@ export function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
           <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">{t("subtitle")}</p>
@@ -49,7 +49,7 @@ export function ServicesSection() {
                 <p className="text-brand-coffee/50 dark:text-brand-beige/40 text-sm leading-relaxed mb-4">
                   {service.description[locale as keyof typeof service.description]}
                 </p>
-                <div className="flex items-center gap-2 text-brand-brown dark:text-brand-beige text-sm font-medium opacity-0 group-hover:opacity-100 translate-x-[-10px] group-hover:translate-x-0 transition-all duration-300">
+                <div className="flex items-center gap-2 text-brand-brown dark:text-brand-beige text-sm font-medium md:opacity-0 md:group-hover:opacity-100 md:translate-x-[-10px] md:group-hover:translate-x-0 transition-all duration-300">
                   <span>En savoir plus</span>
                   <ArrowRight className="w-4 h-4" />
                 </div>

@@ -105,9 +105,9 @@ export function Header() {
           ))}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           <div className="relative group">
-            <button className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-brand-coffee/70 dark:text-brand-beige/60 hover:text-brand-brown dark:hover:text-brand-beige rounded-lg hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] transition-all duration-300">
+            <button className="flex items-center gap-1.5 px-3 py-2.5 min-h-[44px] text-sm font-medium text-brand-coffee/70 dark:text-brand-beige/60 hover:text-brand-brown dark:hover:text-brand-beige rounded-lg hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] transition-all duration-300">
               <span className="text-base">{currentLocale.flag}</span>
               <span className="hidden sm:inline">{currentLocale.label}</span>
               <ChevronDown className="w-3 h-3" />
@@ -143,7 +143,7 @@ export function Header() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-brand-coffee dark:text-brand-beige hover:text-brand-brown dark:hover:text-brand-beige rounded-lg hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] transition-all duration-300"
+            className="lg:hidden p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown dark:hover:text-brand-beige rounded-lg hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] transition-all duration-300"
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -231,13 +231,13 @@ function ThemeToggle() {
   };
 
   if (!mounted) {
-    return <button className="p-2 rounded-lg w-10 h-10" aria-label="Toggle theme" />;
+    return <button className="p-2.5 min-h-[44px] min-w-[44px] rounded-lg flex items-center justify-center" aria-label="Toggle theme" />;
   }
 
   return (
     <button
       onClick={toggleTheme}
-      className="p-2 text-brand-coffee/60 dark:text-brand-beige/60 hover:text-brand-brown dark:hover:text-brand-beige rounded-lg hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] transition-all duration-300"
+      className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center text-brand-coffee/60 dark:text-brand-beige/60 hover:text-brand-brown dark:hover:text-brand-beige rounded-lg hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] transition-all duration-300"
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
     >
       <AnimatePresence mode="wait">

@@ -43,7 +43,7 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 100px;
+    scroll-padding-top: 80px;
   }
 
   body {
@@ -52,6 +52,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "cv11", "ss01";
+    overflow-x: hidden;
   }
 
   ::selection {
@@ -127,7 +128,7 @@
   }
 
   .section-padding {
-    @apply py-20 md:py-28;
+    @apply py-14 md:py-20 lg:py-28;
   }
 
   .container-wide {

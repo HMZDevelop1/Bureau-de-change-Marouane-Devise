@@ -31,8 +31,8 @@ export function WhyUsSection() {
     <section className="section-padding bg-brand-beige dark:bg-brand-black relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-brand-beige dark:from-brand-black via-brand-beige dark:via-brand-black to-brand-beige dark:to-brand-black pointer-events-none" />
       <div className="container-wide relative z-10">
-        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }} className="text-center mb-10 md:mb-16">
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
           <p className="text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">{t("subtitle")}</p>
         </motion.div>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -48,12 +48,12 @@ export function WhyUsSection() {
           ))}
         </div>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
-          className="bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] p-8 shadow-card dark:shadow-glass text-center">
+          className="bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] p-6 md:p-8 shadow-card dark:shadow-glass text-center">
           <div className="flex items-center justify-center gap-2 mb-3">
             <Award className="w-5 h-5 text-brand-brown dark:text-brand-beige" />
             <span className="text-sm font-semibold text-brand-brown dark:text-brand-beige">{t("rating")}</span>
           </div>
-          <div className="text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-2"><CountUp target={businessInfo.googleRating} /></div>
+          <div className="text-4xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-2"><CountUp target={businessInfo.googleRating} /></div>
           <div className="flex items-center justify-center gap-1 mb-2">
             {Array.from({ length: 5 }).map((_, i) => (
               <Star key={i} className={`w-5 h-5 ${i < Math.floor(businessInfo.googleRating) ? "fill-brand-brown text-brand-brown dark:fill-brand-beige dark:text-brand-beige" : "fill-brand-coffee/10 dark:fill-brand-beige/10 text-brand-coffee/10 dark:text-brand-beige/10"}`} />

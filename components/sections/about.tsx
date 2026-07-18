@@ -23,8 +23,8 @@ export function AboutSection() {
       <div className="container-wide relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.6 }}>
-            <h2 className="text-3xl md:text-5xl font-bold text-brand-coffee dark:text-brand-beige mb-6">{t("title")}</h2>
-            <p className="text-lg text-brand-coffee/60 dark:text-brand-beige/50 leading-relaxed mb-8">{t("content")}</p>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-6">{t("title")}</h2>
+            <p className="text-base sm:text-lg text-brand-coffee/60 dark:text-brand-beige/50 leading-relaxed mb-8">{t("content")}</p>
             <div className="grid grid-cols-3 gap-4">
               {audiences.map((item, i) => (
                 <motion.div key={i} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
