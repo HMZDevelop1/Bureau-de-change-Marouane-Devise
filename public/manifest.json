@@ -10,7 +10,20 @@
     {
       "src": "/favicon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo/logo-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/logo/logo-official.png",
+      "sizes": "1536x1024",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
