@@ -2,16 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { MapPin, Phone, Mail, Star, Clock } from "lucide-react";
 import { contactInfo } from "@/data/contact";
 
 export function Footer() {
   const t = useTranslations("footer");
+  const locale = useLocale();
 
   const quickHours = [
-    { days: "Lun – Mer", hours: "09:30 – 22:00" },
-    { days: "Jeu – Dim", hours: "09:00 – 22:00" },
+    { days: t("hoursWeekdays"), hours: "09:30 – 22:00" },
+    { days: t("hoursWeekends"), hours: "09:00 – 22:00" },
   ];
 
   return (
@@ -19,7 +20,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           <div className="space-y-5">
-            <Link href="/" className="flex items-center gap-3 group" aria-label="Marouane Devise">
+            <Link href={`/${locale}`} className="flex items-center gap-3 group" aria-label="Marouane Devise">
               <div className="relative w-10 h-10 rounded-xl overflow-hidden ring-1 ring-brand-beige/10 flex-shrink-0">
                 <Image
                   src="/logo/logo-official.png"
@@ -48,12 +49,12 @@ export function Footer() {
             <h3 className="font-semibold mb-5 text-brand-beige text-sm uppercase tracking-wider">{t("quickLinks")}</h3>
             <ul className="space-y-3">
               {[
-                { href: "#taux", label: "Taux de change" },
-                { href: "#services", label: t("services") },
-                { href: "#apropos", label: "À propos" },
-                { href: "#avis", label: "Avis" },
-                { href: "#faq", label: "FAQ" },
-                { href: "#contact", label: t("contact") },
+                { href: "#rates", label: t("linkRates") },
+                { href: "#services", label: t("linkServices") },
+                { href: "#about", label: t("linkAbout") },
+                { href: "#reviews", label: t("linkReviews") },
+                { href: "#faq", label: t("linkFaq") },
+                { href: "#contact", label: t("linkContact") },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
@@ -71,12 +72,12 @@ export function Footer() {
             <h3 className="font-semibold mb-5 text-brand-beige text-sm uppercase tracking-wider">{t("services")}</h3>
             <ul className="space-y-3">
               {[
-                "Échange instantané",
-                "Dotation touristique",
-                "Dotation pèlerinage",
-                "Départ scolarité",
-                "Sans commission",
-                "Réservation de devises",
+                t("serviceExchange"),
+                t("serviceTourism"),
+                t("servicePilgrimage"),
+                t("serviceEducation"),
+                t("serviceNoCommission"),
+                t("serviceReservation"),
               ].map((service) => (
                 <li key={service}>
                   <span className="text-brand-beige/40 text-sm">{service}</span>
@@ -105,7 +106,7 @@ export function Footer() {
                 <Mail className="h-4 w-4 text-brand-beige shrink-0" />
                 <a
                   href={`mailto:${contactInfo.email}`}
-                  className="text-brand-beige/40 hover:text-brand-beige transition-colors text-sm"
+                  className="text-brand-beige/40 hover:text-brand-beige transition-colors text-sm break-all"
                 >
                   {contactInfo.email}
                 </a>
@@ -130,7 +131,7 @@ export function Footer() {
             <p className="text-brand-beige/30 text-sm">{t("copyright")}</p>
             <div className="flex items-center gap-1.5 text-brand-beige/30 text-sm">
               <span>{t("madeWith")}</span>
-              <span className="text-brand-beige">♥</span>
+              <span className="text-brand-beige">&hearts;</span>
             </div>
           </div>
         </div>

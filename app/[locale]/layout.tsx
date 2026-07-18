@@ -36,9 +36,14 @@ export async function generateMetadata({ params }: Props) {
       locale: locale === "ar" ? "ar_MA" : locale === "en" ? "en_US" : "fr_FR",
       siteName: "Marouane Devise",
       url: `${baseUrl}/${locale}`,
-      images: [{ url: `${baseUrl}/og-image.svg`, width: 1200, height: 630, alt: "Marouane Devise" }],
+      images: [{ url: `${baseUrl}/images/og-social.png`, width: 1536, height: 1024, alt: "Marouane Devise" }],
     },
-    twitter: { card: "summary_large_image", title: t("title"), description: t("description") },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+      images: [`${baseUrl}/images/og-social.png`],
+    },
     icons: { icon: "/favicon.svg", shortcut: "/favicon.svg", apple: "/favicon.svg" },
   };
 }
@@ -51,8 +56,6 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
       <head>
-        <LocalBusinessSchema />
-        <FAQSchema />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/favicon.svg" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
@@ -66,6 +69,8 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="font-sans antialiased">
         <ThemeProvider>
           <NextIntlClientProvider messages={messages}>
+            <LocalBusinessSchema />
+            <FAQSchema />
             <Header />
             <main className="min-h-screen">{children}</main>
             <Footer />

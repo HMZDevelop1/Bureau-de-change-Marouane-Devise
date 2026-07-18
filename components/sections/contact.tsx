@@ -85,7 +85,7 @@ export function ContactSection() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
             className="rounded-2xl overflow-hidden border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass h-72 md:h-auto min-h-[300px]">
             <iframe
-              src={`https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.0!2d${businessInfo.coordinates.lng}!3d${businessInfo.coordinates.lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z${businessInfo.coordinates.lat}!5e0!3m2!1sfr!2sma!4v1`}
+              src={`https://www.google.com/maps?q=${businessInfo.coordinates.lat},${businessInfo.coordinates.lng}&z=17&output=embed`}
               width="100%" height="100%" style={{ border: 0, minHeight: "300px" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Marouane Devise - Casablanca"
             />
           </motion.div>

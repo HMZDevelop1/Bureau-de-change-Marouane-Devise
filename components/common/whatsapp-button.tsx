@@ -13,7 +13,7 @@ export function WhatsAppButton() {
       aria-label="Contact us on WhatsApp"
     >
       <MessageSquare className="h-6 w-6 text-white group-hover:scale-110 transition-transform" />
-      <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-brand-black animate-pulse" />
+      <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full border-2 border-brand-beige dark:border-brand-black animate-pulse" />
     </a>
   );
 }

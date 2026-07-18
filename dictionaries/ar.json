@@ -58,6 +58,7 @@
     "to": "إلى",
     "calculate": "حساب",
     "swap": "تبديل",
+    "reset": "إعادة تعيين",
     "result": "المبلغ المقدر بالدرهم",
     "no_commission": "بدون عمولة",
     "disclaimer": "قد تختلف الأسعار حسب المبلغ والتوفر. اتصل بنا للحصول على عرض سعر مخصص."
@@ -137,6 +138,20 @@
     "contact": "اتصل بنا",
     "legal": "إشعار قانوني",
     "copyright": "© 2026 ماروان ديفيز. جميع الحقوق محفوظة.",
-    "madeWith": "صنع بشغف في الدار البيضاء"
+    "madeWith": "صنع بشغف في الدار البيضاء",
+    "hoursWeekdays": "الإثنين – الأربعاء",
+    "hoursWeekends": "الخميس – الأحد",
+    "linkRates": "أسعار الصرف",
+    "linkServices": "الخدمات",
+    "linkAbout": "من نحن",
+    "linkReviews": "التقييمات",
+    "linkFaq": "الأسئلة الشائعة",
+    "linkContact": "اتصل بنا",
+    "serviceExchange": "صرف فوري",
+    "serviceTourism": "بدل سياحي",
+    "servicePilgrimage": "بدل حج",
+    "serviceEducation": "بدل تعليمي",
+    "serviceNoCommission": "بدون عمولة",
+    "serviceReservation": "حجز عملات"
   }
 }

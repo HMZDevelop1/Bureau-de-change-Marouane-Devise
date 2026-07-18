@@ -58,6 +58,7 @@
     "to": "Vers",
     "calculate": "Calculer",
     "swap": "Inverser",
+    "reset": "Réinitialiser",
     "result": "Montant estimé en MAD",
     "no_commission": "Sans commission",
     "disclaimer": "Les taux peuvent varier selon le montant et la disponibilité. Consultez-nous pour un devis personnalisé."
@@ -137,6 +138,20 @@
     "contact": "Contact",
     "legal": "Mentions légales",
     "copyright": "© 2026 Marouane Devise. Tous droits réservés.",
-    "madeWith": "Fait avec passion à Casablanca"
+    "madeWith": "Fait avec passion à Casablanca",
+    "hoursWeekdays": "Lun – Mer",
+    "hoursWeekends": "Jeu – Dim",
+    "linkRates": "Taux de change",
+    "linkServices": "Services",
+    "linkAbout": "À propos",
+    "linkReviews": "Avis",
+    "linkFaq": "FAQ",
+    "linkContact": "Contact",
+    "serviceExchange": "Échange instantané",
+    "serviceTourism": "Dotation touristique",
+    "servicePilgrimage": "Dotation pèlerinage",
+    "serviceEducation": "Départ scolarité",
+    "serviceNoCommission": "Sans commission",
+    "serviceReservation": "Réservation de devises"
   }
 }

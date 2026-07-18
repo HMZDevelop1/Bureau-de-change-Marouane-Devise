@@ -92,7 +92,7 @@ export function CalculatorSection() {
 
                 <div className="flex items-center justify-center">
                   <button
-                    onClick={() => setFromCurrency(fromCurrency === "EUR" ? "USD" : "EUR")}
+                    onClick={() => setFromCurrency(fromCurrency === "EUR" ? "USD" : fromCurrency === "USD" ? "GBP" : "EUR")}
                     className="p-3 rounded-xl bg-brand-brown/10 dark:bg-brand-beige/10 text-brand-brown dark:text-brand-beige hover:bg-brand-brown hover:text-brand-beige transition-all duration-300 hover:rotate-180"
                     aria-label={t("swap")}
                   >
@@ -127,7 +127,7 @@ export function CalculatorSection() {
                   <button
                     onClick={reset}
                     className="px-4 py-3.5 rounded-xl border border-brand-brown/10 dark:border-brand-beige/[0.08] text-brand-coffee/40 dark:text-brand-beige/30 hover:text-brand-brown hover:border-brand-brown/30 transition-all duration-300"
-                    aria-label={t("swap")}
+                    aria-label={t("reset")}
                   >
                     <RotateCcw className="w-5 h-5" />
                   </button>

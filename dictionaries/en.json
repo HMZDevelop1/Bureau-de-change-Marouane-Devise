@@ -58,6 +58,7 @@
     "to": "To",
     "calculate": "Calculate",
     "swap": "Swap",
+    "reset": "Reset",
     "result": "Estimated amount in MAD",
     "no_commission": "No commission",
     "disclaimer": "Rates may vary depending on amount and availability. Contact us for a personalized quote."
@@ -137,6 +138,20 @@
     "contact": "Contact",
     "legal": "Legal",
     "copyright": "© 2026 Marouane Devise. All rights reserved.",
-    "madeWith": "Made with passion in Casablanca"
+    "madeWith": "Made with passion in Casablanca",
+    "hoursWeekdays": "Mon – Wed",
+    "hoursWeekends": "Thu – Sun",
+    "linkRates": "Exchange Rates",
+    "linkServices": "Services",
+    "linkAbout": "About Us",
+    "linkReviews": "Reviews",
+    "linkFaq": "FAQ",
+    "linkContact": "Contact",
+    "serviceExchange": "Instant Exchange",
+    "serviceTourism": "Tourist Allowance",
+    "servicePilgrimage": "Pilgrimage Allowance",
+    "serviceEducation": "Education Allowance",
+    "serviceNoCommission": "No Commission",
+    "serviceReservation": "Currency Reservation"
   }
 }
