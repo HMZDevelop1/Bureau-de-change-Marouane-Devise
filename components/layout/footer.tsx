@@ -20,11 +20,11 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           <div className="space-y-5">
-            <Link href={`/${locale}`} className="flex items-center gap-3 group" aria-label="Marouane Devise">
+            <Link href={`/${locale}`} className="flex items-center gap-3 group" aria-label="Logo Marouane Devise Bureau de Change">
               <div className="relative w-10 h-10 rounded-xl overflow-hidden ring-1 ring-brand-beige/10 flex-shrink-0">
                 <Image
                   src="/logo/logo-official.png"
-                  alt="Marouane Devise Logo"
+                  alt="Logo Marouane Devise Bureau de Change"
                   fill
                   className="object-contain"
                   sizes="40px"

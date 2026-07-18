@@ -72,11 +72,11 @@ export function Header() {
       </div>
 
       <nav className="container-wide flex items-center justify-between h-16 md:h-[72px]">
-        <Link href={`/${locale}`} className="flex items-center gap-3 group" aria-label="Marouane Devise - Accueil">
+        <Link href={`/${locale}`} className="flex items-center gap-3 group" aria-label="Logo Marouane Devise Bureau de Change">
           <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl overflow-hidden shadow-brand group-hover:shadow-brand-hover transition-shadow duration-300 flex-shrink-0">
             <Image
               src="/logo/logo-official.png"
-              alt="Marouane Devise Logo"
+              alt="Logo Marouane Devise Bureau de Change"
               fill
               className="object-contain"
               sizes="44px"
@@ -161,6 +161,22 @@ export function Header() {
             className="lg:hidden bg-brand-beige/95 dark:bg-brand-coffee/95 backdrop-blur-2xl border-t border-brand-brown/10 dark:border-brand-beige/[0.06] overflow-hidden"
           >
             <div className="container-wide py-4 space-y-1">
+              <div className="flex items-center gap-3 px-4 pb-3 mb-2 border-b border-brand-brown/10 dark:border-brand-beige/[0.06]">
+                <div className="relative w-9 h-9 rounded-lg overflow-hidden flex-shrink-0">
+                  <Image
+                    src="/logo/logo-official.png"
+                    alt="Logo Marouane Devise Bureau de Change"
+                    fill
+                    className="object-contain"
+                    sizes="36px"
+                  />
+                </div>
+                <div>
+                  <span className="block text-sm font-bold text-brand-coffee dark:text-brand-beige leading-tight font-display">Marouane</span>
+                  <span className="block text-xs font-semibold text-brand-brown leading-tight">Devise</span>
+                </div>
+              </div>
+
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.href}

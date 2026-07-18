@@ -2,9 +2,9 @@
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { Camera, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Camera, ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { galleryImages } from "@/data/gallery";
 
 export function Gallery() {
@@ -13,6 +13,8 @@ export function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   const checkScroll = useCallback(() => {
     if (!scrollRef.current) return;
@@ -47,8 +49,28 @@ export function Gallery() {
 
   const scroll = (direction: "left" | "right") => {
     if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({ left: direction === "left" ? -scrollRef.current.offsetWidth * 0.7 : scrollRef.current.offsetWidth * 0.7, behavior: "smooth" });
+    const amount = scrollRef.current.offsetWidth * 0.75;
+    scrollRef.current.scrollBy({ left: direction === "left" ? -amount : amount, behavior: "smooth" });
     setTimeout(checkScroll, 400);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 50) {
+      if (diff > 0 && selectedImage !== null) {
+        setSelectedImage(selectedImage === galleryImages.length - 1 ? 0 : selectedImage + 1);
+      } else if (diff < 0 && selectedImage !== null) {
+        setSelectedImage(selectedImage === 0 ? galleryImages.length - 1 : selectedImage - 1);
+      }
+    }
   };
 
   return (
@@ -63,36 +85,115 @@ export function Gallery() {
           <h2 className="text-3xl md:text-5xl font-display font-bold text-brand-coffee dark:text-brand-beige mb-4">{t("title")}</h2>
           <p className="text-base sm:text-lg text-brand-coffee/50 dark:text-brand-beige/40 max-w-2xl mx-auto">{t("subtitle")}</p>
         </motion.div>
+
         <div className="relative">
-          <div ref={scrollRef} onScroll={checkScroll} className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-4 px-4">
+          <div ref={scrollRef} onScroll={checkScroll} className="flex gap-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-4 px-4">
             {galleryImages.map((image, index) => (
-              <motion.div key={image.id} initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: index * 0.1, duration: 0.5 }} className="flex-shrink-0 snap-center cursor-pointer group" onClick={() => setSelectedImage(index)} role="button" tabIndex={0} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedImage(index); } }} aria-label={image.alt}>
-                <div className="w-64 h-80 sm:w-80 sm:h-96 rounded-2xl overflow-hidden relative bg-brand-coffee/5 dark:bg-brand-beige/5">
-                  <Image src={image.src} alt={image.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-110" sizes="(max-width: 640px) 256px, 320px" loading="lazy" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-coffee/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+              <motion.div
+                key={image.id}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="flex-shrink-0 snap-center cursor-pointer group"
+                onClick={() => setSelectedImage(index)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedImage(index); } }}
+                aria-label={image.alt}
+              >
+                <div className="w-[280px] h-[370px] sm:w-[340px] sm:h-[450px] md:w-[400px] md:h-[530px] rounded-2xl overflow-hidden relative bg-brand-coffee/5 dark:bg-brand-beige/5 shadow-card dark:shadow-glass">
+                  <Image
+                    src={image.src}
+                    alt={image.alt}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 640px) 280px, (max-width: 768px) 340px, 400px"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-coffee/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                     <p className="text-brand-beige font-medium text-sm">{image.alt}</p>
+                  </div>
+                  <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-brand-beige/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <ZoomIn className="w-5 h-5 text-brand-beige" />
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
-          {canScrollLeft && <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown hover:bg-brand-brown/5 transition-all duration-300 z-10" aria-label="Scroll left"><ChevronLeft className="w-5 h-5" /></button>}
-          {canScrollRight && <button onClick={() => scroll("right")} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown hover:bg-brand-brown/5 transition-all duration-300 z-10" aria-label="Scroll right"><ChevronRight className="w-5 h-5" /></button>}
+
+          {canScrollLeft && (
+            <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown hover:bg-brand-brown/5 transition-all duration-300 z-10" aria-label="Image précédente">
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+          )}
+          {canScrollRight && (
+            <button onClick={() => scroll("right")} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown hover:bg-brand-brown/5 transition-all duration-300 z-10" aria-label="Image suivante">
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          )}
+        </div>
+
+        <div className="flex items-center justify-center gap-2 mt-6">
+          {galleryImages.map((_, i) => (
+            <span key={i} className="w-2 h-2 rounded-full bg-brand-brown/20 dark:bg-brand-beige/20" />
+          ))}
         </div>
       </div>
-      {selectedImage !== null && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="fixed inset-0 z-[100] bg-brand-coffee/95 dark:bg-brand-black/95 backdrop-blur-xl flex items-center justify-center p-4" onClick={() => setSelectedImage(null)} role="dialog" aria-modal="true" aria-label={galleryImages[selectedImage].alt}>
-          <button onClick={() => setSelectedImage(null)} className="absolute top-6 right-6 w-11 h-11 rounded-full bg-brand-beige/10 flex items-center justify-center text-brand-beige hover:bg-brand-beige/20 transition-all z-10" aria-label="Close"><X className="w-6 h-6" /></button>
-          <button onClick={(e) => { e.stopPropagation(); setSelectedImage(selectedImage === 0 ? galleryImages.length - 1 : selectedImage - 1); }} className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-brand-beige/10 flex items-center justify-center text-brand-beige hover:bg-brand-beige/20 transition-all z-10" aria-label="Previous image"><ChevronLeft className="w-6 h-6" /></button>
-          <button onClick={(e) => { e.stopPropagation(); setSelectedImage(selectedImage === galleryImages.length - 1 ? 0 : selectedImage + 1); }} className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-brand-beige/10 flex items-center justify-center text-brand-beige hover:bg-brand-beige/20 transition-all z-10" aria-label="Next image"><ChevronRight className="w-6 h-6" /></button>
-          <motion.div key={selectedImage} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="max-w-4xl max-h-[80vh] w-full" onClick={(e) => e.stopPropagation()}>
-            <Image src={galleryImages[selectedImage].src} alt={galleryImages[selectedImage].alt} width={800} height={600} className="w-full h-full object-contain rounded-2xl" style={{ maxHeight: "70vh" }} priority />
-            <p className="text-brand-beige text-center mt-4 font-medium">{galleryImages[selectedImage].alt}</p>
-            <p className="text-brand-beige/40 text-center text-sm mt-1">{selectedImage + 1} / {galleryImages.length}</p>
+
+      <AnimatePresence>
+        {selectedImage !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-brand-coffee/95 dark:bg-brand-black/95 backdrop-blur-xl flex items-center justify-center p-4"
+            onClick={() => setSelectedImage(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={galleryImages[selectedImage].alt}
+          >
+            <button onClick={() => setSelectedImage(null)} className="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full bg-brand-beige/10 hover:bg-brand-beige/20 flex items-center justify-center text-brand-beige transition-all z-10" aria-label="Fermer">
+              <X className="w-6 h-6" />
+            </button>
+
+            <button onClick={(e) => { e.stopPropagation(); setSelectedImage(selectedImage === 0 ? galleryImages.length - 1 : selectedImage - 1); }} className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-brand-beige/10 hover:bg-brand-beige/20 flex items-center justify-center text-brand-beige transition-all z-10" aria-label="Image précédente">
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            <button onClick={(e) => { e.stopPropagation(); setSelectedImage(selectedImage === galleryImages.length - 1 ? 0 : selectedImage + 1); }} className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-brand-beige/10 hover:bg-brand-beige/20 flex items-center justify-center text-brand-beige transition-all z-10" aria-label="Image suivante">
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            <motion.div
+              key={selectedImage}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.25 }}
+              className="max-w-4xl w-full"
+              onClick={(e) => e.stopPropagation()}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div className="relative w-full" style={{ aspectRatio: `${galleryImages[selectedImage].width} / ${galleryImages[selectedImage].height}`, maxHeight: "75vh" }}>
+                <Image
+                  src={galleryImages[selectedImage].src}
+                  alt={galleryImages[selectedImage].alt}
+                  fill
+                  className="object-contain rounded-2xl"
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  priority
+                />
+              </div>
+              <p className="text-brand-beige text-center mt-4 font-medium text-sm sm:text-base">{galleryImages[selectedImage].alt}</p>
+              <p className="text-brand-beige/40 text-center text-xs sm:text-sm mt-1">{selectedImage + 1} / {galleryImages.length}</p>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </section>
   );
 }

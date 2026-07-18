@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props) {
       description: t("description"),
       images: [`${baseUrl}/images/og-social.png`],
     },
-    icons: { icon: "/favicon.svg", shortcut: "/favicon.svg", apple: "/favicon.svg" },
+    icons: { icon: "/favicon.svg", shortcut: "/favicon.svg", apple: "/logo/logo-official.png" },
   };
 }
 
@@ -58,7 +58,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/favicon.svg" />
+        <link rel="apple-touch-icon" href="/logo/logo-official.png" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
         <meta name="theme-color" content="#E1DCC9" media="(prefers-color-scheme: light)" />
         <script
