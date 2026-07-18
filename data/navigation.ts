@@ -4,7 +4,7 @@ export const navLinks: NavLink[] = [
   { href: "#hero", label: { fr: "Accueil", en: "Home", ar: "الرئيسية" } },
   { href: "#rates", label: { fr: "Taux", en: "Rates", ar: "الأسعار" } },
   { href: "#services", label: { fr: "Services", en: "Services", ar: "الخدمات" } },
-  { href: "#gallery", label: { fr: "Galerie", en: "Gallery", ar: "المعرض" } },
+  { href: "#gallery", label: { fr: "Bureau", en: "Office", ar: "المكتب" } },
   { href: "#reviews", label: { fr: "Avis", en: "Reviews", ar: "التقييمات" } },
   { href: "#about", label: { fr: "À propos", en: "About", ar: "من نحن" } },
   { href: "#contact", label: { fr: "Contact", en: "Contact", ar: "اتصل بنا" } },

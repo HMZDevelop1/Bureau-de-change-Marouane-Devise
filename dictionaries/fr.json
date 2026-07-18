@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Marouane Devise | Bureau de Change à Casablanca",
-    "description": "Bureau de change à Casablanca. Taux compétitifs, zéro commission, service rapide. Changez vos devises en toute confiance.",
+    "description": "Changez vos devises à Casablanca. Taux du jour, zéro commission, service express. Votre bureau de change de confiance.",
     "keywords": "bureau de change Casablanca, change devise Casablanca, dotation touristique Maroc, change euro dirham, change dollar dirham"
   },
   "topBar": {
@@ -14,7 +14,7 @@
     "home": "Accueil",
     "rates": "Taux",
     "services": "Services",
-    "gallery": "Galerie",
+    "gallery": "Bureau",
     "reviews": "Avis",
     "about": "À propos",
     "contact": "Contact",
@@ -27,7 +27,7 @@
     "title": "Changez vos devises",
     "titleHighlight": "en toute confiance",
     "titleEnd": "à Casablanca",
-    "subtitle": "Les meilleurs taux de change à Casablanca. Zéro commission, zéro frais cachés, service rapide et professionnel.",
+    "subtitle": "Les meilleurs taux de change à Casablanca. Zéro commission, zéro frais cachés, service express.",
     "cta_rates": "Voir les taux",
     "cta_call": "Nous appeler",
     "cta_direction": "Itinéraire",
@@ -96,7 +96,10 @@
   },
   "gallery": {
     "title": "Notre espace",
-    "subtitle": "Un cadre professionnel à votre service"
+    "subtitle": "Un cadre professionnel à votre service",
+    "prev": "Image précédente",
+    "next": "Image suivante",
+    "close": "Fermer"
   },
   "reservation": {
     "title": "Réservez vos devises",
@@ -108,6 +111,7 @@
       "amount": "Montant estimé",
       "date": "Date souhaitée",
       "message": "Message (optionnel)",
+      "namePlaceholder": "Votre nom",
       "submit": "Appeler maintenant",
       "whatsapp": "Réserver via WhatsApp"
     },
@@ -117,7 +121,9 @@
   "reviews": {
     "title": "Avis de nos clients",
     "subtitle": "Ce que disent de nous ceux qui nous font confiance",
-    "seeAll": "Voir tous les avis sur Google"
+    "seeAll": "Voir tous les avis sur Google",
+    "prev": "Avis précédent",
+    "next": "Avis suivant"
   },
   "about": {
     "title": "À propos de Marouane Devise",

@@ -56,7 +56,7 @@ export function ReservationSection() {
               <div className="space-y-5">
                 <div>
                   <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2"><User className="w-4 h-4" />{t("form.name")}</label>
-                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Mohamed Alami"
+                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder={t("form.namePlaceholder")}
                     className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/50 dark:placeholder:text-brand-beige/50 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300" />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">

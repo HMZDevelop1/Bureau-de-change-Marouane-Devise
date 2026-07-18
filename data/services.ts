@@ -6,15 +6,15 @@ export const services: Service[] = [
     icon: "ArrowLeftRight",
     title: { fr: "Change de devises", en: "Currency Exchange", ar: "صرف العملات" },
     description: {
-      fr: "Échangez vos euros, dollars, livres et autres devises aux meilleurs taux du marché, sans commission.",
-      en: "Exchange your euros, dollars, pounds and more at the best market rates, commission-free.",
-      ar: "صرف اليورو والدولار والجنيه والعملات الأخرى بأفضل أسعار السوق وبدون عمولة.",
+      fr: "Échangez vos euros, dollars, livres et autres devises aux meilleurs taux du marché.",
+      en: "Exchange euros, dollars, pounds and more at the best market rates.",
+      ar: "صرف اليورو والدولار والجنيه والعملات الأخرى بأفضل أسعار السوق.",
     },
     details: {
       fullDescription: {
-        fr: "Échangez toutes vos devises aux meilleurs taux. EUR, USD, GBP, CHF, AED, SAR et plus encore. Taux transparents, exécution immédiate, zéro frais cachés. Notre équipe vous accompagne pour chaque transaction.",
-        en: "Exchange all your currencies at the best rates. EUR, USD, GBP, CHF, AED, SAR and more. Transparent rates, instant execution, zero hidden fees. Our team is here for every transaction.",
-        ar: "صرف جميع عملاتك بأفضل الأسعار. اليورو والدولار والجنيه والفرنك السويسري والدرهم الإماراتي والريال السعودي والمزيد. أسعار شفافة، تنفيذ فوري، بدون رسوم مخفية. فريقنا يرافقك في كل معاملة.",
+        fr: "Toutes vos devises échangées en un instant. EUR, USD, GBP, CHF, AED, SAR et bien d'autres. Taux du jour, exécution immédiate, zéro frais cachés. Notre équipe vous accompagne du début à la fin.",
+        en: "All your currencies exchanged in an instant. EUR, USD, GBP, CHF, AED, SAR and more. Today's rates, instant execution, zero hidden fees. Our team guides you from start to finish.",
+        ar: "جميع عملاتك تُصرّف في لحظة. اليورو والدولار والجنيه والفرنك السويسري والدرهم الإماراتي والريال السعودي والمزيد. أسعار اليوم، تنفيذ فوري، بدون رسوم مخفية. فريقنا يرافقك من البداية إلى النهاية.",
       },
       documents: {
         fr: ["Carte nationale d'identité", "Passeport valide", "Justificatif de domicile (optionnel)"],
@@ -23,7 +23,7 @@ export const services: Service[] = [
       },
       process: {
         fr: [
-          "Présentez-vous avec vos devises",
+          "Apportez vos devises",
           "Indiquez le montant souhaité",
           "Recevez vos dirhams immédiatement",
           "Signez et récupérez votre reçu",
@@ -41,7 +41,7 @@ export const services: Service[] = [
           "أخبرنا بالمبلغ المطلوب",
           "استلم دراهمك فوراً",
           "وقّع واستلم إيصالك",
-          "انتهيت"
+          "انتهيت",
         ],
       },
       estimatedTime: {
@@ -56,15 +56,15 @@ export const services: Service[] = [
     icon: "Plane",
     title: { fr: "Dotation touristique", en: "Tourist Allowance", ar: "المخصص السياحي" },
     description: {
-      fr: "Obtenez votre dotation touristique officielle pour voyager l'esprit tranquille.",
-      en: "Get your official tourist allowance and travel with peace of mind.",
-      ar: "احصل على مخصصك السياحي الرسمي وسافر بأمان.",
+      fr: "Votre dotation officielle pour voyager l'esprit tranquille.",
+      en: "Your official travel allowance for a worry free trip.",
+      ar: "مخصصك الرسمي للسفر بهدوء وطمأنينة.",
     },
     details: {
       fullDescription: {
-        fr: "Chaque citoyen marocain a droit à une dotation en devises pour ses voyages à l'étranger. Nous vous aidons à obtenir votre dotation officielle aux meilleurs taux. Disponible pour toutes les destinations, vacances ou visites familiales.",
-        en: "Every Moroccan citizen is entitled to a foreign currency allowance for travel abroad. We help you get your official allowance at the best rates. Available for all destinations, holidays or family visits.",
-        ar: "يحق لكل مواطن مغربي الحصول على مخصص بالعملات الأجنبية للسفر إلى الخارج. نساعدك في الحصول على مخصصك الرسمي بأفضل الأسعار. متاح لجميع الوجهات والعطل والزيارات العائلية.",
+        fr: "Chaque citoyen marocain a droit à une dotation en devises pour ses voyages à l'étranger. Nous vous aidons à obtenir votre dotation officielle aux meilleurs taux. Disponible pour toutes les destinations.",
+        en: "Every Moroccan citizen is entitled to a foreign currency allowance for travel abroad. We help you get your official allowance at the best rates. Available for all destinations.",
+        ar: "يحق لكل مواطن مغربي الحصول على مخصص بالعملات الأجنبية للسفر إلى الخارج. نساعدك في الحصول على مخصصك الرسمي بأفضل الأسعار. متاح لجميع الوجهات.",
       },
       documents: {
         fr: ["Carte nationale d'identité valide", "Passeport (si disponible)", "Billet d'avion ou réservation"],
@@ -77,21 +77,21 @@ export const services: Service[] = [
           "Indiquez votre destination",
           "Recevez vos devises",
           "Vérifiez le montant",
-          "Signez et partez l'esprit tranquille",
+          "Partez l'esprit tranquille",
         ],
         en: [
-          "Bring your ID",
+          "Show your ID",
           "Tell us your destination",
           "Receive your foreign currency",
           "Check the amount",
-          "Sign and travel worry-free",
+          "Travel with peace of mind",
         ],
         ar: [
           "أحضر هويتك",
           "أخبرنا بوجهتك",
           "استلم عملاتك الأجنبية",
           "تحقق من المبلغ",
-          "وقّع وسافر بهدوء"
+          "سافر بهدوء وطمأنينة",
         ],
       },
       estimatedTime: {
@@ -106,15 +106,15 @@ export const services: Service[] = [
     icon: "Compass",
     title: { fr: "Dotation pèlerinage", en: "Pilgrimage Allowance", ar: "مخصص الحج" },
     description: {
-      fr: "Préparez votre pèlerinage en sérénité avec notre service de change dédié.",
-      en: "Prepare for your pilgrimage with our dedicated exchange service.",
+      fr: "Préparez votre pèlerinage en sérénité avec notre service dédié.",
+      en: "Prepare for your pilgrimage with our dedicated service.",
       ar: "استعد لحجك مع خدمة الصرف المخصصة لدينا.",
     },
     details: {
       fullDescription: {
-        fr: "Service spécialisé pour les pèlerins partant à La Mecque ou Médine. Riyals saoudiens aux meilleurs taux, avec un accompagnement personnalisé. Nous simplifions toutes les démarches pour que votre pèlerinage se déroule en paix.",
-        en: "Specialized service for pilgrims traveling to Mecca or Medina. Saudi riyals at the best rates, with personalized support. We handle all the details so your pilgrimage goes smoothly.",
-        ar: "خدمة مخصصة للحجاج المتجهين إلى مكة أو المدينة. ريال سعودي بأفضل الأسعار مع مرافقة شخصية. نتولى جميع التفاصيل لضمان رحلة حجك بسلاسة.",
+        fr: "Service spécialisé pour les pèlerins partant à La Mecque ou Médine. Riyals saoudiens aux meilleurs taux, accompagnement personnalisé. Nous simplifions les démarches pour que votre voyage se déroule en paix.",
+        en: "Dedicated service for pilgrims heading to Mecca or Medina. Saudi riyals at the best rates, with personal support. We handle the details so your journey goes smoothly.",
+        ar: "خدمة مخصصة للحجاج المتجهين إلى مكة أو المدينة. ريال سعودي بأفضل الأسعار مع مرافقة شخصية. نتولى التفاصيل لتكون رحلة حجك سلسة.",
       },
       documents: {
         fr: ["Carte nationale d'identité", "Passeport valide", "Attestation de pèlerinage"],
@@ -141,7 +141,7 @@ export const services: Service[] = [
           "حدد المبلغ بالريالات",
           "استلم مخصصك",
           "تحقق من الأسعار",
-          "انطلق بطمأنينة"
+          "انطلق بطمأنينة",
         ],
       },
       estimatedTime: {
@@ -162,9 +162,9 @@ export const services: Service[] = [
     },
     details: {
       fullDescription: {
-        fr: "Dédié aux étudiants et familles qui financent des études à l'étranger. Taux avantageux pour les frais de scolarité, logement et dépenses courantes. Nous optimisons vos transferts vers les établissements internationaux.",
+        fr: "Pour les étudiants et familles qui financent des études à l'étranger. Taux avantageux pour les frais de scolarité, logement et dépenses courantes. Nous optimisons vos transferts vers les établissements internationaux.",
         en: "For students and families funding studies abroad. Favorable rates for tuition, accommodation and daily expenses. We optimize your transfers to international institutions.",
-        ar: "مخصص للطلاب والعائلات الممولة للدراسة في الخارج. أسعار مميزة للرسوم الدراسية والسكن والمصاريف اليومية. نحسّن تحويلاتك إلى المؤسسات التعليمية الدولية.",
+        ar: "للطلاب والعائلات الممولة للدراسة في الخارج. أسعار مميزة للرسوم الدراسية والسكن والمصاريف اليومية. نحسّن تحويلاتك إلى المؤسسات التعليمية الدولية.",
       },
       documents: {
         fr: ["Carte nationale d'identité", "Passeport valide", "Attestation d'inscription", "Devis de frais"],
@@ -191,7 +191,7 @@ export const services: Service[] = [
           "حدد العملة والمبلغ",
           "استلم أموالك",
           "قم بالتحويل",
-          "تم"
+          "تم",
         ],
       },
       estimatedTime: {
@@ -207,13 +207,13 @@ export const services: Service[] = [
     title: { fr: "Missions professionnelles", en: "Business Trips", ar: "الرحلات المهنية" },
     description: {
       fr: "Change rapide et sécurisé pour vos déplacements professionnels.",
-      en: "Fast and secure exchange for your business trips.",
+      en: "Fast and secure exchange for your business travel.",
       ar: "صرف سريع وآمن لرحلاتك المهنية.",
     },
     details: {
       fullDescription: {
-        fr: "Pour les entreprises et professionnels qui voyagent souvent à l'étranger. Taux préférentiels, gros montants disponibles immédiatement. Salons, déplacements, missions, nous répondons à vos besoins en quelques minutes.",
-        en: "For businesses and professionals who travel frequently. Preferential rates, large amounts available immediately. Conferences, trips, missions, we meet your needs in minutes.",
+        fr: "Pour les entreprises et professionnels qui voyagent souvent. Taux préférentiels, gros montants disponibles immédiatement. Salons, déplacements, missions, nous répondons à vos besoins en quelques minutes.",
+        en: "For businesses and professionals who travel often. Preferential rates, large amounts available immediately. Conferences, trips, missions, we meet your needs in minutes.",
         ar: "للشركات والمهنيين الذين يسافرون بكثرة. أسعار تفضيلية، مبالغ كبيرة متاحة فوراً. معارض ورحلات ومهام، نلبي احتياجاتك في دقائق.",
       },
       documents: {
@@ -241,7 +241,7 @@ export const services: Service[] = [
           "قدم وثائقك",
           "اختر عملتك",
           "استلم أموالك بسرعة",
-          "احصل على إيصالك"
+          "احصل على إيصالك",
         ],
       },
       estimatedTime: {
@@ -262,9 +262,9 @@ export const services: Service[] = [
     },
     details: {
       fullDescription: {
-        fr: "Pour les jeunes professionnels et étudiants partant en stage à l'étranger. Devises pour transport, hébergement et vie courante. Taux avantageux et service personnalisé pour bien démarrer votre expérience.",
-        en: "For young professionals and students going abroad for internships. Currencies for transport, accommodation and daily expenses. Favorable rates and personalized service to start your experience right.",
-        ar: "للمهنيين الشباب والطلاب المتجهين إلى الخارج للتدريب. عملات للنقل والسكن والمصاريف اليومية. أسعار مميزة وخدمة شخصية لبداية جيدة لتجربتك.",
+        fr: "Pour les jeunes professionnels et étudiants partant en stage à l'étranger. Devises pour transport, hébergement et vie courante. Taux avantageux et service personnalisé pour bien démarrer.",
+        en: "For young professionals and students heading abroad for internships. Currencies for transport, accommodation and daily expenses. Favorable rates and personal service to get you started.",
+        ar: "للمهنيين الشباب والطلاب المتجهين إلى الخارج للتدريب. عملات للنقل والسكن والمصاريف اليومية. أسعار مميزة وخدمة شخصية لبداية مثالية.",
       },
       documents: {
         fr: ["Carte nationale d'identité", "Passeport valide", "Convention de stage"],
@@ -291,7 +291,7 @@ export const services: Service[] = [
           "حدد الوجهة والمدة",
           "اختر العملة والمبلغ",
           "استلم أموالك",
-          "تحقق ووقّع"
+          "تحقق ووقّع",
         ],
       },
       estimatedTime: {

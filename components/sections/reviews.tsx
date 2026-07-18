@@ -50,12 +50,12 @@ export function ReviewsSection() {
 
         <div className="relative">
           {canScrollLeft && (
-            <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown transition-all" aria-label="Previous">
+            <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown transition-all" aria-label={t("prev")}>
               <ChevronLeft className="w-5 h-5" />
             </button>
           )}
           {canScrollRight && (
-            <button onClick={() => scroll("right")} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown transition-all" aria-label="Next">
+            <button onClick={() => scroll("right")} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown transition-all" aria-label={t("next")}>
               <ChevronRight className="w-5 h-5" />
             </button>
           )}

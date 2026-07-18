@@ -124,12 +124,12 @@ export function Gallery() {
           </div>
 
           {canScrollLeft && (
-            <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown hover:bg-brand-brown/5 transition-all duration-300 z-10" aria-label="Image précédente">
+            <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown hover:bg-brand-brown/5 transition-all duration-300 z-10" aria-label={t("prev")}>
               <ChevronLeft className="w-5 h-5" />
             </button>
           )}
           {canScrollRight && (
-            <button onClick={() => scroll("right")} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown hover:bg-brand-brown/5 transition-all duration-300 z-10" aria-label="Image suivante">
+            <button onClick={() => scroll("right")} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown hover:bg-brand-brown/5 transition-all duration-300 z-10" aria-label={t("next")}>
               <ChevronRight className="w-5 h-5" />
             </button>
           )}
@@ -154,15 +154,15 @@ export function Gallery() {
             aria-modal="true"
             aria-label={galleryImages[selectedImage].alt}
           >
-            <button onClick={() => setSelectedImage(null)} className="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full bg-brand-beige/10 hover:bg-brand-beige/20 flex items-center justify-center text-brand-beige transition-all z-10" aria-label="Fermer">
+            <button onClick={() => setSelectedImage(null)} className="absolute top-4 right-4 sm:top-6 sm:right-6 w-11 h-11 rounded-full bg-brand-beige/10 hover:bg-brand-beige/20 flex items-center justify-center text-brand-beige transition-all z-10" aria-label={t("close")}>
               <X className="w-6 h-6" />
             </button>
 
-            <button onClick={(e) => { e.stopPropagation(); setSelectedImage(selectedImage === 0 ? galleryImages.length - 1 : selectedImage - 1); }} className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-brand-beige/10 hover:bg-brand-beige/20 flex items-center justify-center text-brand-beige transition-all z-10" aria-label="Image précédente">
+            <button onClick={(e) => { e.stopPropagation(); setSelectedImage(selectedImage === 0 ? galleryImages.length - 1 : selectedImage - 1); }} className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-brand-beige/10 hover:bg-brand-beige/20 flex items-center justify-center text-brand-beige transition-all z-10" aria-label={t("prev")}>
               <ChevronLeft className="w-6 h-6" />
             </button>
 
-            <button onClick={(e) => { e.stopPropagation(); setSelectedImage(selectedImage === galleryImages.length - 1 ? 0 : selectedImage + 1); }} className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-brand-beige/10 hover:bg-brand-beige/20 flex items-center justify-center text-brand-beige transition-all z-10" aria-label="Image suivante">
+            <button onClick={(e) => { e.stopPropagation(); setSelectedImage(selectedImage === galleryImages.length - 1 ? 0 : selectedImage + 1); }} className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-brand-beige/10 hover:bg-brand-beige/20 flex items-center justify-center text-brand-beige transition-all z-10" aria-label={t("next")}>
               <ChevronRight className="w-6 h-6" />
             </button>
 

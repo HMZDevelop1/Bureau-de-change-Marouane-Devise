@@ -3,7 +3,7 @@ export const GOOGLE_MAPS_URL = "https://share.google/9ZPajHR1QrPs0ONM7";
 export const businessInfo = {
   name: "Marouane Devise",
   nameFull: "Bureau de Change Marouane Devise",
-  tagline: "Bureau de Change à Casablanca",
+  tagline: "Votre bureau de change à Casablanca",
   phone: "+212721791914",
   phoneFormatted: "+212 7 21 79 19 14",
   whatsapp: "212721791914",
