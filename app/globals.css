@@ -54,9 +54,13 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    background-color: var(--bg-primary);
+    overscroll-behavior: none;
   }
 
   body {
+    margin: 0;
+    padding: 0;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
@@ -64,7 +68,8 @@
     font-feature-settings: "cv11", "ss01";
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    min-height: 100vh;
+    min-height: 100dvh;
   }
 
   ::selection {
@@ -250,5 +255,12 @@ input[type="number"] { -moz-appearance: textfield; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-padding {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
 }

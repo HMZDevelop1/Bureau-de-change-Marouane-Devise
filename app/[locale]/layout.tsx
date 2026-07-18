@@ -10,6 +10,7 @@ import { WhatsAppButton } from "@/components/common/whatsapp-button";
 import { BackToTop } from "@/components/common/back-to-top";
 import { ScrollProgress } from "@/components/common/scroll-progress";
 import { PremiumLoader } from "@/components/common/premium-loader";
+import { ErrorBoundary } from "@/components/common/error-boundary";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -65,23 +66,25 @@ export default async function LocaleLayout({ children, params }: Props) {
         <meta name="theme-color" content="#E1DCC9" media="(prefers-color-scheme: light)" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(!t||t==='system'){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}if(t==='dark'){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(!t||t==='system'){t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'}if(t==='dark'){document.documentElement.classList.add('dark');document.documentElement.style.backgroundColor='#000000';document.body.style.backgroundColor='#000000'}else{document.documentElement.classList.remove('dark');document.documentElement.style.backgroundColor='#E1DCC9';document.body.style.backgroundColor='#E1DCC9'}}catch(e){document.documentElement.style.backgroundColor='#000000';document.body.style.backgroundColor='#000000'}})();`,
           }}
         />
       </head>
-      <body className="font-sans antialiased">
+      <body className="font-sans antialiased" style={{ backgroundColor: "var(--bg-primary)" }}>
         <ThemeProvider>
-          <PremiumLoader />
-          <NextIntlClientProvider messages={messages}>
-            <ScrollProgress />
-            <LocalBusinessSchema />
-            <FAQSchema />
-            <Header />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
-            <WhatsAppButton />
-            <BackToTop />
-          </NextIntlClientProvider>
+          <ErrorBoundary>
+            <PremiumLoader />
+            <NextIntlClientProvider messages={messages}>
+              <ScrollProgress />
+              <LocalBusinessSchema />
+              <FAQSchema />
+              <Header />
+              <main className="min-h-screen">{children}</main>
+              <Footer />
+              <WhatsAppButton />
+              <BackToTop />
+            </NextIntlClientProvider>
+          </ErrorBoundary>
         </ThemeProvider>
       </body>
     </html>

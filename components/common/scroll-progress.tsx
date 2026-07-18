@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
 
 export function ScrollProgress() {
+  const [mounted, setMounted] = useState(false);
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -11,10 +12,17 @@ export function ScrollProgress() {
     restDelta: 0.001,
   });
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-[3px] bg-brand-brown dark:bg-brand-beige z-[100] origin-left"
+      className="fixed top-0 left-0 right-0 h-[3px] bg-brand-brown dark:bg-brand-beige z-[100] origin-left pointer-events-none"
       style={{ scaleX }}
+      aria-hidden="true"
     />
   );
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowDown, Phone, MapPin, Star, Shield, Zap, TrendingUp, Clock } from "lucide-react";
@@ -18,7 +19,15 @@ const floatingCurrencies = floatingCurrencyCodes.map((code) => {
 export function HeroSection() {
   const t = useTranslations("hero");
   const locale = useLocale();
-  const open = isOpenNow();
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    try {
+      setOpen(isOpenNow());
+    } catch {
+      setOpen(false);
+    }
+  }, []);
 
   return (
     <section id="hero" className="relative min-h-[100dvh] min-h-[100vh] flex items-center overflow-hidden bg-brand-beige dark:bg-brand-black">
