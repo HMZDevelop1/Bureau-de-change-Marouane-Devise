@@ -14,15 +14,10 @@ const ScrollProgress = dynamic(
   () => import("@/components/common/scroll-progress").then((m) => ({ default: m.ScrollProgress })),
   { ssr: false }
 );
-const PremiumLoader = dynamic(
-  () => import("@/components/common/premium-loader").then((m) => ({ default: m.PremiumLoader })),
-  { ssr: false }
-);
 
 export function ClientShell() {
   return (
     <>
-      <PremiumLoader />
       <ScrollProgress />
       <WhatsAppButton />
       <BackToTop />

@@ -10,9 +10,8 @@ export default function Loading() {
             alt="Marouane Devise"
             width={64}
             height={64}
-            className="object-contain"
+            className="object-contain animate-pulse"
             priority
-            style={{ animation: "logo-spin 1.2s ease-out forwards" }}
           />
         </div>
         <div className="flex gap-1.5">
