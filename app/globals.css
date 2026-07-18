@@ -66,7 +66,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "cv11", "ss01";
-    overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
     min-height: 100vh;
     min-height: 100dvh;
@@ -227,6 +226,7 @@
 ::-webkit-scrollbar-thumb:hover { background: var(--brand-beige); }
 
 [dir="rtl"] { text-align: right; }
+[dir="rtl"] .origin-left { transform-origin: right center; }
 
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -263,4 +263,10 @@ input[type="number"] { -moz-appearance: textfield; }
     padding-top: 3rem;
     padding-bottom: 3rem;
   }
+}
+
+/* Prevent pull-to-refresh on mobile when inside scrollable areas */
+.scrollbar-hide {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
 }

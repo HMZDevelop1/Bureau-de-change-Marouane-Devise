@@ -22,6 +22,7 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const t = useTranslations("nav");
+  const tc = useTranslations("common");
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -34,11 +35,16 @@ export function Header() {
 
   useEffect(() => {
     if (isOpen) {
+      document.documentElement.style.overflow = "hidden";
       document.body.style.overflow = "hidden";
     } else {
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     }
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.documentElement.style.overflow = "";
+      document.body.style.overflow = "";
+    };
   }, [isOpen]);
 
   const switchLocale = (newLocale: string) => {
@@ -131,7 +137,8 @@ export function Header() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="lg:hidden p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown dark:hover:text-brand-beige rounded-lg hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.04] transition-all duration-300"
-            aria-label="Toggle menu"
+            aria-label={tc("toggleMenu")}
+            aria-expanded={isOpen}
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -216,13 +223,14 @@ export function Header() {
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const t = useTranslations("common");
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) {
-    return <button className="p-2.5 min-h-[44px] min-w-[44px] rounded-lg flex items-center justify-center" aria-label="Toggle theme" />;
+    return <button className="p-2.5 min-h-[44px] min-w-[44px] rounded-lg flex items-center justify-center" aria-label={t("toggleTheme")} />;
   }
 
   const isDark = theme === "dark";
@@ -231,7 +239,7 @@ function ThemeToggle() {
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className="p-2.5 min-h-[44px] min-w-[44px] flex items-center justify-center text-brand-coffee/70 dark:text-brand-beige/70 hover:text-brand-brown dark:hover:text-brand-beige rounded-lg hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.06] transition-all duration-300"
-      aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+      aria-label={`${t("toggleTheme")} (${isDark ? t("themeLight") : t("themeDark")})`}
     >
       <AnimatePresence mode="wait">
         {isDark ? (

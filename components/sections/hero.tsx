@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { ArrowDown, Phone, MapPin, Star, Shield, Zap, TrendingUp, Clock } from "lucide-react";
@@ -8,7 +7,6 @@ import { businessInfo, GOOGLE_MAPS_URL } from "@/data/business";
 import { currencies } from "@/data/currencies";
 import { getCurrencyByCode } from "@/data/currencies";
 import { generateCallUrl } from "@/lib/whatsapp";
-import { isOpenNow } from "@/lib/hours";
 
 const floatingCurrencyCodes = ["EUR", "USD", "GBP"];
 const floatingCurrencies = floatingCurrencyCodes.map((code) => {
@@ -19,39 +17,20 @@ const floatingCurrencies = floatingCurrencyCodes.map((code) => {
 export function HeroSection() {
   const t = useTranslations("hero");
   const locale = useLocale();
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    try {
-      setOpen(isOpenNow());
-    } catch {
-      setOpen(false);
-    }
-  }, []);
 
   return (
     <section id="hero" className="relative min-h-[100dvh] min-h-[100vh] flex items-center overflow-hidden bg-brand-beige dark:bg-brand-black">
-      <div className="absolute inset-0 bg-gradient-to-br from-brand-beige via-brand-beige to-brand-beige dark:from-brand-black dark:via-brand-black dark:to-brand-black" />
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-brand-brown/5 dark:bg-brand-brown/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-brand-coffee/5 dark:bg-brand-coffee/10 rounded-full blur-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-br from-brand-beige via-brand-beige to-brand-beige dark:from-brand-black dark:via-brand-black dark:to-brand-black" aria-hidden="true" />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-brand-brown/5 dark:bg-brand-brown/10 rounded-full blur-3xl" aria-hidden="true" />
+      <div className="absolute bottom-1/4 right-1/4 w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 bg-brand-coffee/5 dark:bg-brand-coffee/10 rounded-full blur-3xl" aria-hidden="true" />
 
-      <div className="container-wide relative z-10 pt-24 pb-16 md:pt-40 md:pb-28">
+      <div className="container-wide relative z-10 pt-20 pb-12 sm:pt-24 sm:pb-16 md:pt-40 md:pb-28">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-brown/10 dark:bg-brand-brown/10 border border-brand-brown/20 mb-6"
-            >
-              <span className={`w-2 h-2 rounded-full ${open ? "bg-green-500 animate-pulse" : "bg-red-500"}`} />
-              <span className="text-sm font-medium text-brand-brown dark:text-brand-beige">{t("badge")}</span>
-            </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.6 }}
               className="font-display font-bold text-brand-coffee dark:text-brand-beige leading-[1.1] mb-6"
               style={{ fontSize: "clamp(1.875rem, 4vw + 1rem, 4.5rem)" }}
             >
@@ -64,7 +43,7 @@ export function HeroSection() {
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
               className="text-base sm:text-lg md:text-xl text-brand-coffee/60 dark:text-brand-beige/65 mb-8 max-w-lg leading-relaxed"
             >
               {t("subtitle")}
@@ -73,7 +52,7 @@ export function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 mb-10"
             >
               <a href="#rates" className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-brand-coffee text-brand-beige font-semibold rounded-xl shadow-coffee hover:shadow-coffee-lg hover:bg-brand-brown active:scale-[0.98] transition-all duration-300 text-sm sm:text-base">
@@ -93,7 +72,7 @@ export function HeroSection() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="flex flex-wrap gap-4 sm:gap-6"
             >
               {[
@@ -134,7 +113,7 @@ export function HeroSection() {
                       key={curr.code}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.6 + i * 0.15 }}
+                      transition={{ delay: 0.4 + i * 0.15 }}
                       className="flex items-center justify-between p-3 rounded-xl bg-brand-coffee/[0.03] dark:bg-brand-beige/[0.03] border border-brand-coffee/[0.04] dark:border-brand-beige/[0.04]"
                     >
                       <div className="flex items-center gap-3">

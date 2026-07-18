@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { MessageSquare, Phone, Calendar, User, CreditCard } from "lucide-react";
 import { currencies } from "@/data/currencies";
@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 
 export function ReservationSection() {
   const t = useTranslations("reservation");
+  const locale = useLocale();
   const [name, setName] = useState("");
   const [currency, setCurrency] = useState("EUR");
   const [amount, setAmount] = useState("");
@@ -18,7 +19,7 @@ export function ReservationSection() {
 
   const handleWhatsApp = () => {
     if (!name || !amount) return;
-    window.open(generateWhatsAppReservationUrl({ name, currency, amount, date, message }), "_blank");
+    window.open(generateWhatsAppReservationUrl({ name, currency, amount, date, message, locale }), "_blank");
   };
 
   return (
@@ -55,32 +56,32 @@ export function ReservationSection() {
             <div className="bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass p-6 md:p-8 backdrop-blur-xl">
               <div className="space-y-5">
                 <div>
-                  <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2"><User className="w-4 h-4" />{t("form.name")}</label>
-                  <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder={t("form.namePlaceholder")}
+                  <label htmlFor="res-name" className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2"><User className="w-4 h-4" />{t("form.name")}</label>
+                  <input id="res-name" type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder={t("form.namePlaceholder")}
                     className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/50 dark:placeholder:text-brand-beige/50 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300" />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2"><CreditCard className="w-4 h-4" />{t("form.currency")}</label>
-                    <select value={currency} onChange={(e) => setCurrency(e.target.value)}
+                    <label htmlFor="res-currency" className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2"><CreditCard className="w-4 h-4" />{t("form.currency")}</label>
+                    <select id="res-currency" value={currency} onChange={(e) => setCurrency(e.target.value)}
                       className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300">
                       {currencies.map((c) => (<option key={c.code} value={c.code}>{c.flag} {c.code}</option>))}
                     </select>
                   </div>
                   <div>
-                    <label className="text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2 block">{t("form.amount")}</label>
-                    <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="1000"
+                    <label htmlFor="res-amount" className="text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2 block">{t("form.amount")}</label>
+                    <input id="res-amount" type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="1000"
                       className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/50 dark:placeholder:text-brand-beige/50 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300" />
                   </div>
                 </div>
                 <div>
-                  <label className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2"><Calendar className="w-4 h-4" />{t("form.date")}</label>
-                  <input type="date" value={date} onChange={(e) => setDate(e.target.value)}
+                  <label htmlFor="res-date" className="flex items-center gap-2 text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2"><Calendar className="w-4 h-4" />{t("form.date")}</label>
+                  <input id="res-date" type="date" value={date} onChange={(e) => setDate(e.target.value)}
                     className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300" />
                 </div>
                 <div>
-                  <label className="text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2 block">{t("form.message")}</label>
-                  <textarea value={message} onChange={(e) => setMessage(e.target.value)} rows={3} placeholder="Message optionnel..."
+                  <label htmlFor="res-message" className="text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2 block">{t("form.message")}</label>
+                  <textarea id="res-message" value={message} onChange={(e) => setMessage(e.target.value)} rows={3} placeholder={t("form.messagePlaceholder")}
                     className="w-full px-4 py-3 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige placeholder:text-brand-coffee/50 dark:placeholder:text-brand-beige/50 focus:outline-none focus:ring-2 focus:ring-brand-brown/30 font-medium transition-all duration-300 resize-none" />
                 </div>
                 <div className="flex gap-3">

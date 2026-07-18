@@ -67,8 +67,9 @@ export function CalculatorSection() {
             <div className="bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass p-6 md:p-8 backdrop-blur-xl">
               <div className="space-y-5">
                 <div>
-                  <label className="block text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2">{t("amount")}</label>
+                  <label htmlFor="calc-amount" className="block text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2">{t("amount")}</label>
                   <input
+                    id="calc-amount"
                     type="number"
                     value={amount}
                     onChange={(e) => { setAmount(e.target.value); setResult(null); }}
@@ -78,8 +79,9 @@ export function CalculatorSection() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2">{t("from")}</label>
+                  <label htmlFor="calc-currency" className="block text-sm font-medium text-brand-coffee/60 dark:text-brand-beige/55 mb-2">{t("from")}</label>
                   <select
+                    id="calc-currency"
                     value={fromCurrency}
                     onChange={(e) => { setFromCurrency(e.target.value); setResult(null); }}
                     className="w-full px-4 py-3.5 bg-brand-beige dark:bg-brand-beige/[0.04] border border-brand-brown/10 dark:border-brand-beige/[0.08] rounded-xl text-brand-coffee dark:text-brand-beige appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-brown/30 focus:border-brand-brown/50 font-medium transition-all duration-300"

@@ -83,10 +83,10 @@ export function ContactSection() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}
-            className="rounded-2xl overflow-hidden border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass h-72 md:h-auto min-h-[300px]">
+            className="rounded-2xl overflow-hidden border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] shadow-card dark:shadow-glass h-[300px] md:h-auto md:min-h-[300px]">
             <iframe
               src={`https://www.google.com/maps?q=${businessInfo.coordinates.lat},${businessInfo.coordinates.lng}&z=17&output=embed`}
-              width="100%" height="100%" style={{ border: 0, minHeight: "300px" }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Marouane Devise - Casablanca"
+              width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title={t("maps")}
             />
           </motion.div>
         </div>

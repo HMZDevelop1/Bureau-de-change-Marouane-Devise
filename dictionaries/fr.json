@@ -111,6 +111,7 @@
       "amount": "Montant estimé",
       "date": "Date souhaitée",
       "message": "Message (optionnel)",
+      "messagePlaceholder": "Votre message...",
       "namePlaceholder": "Votre nom",
       "submit": "Appeler maintenant",
       "whatsapp": "Réserver via WhatsApp"
@@ -181,5 +182,18 @@
     "serviceEducation": "Départ scolarité",
     "serviceNoCommission": "Zéro commission",
     "serviceReservation": "Réservation de devises"
+  },
+  "common": {
+    "errorTitle": "Quelque chose s'est mal passé",
+    "errorMessage": "Veuillez rafraîchir la page ou réessayer plus tard.",
+    "errorRefresh": "Rafraîchir",
+    "whatsappLabel": "Nous contacter sur WhatsApp",
+    "backToTop": "Retour en haut",
+    "toggleMenu": "Ouvrir le menu",
+    "toggleTheme": "Passer en mode sombre",
+    "themeLight": "clair",
+    "themeDark": "sombre",
+    "mapTitle": "Marouane Devise à Casablanca",
+    "loadingPage": "Chargement"
   }
 }

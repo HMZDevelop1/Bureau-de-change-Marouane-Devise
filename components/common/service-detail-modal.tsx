@@ -53,10 +53,12 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
 
   useEffect(() => {
     if (service === null) return;
+    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", handleKeyDown);
     setTimeout(() => closeButtonRef.current?.focus(), 100);
     return () => {
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       document.removeEventListener("keydown", handleKeyDown);
     };
@@ -68,8 +70,12 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
   const Icon = iconMap[service.icon] || ArrowLeftRight;
   const details = service.details;
 
-  const whatsappMessage = `Bonjour Marouane Devise, je suis intéressé par le service "${service.title[localeKey]}". Pourriez-vous me donner plus d'informations ?`;
-  const whatsappUrl = generateWhatsAppUrl(whatsappMessage);
+  const whatsappMessage = locale === "ar"
+    ? `مرحباً ماروان ديفيز، أنا مهتم بخدمة "${service.title[localeKey]}". هل يمكنكم إعطائي مزيد من المعلومات؟`
+    : locale === "en"
+      ? `Hello Marouane Devise, I am interested in the "${service.title[localeKey]}" service. Could you provide more information?`
+      : `Bonjour Marouane Devise, je suis intéressé par le service "${service.title[localeKey]}". Pourriez-vous me donner plus d'informations ?`;
+  const whatsappUrl = generateWhatsAppUrl(whatsappMessage, locale);
   const callUrl = generateCallUrl();
 
   return (

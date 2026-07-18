@@ -111,6 +111,7 @@
       "amount": "Estimated amount",
       "date": "Preferred date",
       "message": "Message (optional)",
+      "messagePlaceholder": "Your message...",
       "namePlaceholder": "Your name",
       "submit": "Call now",
       "whatsapp": "Reserve via WhatsApp"
@@ -181,5 +182,18 @@
     "serviceEducation": "Education allowance",
     "serviceNoCommission": "Zero commission",
     "serviceReservation": "Currency reservation"
+  },
+  "common": {
+    "errorTitle": "Something went wrong",
+    "errorMessage": "Please refresh the page or try again later.",
+    "errorRefresh": "Refresh",
+    "whatsappLabel": "Contact us on WhatsApp",
+    "backToTop": "Back to top",
+    "toggleMenu": "Toggle menu",
+    "toggleTheme": "Switch theme",
+    "themeLight": "light",
+    "themeDark": "dark",
+    "mapTitle": "Marouane Devise in Casablanca",
+    "loadingPage": "Loading"
   }
 }

@@ -60,6 +60,7 @@ export function RatesSection() {
           <div className="relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-coffee/50 dark:text-brand-beige/45" />
             <input
+              id="rates-search"
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}

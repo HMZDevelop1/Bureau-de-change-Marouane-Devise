@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -20,65 +20,59 @@ function usePrefersReducedMotion(): boolean {
   return reduced;
 }
 
-function lockScroll() {
-  if (typeof document === "undefined") return;
-  const scrollY = window.scrollY;
-  document.body.style.position = "fixed";
-  document.body.style.top = `-${scrollY}px`;
-  document.body.style.width = "100%";
-  document.body.style.overflow = "hidden";
-}
-
-function unlockScroll() {
-  if (typeof document === "undefined") return;
-  const scrollY = parseInt(document.body.style.top || "0", 10) * -1;
-  document.body.style.position = "";
-  document.body.style.top = "";
-  document.body.style.width = "";
-  document.body.style.overflow = "";
-  window.scrollTo(0, scrollY || 0);
-}
-
 export function PremiumLoader() {
   const [show, setShow] = useState(false);
   const [mounted, setMounted] = useState(false);
   const reduced = usePrefersReducedMotion();
+  const scrollYRef = useRef(0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const hide = useCallback(() => {
-    setShow(false);
-    unlockScroll();
+  const lockScroll = useCallback(() => {
+    scrollYRef.current = window.scrollY;
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+  }, []);
+
+  const unlockScroll = useCallback(() => {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+    requestAnimationFrame(() => {
+      window.scrollTo(0, scrollYRef.current);
+    });
   }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     setMounted(true);
     try {
-      const seen = sessionStorage.getItem(SESSION_KEY);
-      if (!seen) {
+      if (!sessionStorage.getItem(SESSION_KEY)) {
         lockScroll();
         setShow(true);
         sessionStorage.setItem(SESSION_KEY, "1");
       }
     } catch {
-      // sessionStorage not available
+      // sessionStorage unavailable
     }
-  }, []);
+  }, [lockScroll]);
 
   useEffect(() => {
     if (!show) return;
-    const timer = setTimeout(hide, DURATION_MS);
-    return () => clearTimeout(timer);
-  }, [show, hide]);
+    timerRef.current = setTimeout(() => setShow(false), DURATION_MS);
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [show]);
 
   if (!mounted || !show) return null;
 
-  const fadeDuration = reduced ? 0.15 : 0.4;
-  const logoDelay = reduced ? 0 : 0.1;
-  const logoDuration = reduced ? 0.3 : 0.7;
-  const sweepDelay = reduced ? 0 : 0.35;
-  const sweepDuration = reduced ? 0.2 : 0.9;
-  const barDelay = reduced ? 0 : 0.3;
-  const barDuration = reduced ? 0.2 : 0.8;
+  const dur = reduced ? 0.15 : 0.4;
+  const logoDelay = reduced ? 0 : 0.08;
+  const logoDur = reduced ? 0.25 : 0.65;
+  const sweepDelay = reduced ? 0 : 0.3;
+  const sweepDur = reduced ? 0.15 : 0.85;
+  const barDelay = reduced ? 0 : 0.25;
+  const barDur = reduced ? 0.15 : 0.75;
+  const textDelay = reduced ? 0.05 : 0.45;
 
   return (
     <AnimatePresence onExitComplete={unlockScroll}>
@@ -87,8 +81,7 @@ export function PremiumLoader() {
           key="loader"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: fadeDuration, ease: "easeInOut" }}
-          onAnimationComplete={() => unlockScroll()}
+          transition={{ duration: dur, ease: "easeInOut" }}
           className="fixed inset-0 z-[200] flex items-center justify-center overflow-hidden"
           style={{ backgroundColor: "#000000" }}
           aria-hidden="true"
@@ -101,21 +94,20 @@ export function PremiumLoader() {
               height: "min(80vw, 420px)",
               background: "radial-gradient(circle, #412D15 0%, transparent 70%)",
               filter: "blur(60px)",
-              willChange: "transform",
             }}
           />
 
           {/* Logo with 3D transform */}
           <div className="relative" style={{ perspective: "600px" }}>
             <motion.div
-              initial={{ opacity: 0, scale: 0.75, rotateY: -18, rotateX: 6 }}
+              initial={{ opacity: 0, scale: 0.8, rotateY: -15, rotateX: 5 }}
               animate={{ opacity: 1, scale: 1, rotateY: 0, rotateX: 0 }}
               transition={{
-                duration: logoDuration,
+                duration: logoDur,
                 delay: logoDelay,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              style={{ transformStyle: "preserve-3d", willChange: "transform, opacity" }}
+              style={{ transformStyle: "preserve-3d" }}
             >
               <div className="relative w-20 h-20 sm:w-28 sm:h-28 md:w-32 md:h-32">
                 <Image
@@ -124,25 +116,23 @@ export function PremiumLoader() {
                   width={128}
                   height={128}
                   className="object-contain"
-                  style={{
-                    filter: "drop-shadow(0 0 32px rgba(65, 45, 21, 0.35))",
-                    color: "transparent",
-                  }}
                   priority
                   sizes="128px"
+                  style={{
+                    filter: "drop-shadow(0 0 32px rgba(65, 45, 21, 0.35))",
+                  }}
                 />
 
                 {/* Light sweep */}
                 <motion.div
                   initial={{ x: "-120%", opacity: 0 }}
-                  animate={{ x: "220%", opacity: [0, 0.55, 0] }}
+                  animate={{ x: "220%", opacity: [0, 0.5, 0] }}
                   transition={{
-                    duration: sweepDuration,
+                    duration: sweepDur,
                     delay: sweepDelay,
                     ease: "easeInOut",
                   }}
                   className="absolute inset-0 overflow-hidden rounded-full pointer-events-none"
-                  style={{ willChange: "transform" }}
                 >
                   <div
                     className="w-[35%] h-full"
@@ -156,11 +146,11 @@ export function PremiumLoader() {
             </motion.div>
           </div>
 
-          {/* Progress bar */}
+          {/* Loading line */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: barDelay, duration: 0.4 }}
+            transition={{ delay: barDelay, duration: 0.35 }}
             className="absolute bottom-[30%] sm:bottom-[28%] left-1/2 -translate-x-1/2 w-16 sm:w-24 md:w-28"
           >
             <div
@@ -171,7 +161,7 @@ export function PremiumLoader() {
                 initial={{ x: "-100%" }}
                 animate={{ x: "100%" }}
                 transition={{
-                  duration: barDuration,
+                  duration: barDur,
                   delay: barDelay,
                   ease: "easeInOut",
                 }}
@@ -179,7 +169,6 @@ export function PremiumLoader() {
                 style={{
                   background:
                     "linear-gradient(90deg, transparent, #412D15, #E1DCC9, #412D15, transparent)",
-                  willChange: "transform",
                 }}
               />
             </div>
@@ -189,7 +178,7 @@ export function PremiumLoader() {
           <motion.p
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: reduced ? 0.1 : 0.5, duration: 0.4 }}
+            transition={{ delay: textDelay, duration: 0.35 }}
             className="absolute bottom-[22%] sm:bottom-[20%] text-[10px] sm:text-xs tracking-[0.3em] uppercase select-none"
             style={{
               color: "rgba(225,220,201,0.3)",

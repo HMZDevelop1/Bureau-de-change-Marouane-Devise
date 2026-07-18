@@ -1,12 +1,20 @@
 import { businessInfo, GOOGLE_MAPS_URL } from "@/data/business";
 import { faqs } from "@/data/faqs";
 
-export function LocalBusinessSchema() {
+const descriptions: Record<string, string> = {
+  fr: "Bureau de change à Casablanca avec taux compétitifs, service rapide, sans commission et sans frais cachés.",
+  en: "Currency exchange in Casablanca with competitive rates, fast service, zero commission and no hidden fees.",
+  ar: "مكتب صرف العملات في الدار البيضاء بأسعار تنافسية وخدمة سريعة وبدون عمولة أو رسوم مخفية.",
+};
+
+export function LocalBusinessSchema({ locale = "fr" }: { locale?: string }) {
+  const desc = descriptions[locale] || descriptions.fr;
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: businessInfo.nameFull,
-    description: "Bureau de change à Casablanca avec taux compétitifs, service rapide, sans commission et sans frais cachés.",
+    description: desc,
     url: "https://marouanedevise.vercel.app",
     telephone: businessInfo.phone,
     email: businessInfo.email,
@@ -56,16 +64,16 @@ export function LocalBusinessSchema() {
   );
 }
 
-export function FAQSchema() {
+export function FAQSchema({ locale = "fr" }: { locale?: string }) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
-      name: faq.question.fr,
+      name: faq.question[locale as keyof typeof faq.question] || faq.question.fr,
       acceptedAnswer: {
         "@type": "Answer",
-        text: faq.answer.fr,
+        text: faq.answer[locale as keyof typeof faq.answer] || faq.answer.fr,
       },
     })),
   };

@@ -40,9 +40,11 @@ export function Gallery() {
       if (e.key === "ArrowRight") setSelectedImage((prev) => (prev === galleryImages.length - 1 ? 0 : (prev ?? 0) + 1));
     };
     document.addEventListener("keydown", handleKeyDown);
+    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     };
   }, [selectedImage]);
@@ -124,18 +126,18 @@ export function Gallery() {
           </div>
 
           {canScrollLeft && (
-            <button onClick={() => scroll("left")} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown hover:bg-brand-brown/5 transition-all duration-300 z-10" aria-label={t("prev")}>
+            <button onClick={() => scroll("left")} className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-4 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown hover:bg-brand-brown/5 transition-all duration-300 z-10" aria-label={t("prev")}>
               <ChevronLeft className="w-5 h-5" />
             </button>
           )}
           {canScrollRight && (
-            <button onClick={() => scroll("right")} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass flex items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown hover:bg-brand-brown/5 transition-all duration-300 z-10" aria-label={t("next")}>
+            <button onClick={() => scroll("right")} className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-4 w-11 h-11 rounded-full bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass items-center justify-center text-brand-coffee dark:text-brand-beige hover:text-brand-brown hover:bg-brand-brown/5 transition-all duration-300 z-10" aria-label={t("next")}>
               <ChevronRight className="w-5 h-5" />
             </button>
           )}
         </div>
 
-        <div className="flex items-center justify-center gap-2 mt-6">
+        <div className="flex items-center justify-center gap-2 mt-6" aria-hidden="true">
           {galleryImages.map((_, i) => (
             <span key={i} className="w-2 h-2 rounded-full bg-brand-brown/20 dark:bg-brand-beige/20" />
           ))}

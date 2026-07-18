@@ -111,6 +111,7 @@
       "amount": "المبلغ المقدر",
       "date": "التاريخ المطلوب",
       "message": "رسالة (اختياري)",
+      "messagePlaceholder": "رسالتك...",
       "namePlaceholder": "اسمك",
       "submit": "اتصل الآن",
       "whatsapp": "حجز عبر واتساب"
@@ -181,5 +182,18 @@
     "serviceEducation": "بدل تعليمي",
     "serviceNoCommission": "بدون عمولة",
     "serviceReservation": "حجز عملات"
+  },
+  "common": {
+    "errorTitle": "حدث خطأ ما",
+    "errorMessage": "يرجى تحديث الصفحة أو المحاولة لاحقاً.",
+    "errorRefresh": "تحديث",
+    "whatsappLabel": "تواصل معنا عبر واتساب",
+    "backToTop": "العودة للأعلى",
+    "toggleMenu": "فتح القائمة",
+    "toggleTheme": "تبديل المظهر",
+    "themeLight": "فاتح",
+    "themeDark": "داكن",
+    "mapTitle": "ماروان ديفيز في الدار البيضاء",
+    "loadingPage": "جاري التحميل"
   }
 }

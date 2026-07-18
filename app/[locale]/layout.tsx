@@ -56,8 +56,10 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
   if (!routing.locales.includes(locale as any)) notFound();
 
+  const dir = locale === "ar" ? "rtl" : "ltr";
+
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning style={{ overflowX: "hidden" }}>
+    <html lang={locale} dir={dir} suppressHydrationWarning className="overflow-x-hidden">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
@@ -72,19 +74,19 @@ export default async function LocaleLayout({ children, params }: Props) {
       </head>
       <body className="font-sans antialiased" style={{ backgroundColor: "var(--bg-primary)" }}>
         <ThemeProvider>
-          <ErrorBoundary>
-            <PremiumLoader />
-            <NextIntlClientProvider messages={messages}>
+          <NextIntlClientProvider messages={messages} locale={locale} timeZone="Africa/Casablanca">
+            <ErrorBoundary>
+              <PremiumLoader />
               <ScrollProgress />
-              <LocalBusinessSchema />
-              <FAQSchema />
+              <LocalBusinessSchema locale={locale} />
+              <FAQSchema locale={locale} />
               <Header />
-              <main className="min-h-screen">{children}</main>
+              <main id="main-content" className="min-h-screen">{children}</main>
               <Footer />
               <WhatsAppButton />
               <BackToTop />
-            </NextIntlClientProvider>
-          </ErrorBoundary>
+            </ErrorBoundary>
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>
