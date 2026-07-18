@@ -32,6 +32,12 @@ export interface Service {
   icon: string;
   title: Record<Locale, string>;
   description: Record<Locale, string>;
+  details: {
+    fullDescription: Record<Locale, string>;
+    documents: Record<Locale, string[]>;
+    process: Record<Locale, string[]>;
+    estimatedTime: Record<Locale, string>;
+  };
 }
 
 export interface Review {

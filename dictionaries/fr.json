@@ -72,7 +72,13 @@
   "services": {
     "title": "Nos services",
     "subtitle": "Une gamme complète de services de change pour répondre à tous vos besoins",
-    "learnMore": "En savoir plus"
+    "learnMore": "En savoir plus",
+    "modalClose": "Fermer",
+    "modalWhatsapp": "Réserver via WhatsApp",
+    "modalCall": "Appeler",
+    "modalDocuments": "Documents requis",
+    "modalProcess": "Déroulement",
+    "modalEstimatedTime": "Durée estimée"
   },
   "whyUs": {
     "title": "Pourquoi nous choisir",

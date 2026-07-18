@@ -72,7 +72,13 @@
   "services": {
     "title": "خدماتنا",
     "subtitle": "مجموعة كاملة من خدمات الصرف لتلبية جميع احتياجاتك",
-    "learnMore": "اعرف المزيد"
+    "learnMore": "اعرف المزيد",
+    "modalClose": "إغلاق",
+    "modalWhatsapp": "حجز عبر واتساب",
+    "modalCall": "اتصال",
+    "modalDocuments": "الوثائق المطلوبة",
+    "modalProcess": "خطوات التنفيذ",
+    "modalEstimatedTime": "الوقت المقدر"
   },
   "whyUs": {
     "title": "لماذا تختارنا",

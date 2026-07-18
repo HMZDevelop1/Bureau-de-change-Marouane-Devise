@@ -72,7 +72,13 @@
   "services": {
     "title": "Our Services",
     "subtitle": "A complete range of exchange services to meet all your needs",
-    "learnMore": "Learn more"
+    "learnMore": "Learn more",
+    "modalClose": "Close",
+    "modalWhatsapp": "Reserve via WhatsApp",
+    "modalCall": "Call",
+    "modalDocuments": "Required Documents",
+    "modalProcess": "Process",
+    "modalEstimatedTime": "Estimated Time"
   },
   "whyUs": {
     "title": "Why Choose Us",
