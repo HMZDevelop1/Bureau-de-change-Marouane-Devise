@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { MapPin, Phone, Mail, Star, Clock } from "lucide-react";
@@ -18,15 +19,19 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           <div className="space-y-5">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-brand-coffee flex items-center justify-center ring-1 ring-brand-beige/10">
-                <span className="text-brand-beige font-extrabold text-lg tracking-tight">MD</span>
+            <Link href="/" className="flex items-center gap-3 group" aria-label="Marouane Devise">
+              <div className="relative w-10 h-10 rounded-xl overflow-hidden ring-1 ring-brand-beige/10 flex-shrink-0">
+                <Image
+                  src="/logo/logo-official.png"
+                  alt="Marouane Devise Logo"
+                  fill
+                  className="object-contain"
+                  sizes="40px"
+                />
               </div>
               <div>
-                <span className="font-bold text-lg text-brand-beige tracking-tight">Marouane</span>
-                <span className="font-bold text-lg text-brand-beige/60 ml-0.5 tracking-tight">
-                  Devise
-                </span>
+                <span className="font-bold text-lg text-brand-beige tracking-tight font-display">Marouane</span>
+                <span className="font-bold text-lg text-brand-beige/60 ml-0.5 tracking-tight">Devise</span>
               </div>
             </Link>
             <p className="text-brand-beige/40 text-sm leading-relaxed">
