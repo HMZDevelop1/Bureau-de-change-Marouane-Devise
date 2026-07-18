@@ -16,7 +16,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://marouane-devise.vercel.app"),
+  metadataBase: new URL("https://marouanedevise.vercel.app"),
   title: "Marouane Devise | Bureau de Change a Casablanca",
   description: "Bureau de change a Casablanca offrant des taux competitifs, un service rapide, sans commission et sans frais caches.",
   keywords: ["bureau de change Casablanca", "change devise Casablanca", "dotation touristique Maroc"],

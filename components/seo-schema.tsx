@@ -7,7 +7,7 @@ export function LocalBusinessSchema() {
     "@type": "LocalBusiness",
     name: businessInfo.nameFull,
     description: "Bureau de change à Casablanca avec taux compétitifs, service rapide, sans commission et sans frais cachés.",
-    url: "https://marouane-devise.vercel.app",
+    url: "https://marouanedevise.vercel.app",
     telephone: businessInfo.phone,
     email: businessInfo.email,
     address: {

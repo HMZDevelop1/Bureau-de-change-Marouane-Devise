@@ -20,7 +20,7 @@ type Props = { children: React.ReactNode; params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "metadata" });
-  const baseUrl = "https://marouane-devise.vercel.app";
+  const baseUrl = "https://marouanedevise.vercel.app";
 
   return {
     title: t("title"),
