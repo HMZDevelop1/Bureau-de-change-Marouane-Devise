@@ -9,7 +9,6 @@ import { Menu, X, Phone, Sun, Moon, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { navLinks } from "@/data/navigation";
-import { businessInfo } from "@/data/business";
 import { generateCallUrl } from "@/lib/whatsapp";
 
 const locales = [
@@ -58,19 +57,6 @@ export function Header() {
           : "bg-transparent"
       )}
     >
-      <div className="hidden md:block bg-brand-coffee text-brand-beige text-xs py-1.5">
-        <div className="container-wide flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <span className="text-brand-beige/70">{businessInfo.address}</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <a href={generateCallUrl()} className="hover:text-brand-beige transition-colors font-medium">
-              {businessInfo.phoneFormatted}
-            </a>
-          </div>
-        </div>
-      </div>
-
       <nav className="container-wide flex items-center justify-between h-16 md:h-[72px]">
         <Link href={`/${locale}`} className="flex items-center gap-3 group" aria-label="Logo Marouane Devise Bureau de Change">
           <div className="relative w-10 h-10 md:w-11 md:h-11 rounded-xl overflow-hidden shadow-brand group-hover:shadow-brand-hover transition-shadow duration-300 flex-shrink-0">
