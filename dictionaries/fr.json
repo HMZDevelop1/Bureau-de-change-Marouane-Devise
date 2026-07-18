@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Marouane Devise | Bureau de Change à Casablanca",
-    "description": "Bureau de change à Casablanca. Taux compétitifs, sans commission, service rapide et sécurisé. Changez vos devises en toute confiance.",
+    "description": "Bureau de change à Casablanca. Taux compétitifs, zéro commission, service rapide. Changez vos devises en toute confiance.",
     "keywords": "bureau de change Casablanca, change devise Casablanca, dotation touristique Maroc, change euro dirham, change dollar dirham"
   },
   "topBar": {
@@ -27,29 +27,29 @@
     "title": "Changez vos devises",
     "titleHighlight": "en toute confiance",
     "titleEnd": "à Casablanca",
-    "subtitle": "Les meilleurs taux de change à Casablanca. Sans commission, sans frais cachés, avec un service rapide et professionnel.",
+    "subtitle": "Les meilleurs taux de change à Casablanca. Zéro commission, zéro frais cachés, service rapide et professionnel.",
     "cta_rates": "Voir les taux",
-    "cta_call": "Appeler",
+    "cta_call": "Nous appeler",
     "cta_direction": "Itinéraire",
-    "trust_no_commission": "Sans commission",
-    "trust_secure": "Transaction sécurisée",
-    "trust_fast": "Service rapide",
-    "trust_transparent": "Taux compétitifs",
+    "trust_no_commission": "Zéro commission",
+    "trust_secure": "Transactions sécurisées",
+    "trust_fast": "Service express",
+    "trust_transparent": "Taux du marché",
     "trust_rating": "4.8/5 sur Google",
     "trust_reviews": "19 avis",
     "ratesTitle": "Taux du jour",
-    "ratesSubtitle": "Mis à jour quotidiennement",
-    "ratesDisclaimer": "Les taux peuvent varier selon le montant",
+    "ratesSubtitle": "Mis à jour chaque matin",
+    "ratesDisclaimer": "Taux indicatifs, variables selon le montant",
     "scroll": "Découvrir"
   },
   "rates": {
     "title": "Taux de change du jour",
-    "subtitle": "Consultez nos taux en temps réel pour toutes les devises",
+    "subtitle": "Nos taux en temps réel pour toutes les devises",
     "buy": "Achat",
     "sell": "Vente",
     "spread": "Écart",
     "trend": "Tendance",
-    "updated": "Taux actualisés chaque jour",
+    "updated": "Actualisé chaque jour",
     "search": "Rechercher une devise...",
     "popular": "Populaires",
     "all": "Toutes les devises",
@@ -58,7 +58,7 @@
   },
   "calculator": {
     "title": "Calculatrice de change",
-    "subtitle": "Estimez le montant que vous recevrez en dirhams marocains",
+    "subtitle": "Estimez en un instant vos montants en dirhams marocains",
     "amount": "Montant",
     "from": "Devise source",
     "to": "Vers",
@@ -66,12 +66,12 @@
     "swap": "Inverser",
     "reset": "Réinitialiser",
     "result": "Montant estimé en MAD",
-    "no_commission": "Sans commission",
-    "disclaimer": "Les taux peuvent varier selon le montant. Contactez-nous pour un devis personnalisé."
+    "no_commission": "Zéro commission",
+    "disclaimer": "Taux indicatifs. Contactez-nous pour un devis personnalisé."
   },
   "services": {
     "title": "Nos services",
-    "subtitle": "Des solutions de change adaptées à chaque besoin",
+    "subtitle": "Des solutions de change pensées pour vous",
     "learnMore": "En savoir plus",
     "modalClose": "Fermer",
     "modalWhatsapp": "Réserver via WhatsApp",
@@ -82,7 +82,7 @@
   },
   "whyUs": {
     "title": "Pourquoi nous choisir",
-    "subtitle": "La confiance de nos clients, notre meilleure carte",
+    "subtitle": "La confiance de nos clients fait notre réputation",
     "rating": "Note Google",
     "reviews": "avis vérifiés",
     "fast": "Rapidité",
@@ -96,11 +96,11 @@
   },
   "gallery": {
     "title": "Notre espace",
-    "subtitle": "Un cadre professionnel dédié à votre service"
+    "subtitle": "Un cadre professionnel à votre service"
   },
   "reservation": {
     "title": "Réservez vos devises",
-    "subtitle": "Garantissez votre taux en avance. Contactez-nous par WhatsApp ou téléphone.",
+    "subtitle": "Verrouillez votre taux à l'avance. Contactez-nous par WhatsApp ou téléphone.",
     "form": {
       "name": "Nom complet",
       "phone": "Numéro de téléphone",
@@ -111,17 +111,17 @@
       "submit": "Appeler maintenant",
       "whatsapp": "Réserver via WhatsApp"
     },
-    "success": "Votre demande a été envoyée avec succès !",
+    "success": "Votre demande a bien été envoyée.",
     "quickResponse": "Réponse rapide garantie"
   },
   "reviews": {
     "title": "Avis de nos clients",
-    "subtitle": "Ce que nos clients disent de nous sur Google",
+    "subtitle": "Ce que disent de nous ceux qui nous font confiance",
     "seeAll": "Voir tous les avis sur Google"
   },
   "about": {
     "title": "À propos de Marouane Devise",
-    "content": "Marouane Devise est un bureau de change de confiance à Casablanca. Taux transparents, opérations rapides et service professionnel. Voyageurs, étudiants, pèlerins ou professionnels, notre équipe vous accueille avec le sourire.",
+    "content": "Marouane Devise est un bureau de change de confiance au cœur de Casablanca. Taux transparents, opérations rapides, accueil chaleureux. Voyageurs, étudiants, pèlerins ou professionnels, nous vous accompagnons avec le sourire.",
     "travelers": "Voyageurs",
     "students": "Étudiants",
     "pilgrims": "Pèlerins",
@@ -130,8 +130,8 @@
     "missions": "Missions",
     "googleRating": "sur Google",
     "verifiedReviews": "avis vérifiés sur Google",
-    "sampleReview": "Service rapide et professionnel. Les taux sont très compétitifs.",
-    "sampleAuthor": "- Ahmed B., avis Google"
+    "sampleReview": "Service rapide et chaleureux. Les taux sont vraiment compétitifs.",
+    "sampleAuthor": "Ahmed B., avis Google"
   },
   "contact": {
     "title": "Contactez-nous",
@@ -151,10 +151,10 @@
   },
   "faq": {
     "title": "Questions fréquentes",
-    "subtitle": "Réponses rapides à vos questions"
+    "subtitle": "Tout ce que vous devez savoir"
   },
   "footer": {
-    "description": "Votre bureau de change de confiance à Casablanca. Taux compétitifs, service rapide, sans commission.",
+    "description": "Votre bureau de change de confiance à Casablanca. Taux compétitifs, zéro commission, service express.",
     "quickLinks": "Liens rapides",
     "services": "Services",
     "contact": "Contact",
@@ -173,7 +173,7 @@
     "serviceTourism": "Dotation touristique",
     "servicePilgrimage": "Dotation pèlerinage",
     "serviceEducation": "Départ scolarité",
-    "serviceNoCommission": "Sans commission",
+    "serviceNoCommission": "Zéro commission",
     "serviceReservation": "Réservation de devises"
   }
 }

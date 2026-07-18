@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "Marouane Devise | Currency Exchange in Casablanca",
-    "description": "Currency exchange in Casablanca. Competitive rates, no commission, fast and secure service. Exchange your currency with confidence.",
+    "description": "Currency exchange in Casablanca. Competitive rates, zero commission, fast service. Exchange your currency with confidence.",
     "keywords": "currency exchange Casablanca, bureau de change Casablanca, tourist allowance Morocco, euro dirham exchange, dollar dirham exchange"
   },
   "topBar": {
@@ -27,29 +27,29 @@
     "title": "Exchange your currency",
     "titleHighlight": "with confidence",
     "titleEnd": "in Casablanca",
-    "subtitle": "The best exchange rates in Casablanca. No commission, no hidden fees, fast and professional service.",
+    "subtitle": "The best exchange rates in Casablanca. Zero commission, zero hidden fees, fast and professional service.",
     "cta_rates": "View Rates",
     "cta_call": "Call Us",
     "cta_direction": "Directions",
-    "trust_no_commission": "No commission",
+    "trust_no_commission": "Zero commission",
     "trust_secure": "Secure transactions",
-    "trust_fast": "Fast service",
-    "trust_transparent": "Competitive rates",
+    "trust_fast": "Express service",
+    "trust_transparent": "Market rates",
     "trust_rating": "4.8/5 on Google",
     "trust_reviews": "19 reviews",
     "ratesTitle": "Today's Rates",
-    "ratesSubtitle": "Updated daily",
-    "ratesDisclaimer": "Rates may vary depending on the amount",
+    "ratesSubtitle": "Updated every morning",
+    "ratesDisclaimer": "Indicative rates, may vary by amount",
     "scroll": "Discover"
   },
   "rates": {
     "title": "Today's Exchange Rates",
-    "subtitle": "Check our real-time rates for all currencies",
+    "subtitle": "Live rates for all currencies",
     "buy": "Buy",
     "sell": "Sell",
     "spread": "Spread",
     "trend": "Trend",
-    "updated": "Rates updated daily",
+    "updated": "Updated daily",
     "search": "Search currency...",
     "popular": "Popular",
     "all": "All currencies",
@@ -58,7 +58,7 @@
   },
   "calculator": {
     "title": "Exchange Calculator",
-    "subtitle": "Estimate how much you will receive in Moroccan Dirhams",
+    "subtitle": "Get your Moroccan Dirham estimate in seconds",
     "amount": "Amount",
     "from": "From",
     "to": "To",
@@ -66,12 +66,12 @@
     "swap": "Swap",
     "reset": "Reset",
     "result": "Estimated amount in MAD",
-    "no_commission": "No commission",
-    "disclaimer": "Rates may vary depending on the amount. Contact us for a personalized quote."
+    "no_commission": "Zero commission",
+    "disclaimer": "Indicative rates. Contact us for a personalized quote."
   },
   "services": {
     "title": "Our Services",
-    "subtitle": "Exchange solutions tailored to every need",
+    "subtitle": "Exchange solutions designed for you",
     "learnMore": "Learn more",
     "modalClose": "Close",
     "modalWhatsapp": "Reserve via WhatsApp",
@@ -82,25 +82,25 @@
   },
   "whyUs": {
     "title": "Why Choose Us",
-    "subtitle": "Our clients' trust says it all",
+    "subtitle": "Our clients' trust speaks for itself",
     "rating": "Google Rating",
     "reviews": "verified reviews",
     "fast": "Speed",
-    "fastDesc": "Operations in just minutes",
+    "fastDesc": "Done in minutes",
     "competitive": "Competitive Rates",
     "competitiveDesc": "Best prices on the market",
     "professional": "Professionalism",
-    "professionalDesc": "A team at your service",
+    "professionalDesc": "A team that listens",
     "trusted": "Proven Trust",
     "trustedDesc": "Alongside travelers and locals"
   },
   "gallery": {
     "title": "Our Space",
-    "subtitle": "A professional setting dedicated to your service"
+    "subtitle": "A professional setting for your comfort"
   },
   "reservation": {
     "title": "Reserve Your Currency",
-    "subtitle": "Lock in your rate in advance. Reach us via WhatsApp or phone.",
+    "subtitle": "Lock in your rate early. Reach us via WhatsApp or phone.",
     "form": {
       "name": "Full Name",
       "phone": "Phone Number",
@@ -111,17 +111,17 @@
       "submit": "Call Now",
       "whatsapp": "Reserve via WhatsApp"
     },
-    "success": "Your request has been sent successfully!",
+    "success": "Your request has been sent.",
     "quickResponse": "Quick response guaranteed"
   },
   "reviews": {
     "title": "Client Reviews",
-    "subtitle": "What our clients say about us on Google",
+    "subtitle": "What our clients say about us",
     "seeAll": "See all reviews on Google"
   },
   "about": {
     "title": "About Marouane Devise",
-    "content": "Marouane Devise is a trusted currency exchange in Casablanca. Transparent rates, fast transactions, and a warm professional team. Travelers, students, pilgrims, or business people, we welcome you with a smile.",
+    "content": "Marouane Devise is a trusted currency exchange in the heart of Casablanca. Transparent rates, fast transactions, warm welcome. Travelers, students, pilgrims, or professionals, we are here for you.",
     "travelers": "Travelers",
     "students": "Students",
     "pilgrims": "Pilgrims",
@@ -130,8 +130,8 @@
     "missions": "Missions",
     "googleRating": "on Google",
     "verifiedReviews": "verified reviews on Google",
-    "sampleReview": "Fast and professional service. The rates are very competitive.",
-    "sampleAuthor": "- Ahmed B., Google review"
+    "sampleReview": "Fast and friendly service. Rates are really competitive.",
+    "sampleAuthor": "Ahmed B., Google review"
   },
   "contact": {
     "title": "Get in Touch",
@@ -151,10 +151,10 @@
   },
   "faq": {
     "title": "Frequently Asked Questions",
-    "subtitle": "Quick answers to your questions"
+    "subtitle": "Everything you need to know"
   },
   "footer": {
-    "description": "Your trusted currency exchange in Casablanca. Competitive rates, fast service, no commission.",
+    "description": "Your trusted currency exchange in Casablanca. Competitive rates, zero commission, express service.",
     "quickLinks": "Quick Links",
     "services": "Services",
     "contact": "Contact",
@@ -173,7 +173,7 @@
     "serviceTourism": "Tourist Allowance",
     "servicePilgrimage": "Pilgrimage Allowance",
     "serviceEducation": "Education Allowance",
-    "serviceNoCommission": "No Commission",
+    "serviceNoCommission": "Zero Commission",
     "serviceReservation": "Currency Reservation"
   }
 }
