@@ -23,17 +23,20 @@ export class ErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
-      console.group("%c[ErrorBoundary] Caught Error", "color: red; font-weight: bold;");
-      console.error("Error:", error.message);
-      console.error("Stack:", error.stack);
-      console.error("Component Stack:", errorInfo.componentStack);
-      console.groupEnd();
+    if (typeof window !== "undefined") {
+      console.error("[ErrorBoundary] Caught:", error.message, error.stack);
+      console.error("[ErrorBoundary] Component stack:", errorInfo.componentStack);
     }
   }
 
   handleReset = () => {
     this.setState({ hasError: false, error: null });
+  };
+
+  handleRefresh = () => {
+    if (typeof window !== "undefined") {
+      window.location.reload();
+    }
   };
 
   render() {
@@ -61,9 +64,7 @@ export class ErrorBoundary extends Component<Props, State> {
                   Try again
                 </button>
                 <button
-                  onClick={() => {
-                    if (typeof window !== "undefined") window.location.reload();
-                  }}
+                  onClick={this.handleRefresh}
                   className="px-6 py-2 bg-brand-coffee text-brand-beige rounded-xl font-semibold hover:bg-brand-brown transition-colors"
                 >
                   Refresh

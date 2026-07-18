@@ -7,16 +7,14 @@ export function GlobalErrorHandler() {
     if (typeof window === "undefined") return;
 
     const handleError = (event: ErrorEvent) => {
-      event.preventDefault();
       if (process.env.NODE_ENV === "development") {
-        console.error("[GlobalErrorHandler] Uncaught error:", event.error);
+        console.error("[GlobalError]", event.message, event.filename, event.lineno);
       }
     };
 
     const handleRejection = (event: PromiseRejectionEvent) => {
-      event.preventDefault();
       if (process.env.NODE_ENV === "development") {
-        console.error("[GlobalErrorHandler] Unhandled rejection:", event.reason);
+        console.error("[UnhandledRejection]", event.reason);
       }
     };
 
