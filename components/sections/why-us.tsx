@@ -4,18 +4,48 @@ import { useTranslations } from "next-intl";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Star, Zap, TrendingUp, Users, Shield, Award } from "lucide-react";
 import { businessInfo } from "@/data/business";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function CountUp({ target, duration = 2 }: { target: number; duration?: number }) {
   const count = useMotionValue(0);
   const rounded = useTransform(count, (v) => v.toFixed(1));
   const ref = useRef<HTMLSpanElement>(null);
+  const [inView, setInView] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!containerRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!inView) return;
     const controls = animate(count, target, { duration, ease: "easeOut" });
-    const unsubscribe = rounded.on("change", (v) => { if (ref.current) ref.current.textContent = v; });
-    return () => { controls.stop(); unsubscribe(); };
-  }, [target, duration, count, rounded]);
-  return <span ref={ref}>0.0</span>;
+    const unsubscribe = rounded.on("change", (v) => {
+      if (ref.current) ref.current.textContent = v;
+    });
+    return () => {
+      controls.stop();
+      unsubscribe();
+    };
+  }, [inView, target, duration, count, rounded]);
+
+  return (
+    <div ref={containerRef}>
+      <span ref={ref}>0.0</span>
+    </div>
+  );
 }
 
 export function WhyUsSection() {

@@ -3,32 +3,41 @@
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { ArrowUp } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function BackToTop() {
-  const t = useTranslations("common");
   const [visible, setVisible] = useState(false);
+  const t = useTranslations("common");
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const handleScroll = () => setVisible(window.scrollY > 500);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollToTop = () => {
+    try {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch {
+      window.scrollTo(0, 0);
+    }
+  };
 
   return (
-    <button
-      onClick={scrollToTop}
-      className={cn(
-        "fixed bottom-6 left-6 sm:bottom-8 sm:left-8 md:bottom-8 md:left-8 z-50 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300",
-        "bg-brand-beige dark:bg-brand-coffee/80 shadow-card dark:shadow-glass",
-        "text-brand-coffee/60 dark:text-brand-beige/60 hover:text-brand-brown hover:bg-brand-brown/5 dark:hover:bg-brand-beige/[0.12]",
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          onClick={scrollToTop}
+          className="fixed bottom-6 left-6 z-50 w-12 h-12 bg-brand-coffee dark:bg-brand-beige text-brand-beige dark:text-brand-coffee rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+          aria-label={t("backToTop")}
+        >
+          <ArrowUp className="h-5 w-5" />
+        </motion.button>
       )}
-      aria-label={t("backToTop")}
-    >
-      <ArrowUp className="h-5 w-5" />
-    </button>
+    </AnimatePresence>
   );
 }

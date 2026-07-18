@@ -1,21 +1,26 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { lockScroll, unlockScroll } from "@/lib/scroll-lock";
 
 const SESSION_KEY = "md_loader_seen";
 const DURATION_MS = 1400;
 
-function usePrefersReducedMotion(): boolean {
+function useSafeReducedMotion(): boolean {
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
-    mq.addEventListener("change", handler);
-    return () => mq.removeEventListener("change", handler);
+    try {
+      const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+      setReduced(mq.matches);
+      const handler = (e: MediaQueryListEvent) => setReduced(e.matches);
+      mq.addEventListener("change", handler);
+      return () => mq.removeEventListener("change", handler);
+    } catch {
+      return undefined;
+    }
   }, []);
   return reduced;
 }
@@ -23,37 +28,25 @@ function usePrefersReducedMotion(): boolean {
 export function PremiumLoader() {
   const [show, setShow] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const reduced = usePrefersReducedMotion();
-  const scrollYRef = useRef(0);
+  const reduced = useSafeReducedMotion();
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const lockScroll = useCallback(() => {
-    scrollYRef.current = window.scrollY;
-    document.documentElement.style.overflow = "hidden";
-    document.body.style.overflow = "hidden";
-  }, []);
-
-  const unlockScroll = useCallback(() => {
-    document.documentElement.style.overflow = "";
-    document.body.style.overflow = "";
-    requestAnimationFrame(() => {
-      window.scrollTo(0, scrollYRef.current);
-    });
-  }, []);
+  const scrollLockedRef = useRef(false);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     setMounted(true);
     try {
-      if (!sessionStorage.getItem(SESSION_KEY)) {
+      const alreadySeen = sessionStorage.getItem(SESSION_KEY);
+      if (!alreadySeen) {
         lockScroll();
+        scrollLockedRef.current = true;
         setShow(true);
         sessionStorage.setItem(SESSION_KEY, "1");
       }
     } catch {
-      // sessionStorage unavailable
+      // sessionStorage unavailable (private browsing, etc.)
     }
-  }, [lockScroll]);
+  }, []);
 
   useEffect(() => {
     if (!show) return;
@@ -62,6 +55,16 @@ export function PremiumLoader() {
       if (timerRef.current) clearTimeout(timerRef.current);
     };
   }, [show]);
+
+  useEffect(() => {
+    return () => {
+      if (scrollLockedRef.current) {
+        unlockScroll();
+        scrollLockedRef.current = false;
+      }
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
 
   if (!mounted || !show) return null;
 
@@ -75,7 +78,14 @@ export function PremiumLoader() {
   const textDelay = reduced ? 0.05 : 0.45;
 
   return (
-    <AnimatePresence onExitComplete={unlockScroll}>
+    <AnimatePresence
+      onExitComplete={() => {
+        if (scrollLockedRef.current) {
+          unlockScroll();
+          scrollLockedRef.current = false;
+        }
+      }}
+    >
       {show && (
         <motion.div
           key="loader"

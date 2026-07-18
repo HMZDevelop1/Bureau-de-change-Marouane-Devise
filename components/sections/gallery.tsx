@@ -33,6 +33,7 @@ export function Gallery() {
   }, [checkScroll]);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (selectedImage === null) return;
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setSelectedImage(null);
@@ -40,11 +41,9 @@ export function Gallery() {
       if (e.key === "ArrowRight") setSelectedImage((prev) => (prev === galleryImages.length - 1 ? 0 : (prev ?? 0) + 1));
     };
     document.addEventListener("keydown", handleKeyDown);
-    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     };
   }, [selectedImage]);

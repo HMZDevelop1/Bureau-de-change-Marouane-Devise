@@ -6,11 +6,9 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { LocalBusinessSchema, FAQSchema } from "@/components/seo-schema";
-import { WhatsAppButton } from "@/components/common/whatsapp-button";
-import { BackToTop } from "@/components/common/back-to-top";
-import { ScrollProgress } from "@/components/common/scroll-progress";
-import { PremiumLoader } from "@/components/common/premium-loader";
 import { ErrorBoundary } from "@/components/common/error-boundary";
+import { GlobalErrorHandler } from "@/components/common/global-error-handler";
+import { ClientShell } from "@/components/common/client-shell";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -75,16 +73,14 @@ export default async function LocaleLayout({ children, params }: Props) {
       <body className="font-sans antialiased" style={{ backgroundColor: "var(--bg-primary)" }}>
         <ThemeProvider>
           <NextIntlClientProvider messages={messages} locale={locale} timeZone="Africa/Casablanca">
+            <GlobalErrorHandler />
             <ErrorBoundary>
-              <PremiumLoader />
-              <ScrollProgress />
+              <ClientShell />
               <LocalBusinessSchema locale={locale} />
               <FAQSchema locale={locale} />
               <Header />
               <main id="main-content" className="min-h-screen">{children}</main>
               <Footer />
-              <WhatsAppButton />
-              <BackToTop />
             </ErrorBoundary>
           </NextIntlClientProvider>
         </ThemeProvider>

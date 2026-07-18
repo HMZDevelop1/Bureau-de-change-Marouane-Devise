@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { motion } from "framer-motion";
 import { Phone, MessageSquare, MapPin, Clock, ExternalLink } from "lucide-react";
@@ -10,9 +11,20 @@ import { isOpenNow, getFullOpeningHours, getTimeUntilClose } from "@/lib/hours";
 export function ContactSection() {
   const t = useTranslations("contact");
   const locale = useLocale();
-  const open = isOpenNow();
-  const timeLeft = getTimeUntilClose();
-  const hours = getFullOpeningHours(locale);
+  const [open, setOpen] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<string | null>(null);
+  const [hours, setHours] = useState<{ day: string; hours: string }[]>([]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    try {
+      setOpen(isOpenNow());
+      setTimeLeft(getTimeUntilClose());
+      setHours(getFullOpeningHours(locale));
+    } catch {
+      // Time calculation failed (e.g., timezone issue)
+    }
+  }, [locale]);
 
   return (
     <section id="contact" className="section-padding bg-brand-beige dark:bg-brand-black relative overflow-hidden">

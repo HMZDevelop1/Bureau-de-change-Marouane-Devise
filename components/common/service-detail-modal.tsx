@@ -52,15 +52,15 @@ export function ServiceDetailModal({ service, onClose }: ServiceDetailModalProps
   );
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
     if (service === null) return;
-    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", handleKeyDown);
-    setTimeout(() => closeButtonRef.current?.focus(), 100);
+    const focusTimer = setTimeout(() => closeButtonRef.current?.focus(), 100);
     return () => {
-      document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       document.removeEventListener("keydown", handleKeyDown);
+      clearTimeout(focusTimer);
     };
   }, [service, handleKeyDown]);
 
