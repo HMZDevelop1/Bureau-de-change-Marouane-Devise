@@ -43,7 +43,8 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-bold text-brand-coffee dark:text-brand-beige leading-[1.1] mb-6"
+              className="font-display font-bold text-brand-coffee dark:text-brand-beige leading-[1.1] mb-6"
+              style={{ fontSize: "clamp(1.875rem, 4vw + 1rem, 4.5rem)" }}
             >
               {t("title")}{" "}
               <span className="text-brand-brown dark:text-brand-beige">{t("titleHighlight")}</span>

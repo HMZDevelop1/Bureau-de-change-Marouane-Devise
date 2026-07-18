@@ -102,13 +102,13 @@ export function Gallery() {
                 onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setSelectedImage(index); } }}
                 aria-label={image.alt}
               >
-                <div className="w-[280px] h-[370px] sm:w-[340px] sm:h-[450px] md:w-[400px] md:h-[530px] rounded-2xl overflow-hidden relative bg-brand-coffee/5 dark:bg-brand-beige/5 shadow-card dark:shadow-glass">
+                <div className="w-[260px] h-[345px] sm:w-[340px] sm:h-[450px] md:w-[400px] md:h-[530px] rounded-2xl overflow-hidden relative bg-brand-coffee/5 dark:bg-brand-beige/5 shadow-card dark:shadow-glass">
                   <Image
                     src={image.src}
                     alt={image.alt}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 640px) 280px, (max-width: 768px) 340px, 400px"
+                    sizes="(max-width: 640px) 260px, (max-width: 768px) 340px, 400px"
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-coffee/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

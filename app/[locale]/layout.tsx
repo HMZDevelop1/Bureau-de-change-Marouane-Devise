@@ -9,6 +9,7 @@ import { LocalBusinessSchema, FAQSchema } from "@/components/seo-schema";
 import { WhatsAppButton } from "@/components/common/whatsapp-button";
 import { BackToTop } from "@/components/common/back-to-top";
 import { ScrollProgress } from "@/components/common/scroll-progress";
+import { PremiumLoader } from "@/components/common/premium-loader";
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -55,8 +56,9 @@ export default async function LocaleLayout({ children, params }: Props) {
   if (!routing.locales.includes(locale as any)) notFound();
 
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning>
+    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"} suppressHydrationWarning style={{ overflowX: "hidden" }}>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/logo/logo-official.png" />
         <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
@@ -69,6 +71,7 @@ export default async function LocaleLayout({ children, params }: Props) {
       </head>
       <body className="font-sans antialiased">
         <ThemeProvider>
+          <PremiumLoader />
           <NextIntlClientProvider messages={messages}>
             <ScrollProgress />
             <LocalBusinessSchema />

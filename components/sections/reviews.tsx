@@ -62,7 +62,7 @@ export function ReviewsSection() {
           <div ref={scrollRef} onScroll={checkScroll} className="flex gap-5 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 -mx-4 px-4">
             {reviews.map((review, i) => (
               <motion.div key={review.id} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="flex-shrink-0 snap-center w-[300px] sm:w-[320px] bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] p-5 sm:p-6 shadow-card dark:shadow-glass hover:shadow-brand dark:hover:shadow-glass-lg hover:border-brand-brown/20 dark:hover:border-brand-beige/[0.12] transition-all duration-500">
+                className="flex-shrink-0 snap-center w-[270px] sm:w-[320px] bg-brand-beige dark:bg-brand-coffee/40 rounded-2xl border border-brand-brown/[0.06] dark:border-brand-beige/[0.06] p-5 sm:p-6 shadow-card dark:shadow-glass hover:shadow-brand dark:hover:shadow-glass-lg hover:border-brand-brown/20 dark:hover:border-brand-beige/[0.12] transition-all duration-500">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-10 h-10 rounded-full bg-brand-brown/10 dark:bg-brand-beige/10 flex items-center justify-center text-brand-brown dark:text-brand-beige font-bold text-sm">{review.author.charAt(0)}</div>
                   <div>

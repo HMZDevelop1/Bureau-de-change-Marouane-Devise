@@ -64,6 +64,7 @@
     font-feature-settings: "cv11", "ss01";
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
   }
 
   ::selection {
